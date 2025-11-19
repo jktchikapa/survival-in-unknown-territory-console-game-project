@@ -129,7 +129,61 @@ namespace SurvieEnTerreInconnue
                         "\r\n██║  ██║███████╗███████║███████║╚██████╔╝╚██████╔╝██║  ██║╚██████╗███████╗███████║" +
                         "\r\n╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚══════╝╚══════╝");
         }
+        public static void AnimateText(string texte, ConsoleColor couleur = ConsoleColor.White, int delai = 20)
+        {
+            ConsoleColor original = Console.ForegroundColor;
+            Console.ForegroundColor = couleur;
 
-       
+            foreach (char c in texte)
+            {
+                Console.Write(c);
+                Thread.Sleep(delai);
+            }
+
+            Console.ForegroundColor = original;
+        }
+        public static void CountDown()
+       {
+            string three = " ██╗" +
+                        "\r\n███║" +
+                        "\r\n╚██║" +
+                        "\r\n ██║" +
+                        "\r\n ██║" +
+                        "\r\n ╚═╝";
+
+            string two = "██████╗" +
+                    " \r\n╚════██╗" +
+                    "\r\n █████╔╝" +
+                    "\r\n██╔═══╝ " +
+                    "\r\n███████╗" +
+                    "\r\n╚══════╝";
+
+            string one = "██████╗ " +
+                    "\r\n╚════██╗" +
+                    "\r\n █████╔╝" +
+                    "\r\n ╚═══██╗" +
+                    "\r\n██████╔╝" +
+                    "\r\n╚═════╝ ";
+
+            string go = " ██████╗  ██████╗ ██╗" +
+                    "\r\n██╔════╝ ██╔═══██╗██║" +
+                    "\r\n██║  ███╗██║   ██║██║" +
+                    "\r\n██║   ██║██║   ██║╚═╝" +
+                    "\r\n╚██████╔╝╚██████╔╝██╗" +
+                    "\r\n ╚═════╝  ╚═════╝ ╚═╝";
+
+            string[] numbers = { three, two, one, go };
+
+            foreach (string n in numbers)
+            {
+                Console.Clear();
+                Console.WriteLine(n);
+                Thread.Sleep(1000);
+            }
+            Console.Clear();
+        }
+
+
+
     }
 }

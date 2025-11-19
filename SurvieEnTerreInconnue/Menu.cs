@@ -8,7 +8,6 @@ namespace SurvieEnTerreInconnue
 {
     internal class Menu
     {
-        //Sert à afficher le cadre 
         static void DisplayFrame(string texte)
         {
             int length = texte.Length;
@@ -17,34 +16,151 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine($"╚{new string('═', length)}╝");
         }
 
-        //Afficher le menu
-        public static int DisplayMenu()
+        public static ConsoleKey DisplayMenu()
         {
+            Console.Clear();
             DisplayFrame("Bienvenue dans le menu principal du jeu Survie En Terre Inconnu");
-            Console.WriteLine("1. Jouer");
-            Console.WriteLine("2. Charger une nouvelle partie");
-            Console.WriteLine("3. Sauvegarder une partie");
-            Console.WriteLine("4. Crédits");
-            Console.WriteLine("5. Quitter");
-            Console.WriteLine("Veuillez sélectionner l'une des options ci-dessus :");
-            int input = int.Parse( Console.ReadLine() );
-
-            return input;
+            Console.WriteLine();
+            Console.WriteLine("Veuillez sélectionner une action :");
+            Console.WriteLine("[J]ouer");
+            Console.WriteLine("[D]émarer une nouvelle partie");
+            Console.WriteLine("[S]auvegarder une partie");
+            Console.WriteLine("[C]rédits");
+            Console.WriteLine("[Q]uitter");
+            Console.WriteLine();
+            Console.Write("Votre choix : ");
+            ConsoleKeyInfo selectedAction = Console.ReadKey();
+            return selectedAction.Key;
         }
-        //Afficher la mise en contexte du jeu
+
+        public static void ProcessDisplayMenuInput()
+        {
+            bool continueGame = true;
+
+            while (continueGame)
+            {
+                ConsoleKey input = DisplayMenu();
+
+                switch (input)
+                {
+                    case ConsoleKey.J:
+                        Console.Clear();
+                        Display.AnimateText("Chargement de la partie...");
+                        Thread.Sleep(1000);
+                        break;
+
+                    case ConsoleKey.D:
+                        Console.Clear();
+                        DisplayGameHistory();
+                        DisplayStartMessage();
+                        break;
+
+                    case ConsoleKey.S:
+                        Console.Clear();
+                        Display.AnimateText("Partie sauvegardée avec succès !");
+                        Thread.Sleep(2000);
+                        break;
+
+                    case ConsoleKey.C:
+                        Console.Clear();
+                        Console.WriteLine("\nAppuyez sur une touche pour retourner au menu...");
+                        Console.ReadKey();
+                        break;
+
+                    case ConsoleKey.Q:
+                        continueGame = ProcessDisplayLeaveMessageInput();
+                        break;
+
+                    default:
+                        Console.Clear();
+                        Display.AnimateText("Choix invalide. Veuillez réessayer.");
+                        Thread.Sleep(1500);
+                        break;
+                }
+            }
+        }
+
+        public static ConsoleKey DisplayLeaveMessage()
+        {
+            Console.Clear();
+            Display.AnimateText("Êtes vous sûr de vouloir quitter la partie ?");
+            Console.WriteLine();
+            Console.WriteLine("[O]ui, je souhaite quitter la partie");
+            Console.WriteLine("[N]on, je ne souhaite plus quitter la partie");
+            Console.WriteLine("[S]auvegarder ma progression");
+            Console.WriteLine();
+            Console.Write("Votre choix : ");
+            ConsoleKeyInfo selectedAction = Console.ReadKey();
+            return selectedAction.Key;
+        }
+
+        public static bool ProcessDisplayLeaveMessageInput()
+        {
+            ConsoleKey input = DisplayLeaveMessage();
+
+            switch (input)
+            {
+                case ConsoleKey.O:
+                    Console.Clear();
+                    DisplayGoodByeMessage();
+                    Thread.Sleep(3000);
+                    return false;
+
+                case ConsoleKey.N:
+                    return true;
+
+                case ConsoleKey.S:
+                    Console.Clear();
+                    Display.AnimateText("Sauvegarde en cours...");
+                    Thread.Sleep(1000);
+                    Display.AnimateText("Partie sauvegardée avec succès !");
+                    Thread.Sleep(1500);
+                    Console.Clear();
+                    DisplayGoodByeMessage();
+                    Thread.Sleep(3000);
+                    return false;
+
+                default:
+                    Display.AnimateText("Choix invalide. Retour au menu...");
+                    Thread.Sleep(1500);
+                    return true;
+            }
+        }
+
+        public static void DisplayGoodByeMessage()
+        {
+            Display.AnimateText("Vous avez ainsi fait votre choix, nous espérons que le jeu vous aura plu.");
+            Console.WriteLine();
+            Display.AnimateText("Nous espérons vous revoir bientôt !");
+            Console.WriteLine();
+        }
+
         public static void DisplayGameHistory()
         {
-            Console.WriteLine("Vous êtes le seul survivant à un crash d'avion");
+            Display.AnimateText("Vous êtes le seul survivant à un crash d'avion", ConsoleColor.White, 20);
+            Console.WriteLine();
             Thread.Sleep(1000);
-            Console.WriteLine("Vous êtes sur une île abandonné, aucun signe de vie aux alentours");
+            Display.AnimateText("Vous êtes sur une île abandonnée, aucun signe de vie aux alentours", ConsoleColor.White, 20);
+            Console.WriteLine();
             Thread.Sleep(1000);
-            Console.WriteLine("L'hiver approche ...");
+            Display.AnimateText("L'hiver approche ...", ConsoleColor.White, 20);
+            Console.WriteLine();
             Thread.Sleep(1000);
-            Console.WriteLine("Construisez vous un abrit au plus vite si vous souhaitez  survivre ...");
+            Display.AnimateText("Construisez-vous un abri au plus vite si vous souhaitez survivre ...", ConsoleColor.White, 20);
+            Console.WriteLine();
         }
-        //Afficher le menu de fabrication
+
+        public static void DisplayStartMessage()
+        {
+            Display.AnimateText("Êtes vous prêt à commencer ?", ConsoleColor.White, 25);
+            Thread.Sleep(2000);
+            Display.CountDown();
+            Console.Clear();
+        }
+
         public static ConsoleKey DisplayManufacturingMenu()
         {
+            Console.Clear();
             Display.DisplayManufacturingItems();
             Console.WriteLine();
 
@@ -55,121 +171,187 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine("[P]lanche : Cette action nécessite du Bois ainsi qu'une Hache");
             Console.WriteLine("[B]rique : Cette action nécessite du Feu et de l'Argile");
             Console.WriteLine("[I]solant : Cette action nécessite 3x de l'herbe");
-            Console.WriteLine("[M]aison : Cette action nécessite 4x des Planches, 4x des Isolants , 4x des Briques ainsi que 2x des Vitres");
-            Console.WriteLine("[C]onsulter Inventaire : Vous pouvez consulter votre inventaire pour vérifier que vous possédez toutes les ressources nécéssaires à la fabrication de matériaux");
-            Console.WriteLine("Vous pouvez appuyer sur toutes les autres touches si vous ne voulez faire aucune action");
+            Console.WriteLine("[M]aison : Cette action nécessite 4x des Planches, 4x des Isolants, 4x des Briques ainsi que 2x des Vitres");
+            Console.WriteLine("[C]onsulter Inventaire : Vous pouvez consulter votre inventaire");
+            Console.WriteLine("[R]etour au menu principal");
+            Console.WriteLine("[Q]uitter le jeu");
             Console.WriteLine("\t\t***********************************************************");
+            Console.WriteLine();
+            Console.Write("Votre choix : ");
 
             ConsoleKeyInfo selectedAction = Console.ReadKey();
-            return selectedAction.Key; 
+            return selectedAction.Key;
         }
-        public static void ProcessDisplayManufacturingInput()
-        {
-            ConsoleKey input = DisplayManufacturingMenu();
 
-            switch (input)
+        public static bool ProcessDisplayManufacturingInput()
+        {
+            bool continueManufacturing = true;
+
+            while (continueManufacturing)
             {
-                case ConsoleKey.F:
-                    Crafting.BuildFire();
-                    break;
+                ConsoleKey input = DisplayManufacturingMenu();
+                Console.WriteLine(); 
 
-                case ConsoleKey.H:
-                   Crafting.BuildAxe();
-                    break;
+                switch (input)
+                {
+                    case ConsoleKey.F:
+                        Console.Clear();
+                        Crafting.BuildFire();
+                        Console.WriteLine("\nAppuyez sur une touche pour continuer...");
+                        Console.ReadKey();
+                        break;
 
-                case ConsoleKey.V:
-                    Crafting.BuildGlass();
-                    break;
+                    case ConsoleKey.H:
+                        Console.Clear();
+                        Crafting.BuildAxe();
+                        Console.WriteLine("\nAppuyez sur une touche pour continuer...");
+                        Console.ReadKey();
+                        break;
 
-                case ConsoleKey.P:
-                    Crafting.BuildPlank();
-                    break;
+                    case ConsoleKey.V:
+                        Console.Clear();
+                        Crafting.BuildGlass();
+                        Console.WriteLine("\nAppuyez sur une touche pour continuer...");
+                        Console.ReadKey();
+                        break;
 
-                case ConsoleKey.B:
-                    Crafting.BuildBrick();
-                    break;
+                    case ConsoleKey.P:
+                        Console.Clear();
+                        Crafting.BuildPlank();
+                        Console.WriteLine("\nAppuyez sur une touche pour continuer...");
+                        Console.ReadKey();
+                        break;
 
-                case ConsoleKey.I:
-                    Crafting.BuildInsulator();
-                    break;
+                    case ConsoleKey.B:
+                        Console.Clear();
+                        Crafting.BuildBrick();
+                        Console.WriteLine("\nAppuyez sur une touche pour continuer...");
+                        Console.ReadKey();
+                        break;
 
-                case ConsoleKey.M:
-                    Crafting.BuildHouse();
-                    break;
-                case ConsoleKey.C:
-                    DisplayInventoryPrincipalMenu();
-                    break;
+                    case ConsoleKey.I:
+                        Console.Clear();
+                        Crafting.BuildInsulator();
+                        Console.WriteLine("\nAppuyez sur une touche pour continuer...");
+                        Console.ReadKey();
+                        break;
 
-                default:
-                    break;
+                    case ConsoleKey.M:
+                        Console.Clear();
+                        Crafting.BuildHouse();
+                        Console.WriteLine("\nAppuyez sur une touche pour continuer...");
+                        Console.ReadKey();
+                        break;
+
+                    case ConsoleKey.C:
+                        ProcessInventoryInput();
+                        break;
+
+                    case ConsoleKey.R:
+                        return true; 
+
+                    case ConsoleKey.Q:
+                        return false; 
+
+                    default:
+                        Console.Clear();
+                        Display.AnimateText("Action annulée. Retour au menu de fabrication...");
+                        Thread.Sleep(1500);
+                        break;
+                }
             }
+
+            return true;
         }
 
-        public static int  DisplayInventoryPrincipalMenu()
+        public static int DisplayInventoryPrincipalMenu()
         {
+            Console.Clear();
             Display.DisplayInventoryItems();
             Console.WriteLine("Bienvenue dans l'inventaire du jeu");
-            Console.WriteLine("Dans cette section, vous pouvez consulter toutes les ?? qui sont à votre disposition");
-            Console.WriteLine("Alors que voulez vous consulter en premier ?");
+            Console.WriteLine("Dans cette section, vous pouvez consulter toutes les ressources et matériaux à votre disposition");
+            Console.WriteLine();
+            Console.WriteLine("Que voulez-vous consulter ?");
             Console.WriteLine("1. Vos ressources");
             Console.WriteLine("2. Vos matériaux");
+            Console.WriteLine("0. Retour au menu de fabrication");
+            Console.WriteLine();
+            Console.Write("Votre choix : ");
 
-            int input = int.Parse( Console.ReadLine() );
+            int input;
+            while (!int.TryParse(Console.ReadLine(), out input) || (input < 0 || input > 2))
+            {
+                Console.WriteLine("Veuillez entrer 0, 1 ou 2 : ");
+            }
+
             return input;
         }
-        // Traiter les saisis effectuer dans la méthode DisplayInventoryPrincipalMenu
+
         public static void ProcessInventoryInput()
         {
-            int input = DisplayInventoryPrincipalMenu();
+            bool continueInventory = true;
 
-            switch(input)
+            while (continueInventory)
             {
-                case 1:
-                    {
+                int input = DisplayInventoryPrincipalMenu();
+
+                switch (input)
+                {
+                    case 1:
                         DisplayInventoryMenu1();
+                        Console.WriteLine("\nAppuyez sur une touche pour continuer...");
+                        Console.ReadKey();
                         break;
-                    }
-                case 2:
-                    {
+
+                    case 2:
                         DisplayInventoryMenu2();
+                        Console.WriteLine("\nAppuyez sur une touche pour continuer...");
+                        Console.ReadKey();
                         break;
-                    }
-                default:
-                    {
-                        Console.WriteLine("Veuillez sélectionnez une option valide (1 ou 2 ou ESC si vous désirez quitter l'inventaire )");
+
+                    case 0:
+                        continueInventory = false; 
                         break;
-                    }
+
+                    default:
+                        Console.WriteLine("Veuillez sélectionner une option valide (0, 1 ou 2)");
+                        Thread.Sleep(1500);
+                        break;
+                }
             }
         }
-        //Afficher toute les ressources
+
         public static void DisplayInventoryMenu1()
         {
+            Console.Clear();
             Display.DisplayInventoryItem1();
             Console.WriteLine();
 
             Console.WriteLine("\t\t***********************************");
-            Console.WriteLine("Nombres de Fer en stock: ");
-            Console.WriteLine("Nombres de Bois en stock: ");
-            Console.WriteLine("Nombres de Silex en stock: ");
-            Console.WriteLine("Nombres de d'argiles en stock: ");
-            Console.WriteLine("Nombres de d'Herbes en stock: ");
-            Console.WriteLine("Nombres de de sable en stock: ");
+            Console.WriteLine($"Nombres de Fer en stock: ");
+            Console.WriteLine($"Nombres de Bois en stock: ");
+            Console.WriteLine($"Nombres de Silex en stock: ");
+            Console.WriteLine($"Nombres d'Argiles en stock: ");
+            Console.WriteLine($"Nombres d'Herbes en stock: ");
+            Console.WriteLine($"Nombres de Sable en stock: ");
+            Console.WriteLine("\t\t***********************************");
         }
-        //Affciher toutes les matériaux
+
         public static void DisplayInventoryMenu2()
         {
+            Console.Clear();
             Display.DisplayInventoryItem2();
             Console.WriteLine();
 
             Console.WriteLine("\t\t**********************************");
-            Console.WriteLine("Nombres de Feu en stock: ");
-            Console.WriteLine("Nombres de Haches en stock: ");
-            Console.WriteLine("Nombres de Vitre en stock: ");
-            Console.WriteLine("Nombres de Planche en stock: ");
-            Console.WriteLine("Nombres de Briques en stock: ");
-            Console.WriteLine("Nombres de Briques en stock: ");
-            Console.WriteLine("Nombres d'Isolants en stock: ");
+            Console.WriteLine($"Nombres de Feu en stock: ");
+            Console.WriteLine($"Nombres de Haches en stock: ");
+            Console.WriteLine($"Nombres de Vitre en stock: ");
+            Console.WriteLine($"Nombres de Planche en stock: ");
+            Console.WriteLine($"Nombres de Briques en stock: ");
+            Console.WriteLine($"Nombres d'Isolants en stock: ");
+            Console.WriteLine($"Nombres de Maisons en stock: ");
+            Console.WriteLine("\t\t**********************************");
         }
-
     }
 }
