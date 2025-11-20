@@ -19,7 +19,7 @@ namespace SurvieEnTerreInconnue
         public static ConsoleKey DisplayMenu()
         {
             Console.Clear();
-            DisplayFrame("Bienvenue dans le menu principal du jeu Survie En Terre Inconnu");
+            DisplayFrame("Menu principal du jeu Survie En Terre Inconnu");
             Console.WriteLine();
             Console.WriteLine("Veuillez sélectionner une action :");
             Console.WriteLine("[J]ouer");
@@ -137,22 +137,22 @@ namespace SurvieEnTerreInconnue
 
         public static void DisplayGameHistory()
         {
-            Display.AnimateText("Vous êtes le seul survivant à un crash d'avion", ConsoleColor.White, 20);
+            Display.AnimateText("Vous êtes le seul survivant à un crash d'avion");
             Console.WriteLine();
             Thread.Sleep(1000);
-            Display.AnimateText("Vous êtes sur une île abandonnée, aucun signe de vie aux alentours", ConsoleColor.White, 20);
+            Display.AnimateText("Vous êtes sur une île abandonnée, aucun signe de vie aux alentours");
             Console.WriteLine();
             Thread.Sleep(1000);
-            Display.AnimateText("L'hiver approche ...", ConsoleColor.White, 20);
+            Display.AnimateText("L'hiver approche ...");
             Console.WriteLine();
             Thread.Sleep(1000);
-            Display.AnimateText("Construisez-vous un abri au plus vite si vous souhaitez survivre ...", ConsoleColor.White, 20);
+            Display.AnimateText("Construisez-vous un abri au plus vite si vous souhaitez survivre ...");
             Console.WriteLine();
         }
 
         public static void DisplayStartMessage()
         {
-            Display.AnimateText("Êtes vous prêt à commencer ?", ConsoleColor.White, 25);
+            Display.AnimateText("Le jeu commençera dans :");
             Thread.Sleep(2000);
             Display.CountDown();
             Console.Clear();
@@ -268,10 +268,12 @@ namespace SurvieEnTerreInconnue
         {
             Console.Clear();
             Display.DisplayInventoryItems();
-            Console.WriteLine("Bienvenue dans l'inventaire du jeu");
-            Console.WriteLine("Dans cette section, vous pouvez consulter toutes les ressources et matériaux à votre disposition");
+            Display.AnimateText("Bienvenue dans l'inventaire du jeu");
+            Thread.Sleep(1000);
+            Display.AnimateText("Dans cette section, vous pouvez consulter toutes les ressources et matériaux à votre disposition");
+            Thread.Sleep(1000);
             Console.WriteLine();
-            Console.WriteLine("Que voulez-vous consulter ?");
+            Display.AnimateText("Que voulez-vous consulter ?");
             Console.WriteLine("1. Vos ressources");
             Console.WriteLine("2. Vos matériaux");
             Console.WriteLine("0. Retour au menu de fabrication");
