@@ -10,6 +10,7 @@ namespace SurvieEnTerreInconnue
     {
         public static void DisplayGameTitle()
         {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("███████╗██╗   ██╗██████╗ ██╗   ██╗██╗███████╗    ███████╗███╗   ██╗    ████████╗███████╗██████╗ ██████╗ ███████╗" +
                         "\r\n██╔════╝██║   ██║██╔══██╗██║   ██║██║██╔════╝    ██╔════╝████╗  ██║    ╚══██╔══╝██╔════╝██╔══██╗██╔══██╗██╔════╝" +
                         "\r\n███████╗██║   ██║██████╔╝██║   ██║██║█████╗      █████╗  ██╔██╗ ██║       ██║   █████╗  ██████╔╝██████╔╝█████╗ " +
@@ -43,18 +44,30 @@ namespace SurvieEnTerreInconnue
                         "\r\n██████╔╝██║  ██║██║ ╚████║███████║    ███████╗███████╗    ╚█████╔╝███████╗╚██████╔╝    ██╗" +
                         "\r\n╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝    ╚══════╝╚══════╝     ╚════╝ ╚══════╝ ╚═════╝     ╚═╝");
         }
+        public static void DisplayGoodByeMessage()
+        {
+            Console.WriteLine(" █████╗ ██╗   ██╗    ██████╗ ███████╗██╗   ██╗ ██████╗ ██╗██████╗ ██╗" +
+                        "\r\n██╔══██╗██║   ██║    ██╔══██╗██╔════╝██║   ██║██╔═══██╗██║██╔══██╗██║" +
+                        "\r\n███████║██║   ██║    ██████╔╝█████╗  ██║   ██║██║   ██║██║██████╔╝██║" +
+                        "\r\n██╔══██║██║   ██║    ██╔══██╗██╔══╝  ╚██╗ ██╔╝██║   ██║██║██╔══██╗╚═╝" +
+                        "\r\n██║  ██║╚██████╔╝    ██║  ██║███████╗ ╚████╔╝ ╚██████╔╝██║██║  ██║██╗" +
+                        "\r\n╚═╝  ╚═╝ ╚═════╝     ╚═╝  ╚═╝╚══════╝  ╚═══╝   ╚═════╝ ╚═╝╚═╝  ╚═╝╚═╝");
+        }
         //Afficher la position de base 
         public static void DisplayBasePosition()
         {
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("██████╗  █████╗ ███████╗███████╗" +
                         "\r\n██╔══██╗██╔══██╗██╔════╝██╔════╝" +
                         "\r\n██████╔╝███████║███████╗█████╗" +
                         "  \r\n██╔══██╗██╔══██║╚════██║██╔══╝ " +
                         " \r\n██████╔╝██║  ██║███████║███████╗\r\n╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝");
+            Console.ResetColor();
         }
         //Afficher la position dans le désert
         public static void DisplayDesertPosition()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("██████╗ ███████╗███████╗███████╗██████╗ ████████╗" +
                         "\r\n██╔══██╗██╔════╝██╔════╝██╔════╝██╔══██╗╚══██╔══╝" +
                         "\r\n██║  ██║█████╗  ███████╗█████╗  ██████╔╝   ██║   " +
@@ -65,6 +78,7 @@ namespace SurvieEnTerreInconnue
         //Afficher la position dans la rivière
         public static void DisplayRiverPosition()
         {
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine("██████╗ ██╗██╗   ██╗██╗███████╗██████╗ ███████╗" +
                         "\r\n██╔══██╗██║██║   ██║██║██╔════╝██╔══██╗██╔════╝" +
                         "\r\n██████╔╝██║██║   ██║██║█████╗  ██████╔╝█████╗ " +
@@ -84,6 +98,7 @@ namespace SurvieEnTerreInconnue
         //Afficher la position dans la forêt
         public static void DisplayForestPosition()
         {
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("███████╗ ██████╗ ██████╗ ███████╗████████╗" +
                         "\r\n██╔════╝██╔═══██╗██╔══██╗██╔════╝╚══██╔══╝" +
                         "\r\n█████╗  ██║   ██║██████╔╝█████╗     ██║  " +
@@ -104,6 +119,7 @@ namespace SurvieEnTerreInconnue
         //Afficher la postion dans les montagnes
         public static void DisplayMountainPosition()
         {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("███╗   ███╗ ██████╗ ███╗   ██╗████████╗ █████╗  ██████╗ ███╗   ██╗███████╗" +
                         "\r\n████╗ ████║██╔═══██╗████╗  ██║╚══██╔══╝██╔══██╗██╔════╝ ████╗  ██║██╔════╝" +
                         "\r\n██╔████╔██║██║   ██║██╔██╗ ██║   ██║   ███████║██║  ███╗██╔██╗ ██║█████╗  " +
@@ -148,25 +164,19 @@ namespace SurvieEnTerreInconnue
                         "\r\n██╔══╝  ██╔══██║██╔══██╗██╔══██╗██║██║     ██╔══██║   ██║   ██║██║   ██║██║╚██╗██║" +
                         "\r\n██║     ██║  ██║██████╔╝██║  ██║██║╚██████╗██║  ██║   ██║   ██║╚██████╔╝██║ ╚████║" +
                         "\r\n╚═╝     ╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝╚═╝ ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝");
-            Console.WriteLine("██████╗ ███████╗███████╗███████╗ ██████╗ ██╗   ██╗██████╗  ██████╗███████╗███████╗" +
-                        "\r\n██╔══██╗██╔════╝██╔════╝██╔════╝██╔═══██╗██║   ██║██╔══██╗██╔════╝██╔════╝██╔════╝" +
-                        "\r\n██████╔╝█████╗  ███████╗███████╗██║   ██║██║   ██║██████╔╝██║     █████╗  ███████╗" +
-                        "\r\n██╔══██╗██╔══╝  ╚════██║╚════██║██║   ██║██║   ██║██╔══██╗██║     ██╔══╝  ╚════██║" +
-                        "\r\n██║  ██║███████╗███████║███████║╚██████╔╝╚██████╔╝██║  ██║╚██████╗███████╗███████║" +
-                        "\r\n╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚══════╝╚══════╝");
         }
-        public static void AnimateText(string texte, ConsoleColor couleur = ConsoleColor.White, int delai = 20)
+        public static void AnimateText(string texte, ConsoleColor couleur = ConsoleColor.White, int timeLimit = 20)
         {
-            ConsoleColor original = Console.ForegroundColor;
+            ConsoleColor color = Console.ForegroundColor;
             Console.ForegroundColor = couleur;
 
             foreach (char c in texte)
             {
                 Console.Write(c);
-                Thread.Sleep(delai);
+                Thread.Sleep(timeLimit);
             }
 
-            Console.ForegroundColor = original;
+            Console.ForegroundColor = color;
         }
         public static void CountDown()
        {

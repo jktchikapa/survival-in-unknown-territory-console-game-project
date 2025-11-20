@@ -51,8 +51,7 @@ namespace SurvieEnTerreInconnue
 
                     case ConsoleKey.D:
                         Console.Clear();
-                        DisplayGameHistory();
-                        DisplayStartMessage();
+                        Display.DisplayWelcomeMessage();
                         break;
 
                     case ConsoleKey.S:
@@ -87,7 +86,7 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine();
             Console.WriteLine("[O]ui, je souhaite quitter la partie");
             Console.WriteLine("[N]on, je ne souhaite plus quitter la partie");
-            Console.WriteLine("[S]auvegarder ma progression");
+            Console.WriteLine("[S]auvegarder ma progression et quitter");
             Console.WriteLine();
             Console.Write("Votre choix : ");
             ConsoleKeyInfo selectedAction = Console.ReadKey();
@@ -113,7 +112,7 @@ namespace SurvieEnTerreInconnue
                     Console.Clear();
                     Display.AnimateText("Sauvegarde en cours...");
                     Thread.Sleep(1000);
-                    Display.AnimateText("Partie sauvegardée avec succès !");
+                    Display.AnimateText("\nPartie sauvegardée avec succès !");
                     Thread.Sleep(1500);
                     Console.Clear();
                     DisplayGoodByeMessage();
@@ -137,16 +136,17 @@ namespace SurvieEnTerreInconnue
 
         public static void DisplayGameHistory()
         {
-            Display.AnimateText("Vous êtes le seul survivant à un crash d'avion");
+            Display.AnimateText("\t\t\t\tMise en contexte de l'histoire ...\t");
+            Display.AnimateText("\n\tVous êtes le seul survivant à un crash d'avion");
             Console.WriteLine();
             Thread.Sleep(1000);
-            Display.AnimateText("Vous êtes sur une île abandonnée, aucun signe de vie aux alentours");
+            Display.AnimateText("\tVous êtes sur une île abandonnée, aucun signe de vie aux alentours");
             Console.WriteLine();
             Thread.Sleep(1000);
-            Display.AnimateText("L'hiver approche ...");
+            Display.AnimateText("\tL'hiver approche ...");
             Console.WriteLine();
             Thread.Sleep(1000);
-            Display.AnimateText("Construisez-vous un abri au plus vite si vous souhaitez survivre ...");
+            Display.AnimateText("\tConstruisez-vous un abri au plus vite si vous souhaitez survivre ...");
             Console.WriteLine();
         }
 
@@ -157,7 +157,70 @@ namespace SurvieEnTerreInconnue
             Display.CountDown();
             Console.Clear();
         }
+        public static ConsoleKey DisplayEndMessage()
+        {
+            Console.Clear();
+            Display.AnimateText("Les premiers flocons tombent doucement sur le toit de votre abri..");
+            Thread.Sleep(1500);
+            Console.WriteLine();
 
+            Display.AnimateText("Vous avez réussi. Contre toute attente, vous avez survécu.");
+            Thread.Sleep(2000);
+            Console.WriteLine();
+
+            Display.AnimateText("\"Votre maison vous protégera du froid glacial de l'hiver qui approche+");
+            Thread.Sleep(2000);
+            Console.WriteLine();
+            Console.WriteLine();
+
+            Display.AnimateText("Mais au fond de vous, une question persiste...");
+            Thread.Sleep(1000);
+            Console.WriteLine();
+
+            Display.AnimateText("Allez-vous rester ici pour toujours ?");
+            Thread.Sleep(1000);
+            Console.WriteLine();
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Display.AnimateText("Êtes-vous prêt à continuer votre aventure ? ");
+            Console.ResetColor();
+            Thread.Sleep(1000);
+            Console.WriteLine();
+            Console.WriteLine();
+
+            Console.WriteLine("[O]ui, je veux m'échapper de cette île !");
+            Console.WriteLine("[N]on, je préfere rester en sécurité ici");
+            Console.WriteLine();
+            Console.Write("Votre choix : ");
+
+            ConsoleKeyInfo selectedAction = Console.ReadKey();
+            return selectedAction.Key;
+        }
+
+        public static void ProcessDisplayEndMessageInput()
+        {
+            ConsoleKey input = DisplayEndMessage();
+            Console.WriteLine();
+            Console.WriteLine();
+
+            switch (input)
+            {
+                case ConsoleKey.O:
+                    Display.AnimateText("Votre aventure débute dès maintenant.");
+                    Thread.Sleep(2000);
+                    break;
+
+                case ConsoleKey.N:
+                    Display.AnimateText("Peut-être partirez-vous un jour...");
+                    Thread.Sleep(2000);
+                    break;
+
+                default:
+                    Display.AnimateText("Merci d'avoir joué !");
+                    Thread.Sleep(2000);
+                    break;
+            }
+        }
         public static ConsoleKey DisplayManufacturingMenu()
         {
             Console.Clear();
@@ -172,6 +235,7 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine("[B]rique : Cette action nécessite du Feu et de l'Argile");
             Console.WriteLine("[I]solant : Cette action nécessite 3x de l'herbe");
             Console.WriteLine("[M]aison : Cette action nécessite 4x des Planches, 4x des Isolants, 4x des Briques ainsi que 2x des Vitres");
+            Console.WriteLine("[N]ourriture : Cette action nécéssite du Feu et du Bois ");
             Console.WriteLine("[C]onsulter Inventaire : Vous pouvez consulter votre inventaire");
             Console.WriteLine("[R]etour au menu principal");
             Console.WriteLine("[Q]uitter le jeu");
@@ -248,6 +312,7 @@ namespace SurvieEnTerreInconnue
                         break;
 
                     case ConsoleKey.R:
+                        ProcessDisplayMenuInput();
                         return true; 
 
                     case ConsoleKey.Q:
@@ -264,29 +329,27 @@ namespace SurvieEnTerreInconnue
             return true;
         }
 
-        public static int DisplayInventoryPrincipalMenu()
+        public static ConsoleKey DisplayInventoryPrincipalMenu()
         {
             Console.Clear();
             Display.DisplayInventoryItems();
+            Console.WriteLine();
             Display.AnimateText("Bienvenue dans l'inventaire du jeu");
+            Console.WriteLine();
             Thread.Sleep(1000);
-            Display.AnimateText("Dans cette section, vous pouvez consulter toutes les ressources et matériaux à votre disposition");
+            Display.AnimateText("\nDans cette section, vous pouvez consulter toutes les ressources et matériaux à votre disposition");
             Thread.Sleep(1000);
             Console.WriteLine();
-            Display.AnimateText("Que voulez-vous consulter ?");
-            Console.WriteLine("1. Vos ressources");
-            Console.WriteLine("2. Vos matériaux");
-            Console.WriteLine("0. Retour au menu de fabrication");
+            Display.AnimateText("\nVeuillez sélectionner une option :");
+            Console.WriteLine();
+            Console.WriteLine("[R]essources : Consultez les ressources que vous possédez");
+            Console.WriteLine("[M]atériaux : Consulter les matériaux que vous avez fabriqué");
+            Console.WriteLine("[Q]uitter l'inventaire");
             Console.WriteLine();
             Console.Write("Votre choix : ");
 
-            int input;
-            while (!int.TryParse(Console.ReadLine(), out input) || (input < 0 || input > 2))
-            {
-                Console.WriteLine("Veuillez entrer 0, 1 ou 2 : ");
-            }
-
-            return input;
+            ConsoleKeyInfo selectedAction = Console.ReadKey();
+            return selectedAction.Key;
         }
 
         public static void ProcessInventoryInput()
@@ -295,29 +358,31 @@ namespace SurvieEnTerreInconnue
 
             while (continueInventory)
             {
-                int input = DisplayInventoryPrincipalMenu();
+                ConsoleKey input = DisplayInventoryPrincipalMenu();
+                Console.WriteLine();
 
                 switch (input)
                 {
-                    case 1:
+                    case ConsoleKey.R:
                         DisplayInventoryMenu1();
                         Console.WriteLine("\nAppuyez sur une touche pour continuer...");
                         Console.ReadKey();
                         break;
 
-                    case 2:
+                    case ConsoleKey.M:
                         DisplayInventoryMenu2();
                         Console.WriteLine("\nAppuyez sur une touche pour continuer...");
                         Console.ReadKey();
                         break;
 
-                    case 0:
-                        continueInventory = false; 
+                    case ConsoleKey.Q:
+                        continueInventory = false;
                         break;
 
                     default:
-                        Console.WriteLine("Veuillez sélectionner une option valide (0, 1 ou 2)");
-                        Thread.Sleep(1500);
+                        Console.Clear();
+                        Display.AnimateText("Choix invalide. Veuillez réessayer.");
+                        Thread.Sleep(500);
                         break;
                 }
             }

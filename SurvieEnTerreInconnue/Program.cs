@@ -4,7 +4,18 @@
     {
         static void Main(string[] args)
         {
-            Map.ProcessDisplayBaseInput();
+            //Map.ProcessDisplayBaseInput();
+
+            /*Display.DisplayGameTitle();
+            Console.Clear();
+            Menu.DisplayGameHistory();
+            Console.Clear();
+            Menu.DisplayStartMessage();
+            Console.Clear();
+            Menu.ProcessDisplayMenuInput();
+            //Menu.DisplayManufacturingMenu();
+           // Menu.ProcessInventoryInput();*/
+            Menu.ProcessDisplayEndMessageInput();
         }
     }
 }

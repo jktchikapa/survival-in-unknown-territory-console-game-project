@@ -16,7 +16,7 @@ namespace SurvieEnTerreInconnue
             Display.AnimateText("Vous êtes actuellement sur le terrain de base");
             Console.WriteLine();
             Console.WriteLine();
-            Display.AnimateText("Veuillez sélectionner une action à effectuer :");
+            Display.AnimateText("Veuillez sélectionner une action à effectuer :\n");
             Console.WriteLine();
             Thread.Sleep(100);
             Console.WriteLine("[E]xplorer les différents territoires");
@@ -26,7 +26,8 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine("[Q]uitter le jeu");
             Console.WriteLine();
             Console.Write("Votre choix : ");
-
+            
+            //
             ConsoleKeyInfo selectedAction = Console.ReadKey();
             return selectedAction.Key;
         }
@@ -47,15 +48,19 @@ namespace SurvieEnTerreInconnue
                         break;
 
                     case ConsoleKey.A:
+                        Menu.ProcessInventoryInput();
                         break;
 
                     case ConsoleKey.F:
+                        Menu.ProcessDisplayManufacturingInput();
                         break;
 
                     case ConsoleKey.R:
+                        Menu.ProcessDisplayMenuInput();
                         return true;
 
                     case ConsoleKey.Q:
+                        Menu.ProcessDisplayLeaveMessageInput();
                         return false;
 
                     default:
@@ -72,13 +77,16 @@ namespace SurvieEnTerreInconnue
         public static ConsoleKey DisplayDirection()
         {
             Console.Clear();
-            Display.AnimateText("Dans quelle direction voulez-vous aller ?");
+            Display.AnimateText("Veuillez sélectionner une option :");
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("[N]ord : Vous vous déplacez vers le haut");
             Console.WriteLine("[O]uest : Vous vous déplacez vers la gauche");
             Console.WriteLine("[S]ud : Vous vous déplacez vers le bas");
             Console.WriteLine("[E]st : Vous vous déplacez vers la droite");
+            Console.WriteLine("[B]ase : Retour à la base");
+            Console.WriteLine("[M]enu : Retour au menu principal");
+            Console.WriteLine("[Q]uitter : Quitter le jeu");
             Console.WriteLine();
             Console.Write("Votre choix : ");
 
@@ -98,27 +106,52 @@ namespace SurvieEnTerreInconnue
                 switch (input)
                 {
                     case ConsoleKey.N:
+                    case ConsoleKey.UpArrow:
                         Console.Clear();
                         Console.WriteLine("\nAppuyez sur une touche pour continuer...");
                         Console.ReadKey();
                         break;
 
                     case ConsoleKey.O:
+                    case ConsoleKey.LeftArrow:
                         Console.Clear();
                         Console.WriteLine("\nAppuyez sur une touche pour continuer...");
                         Console.ReadKey();
                         break;
 
                     case ConsoleKey.S:
+                    case ConsoleKey.DownArrow:
                         Console.Clear();
                         Console.WriteLine("\nAppuyez sur une touche pour continuer...");
                         Console.ReadKey();
                         break;
 
                     case ConsoleKey.E:
+                    case ConsoleKey.RightArrow:
                         Console.Clear();
                         Console.WriteLine("\nAppuyez sur une touche pour continuer...");
                         Console.ReadKey();
+                        break;
+
+                    case ConsoleKey.B:
+                        exploring = false;
+                        Console.Clear();
+                        Display.AnimateText("Vous retournez à votre base...");
+                        Thread.Sleep(1500);
+                        break;
+
+                    case ConsoleKey.M:
+                        exploring = false;
+                        Console.Clear();
+                        Display.AnimateText("Retour au menu principal...");
+                        Thread.Sleep(1500);
+                        Menu.ProcessDisplayMenuInput();
+                        break;
+
+                    case ConsoleKey.Q:
+                        exploring = false;
+                        Console.Clear();
+                        Menu.ProcessDisplayLeaveMessageInput();
                         break;
 
                     default:
@@ -170,7 +203,8 @@ namespace SurvieEnTerreInconnue
 
                     case ConsoleKey.A:
                         break;
-
+                    case ConsoleKey.C:  
+                        break;
                     case ConsoleKey.R:
                         return true;
 
@@ -227,7 +261,8 @@ namespace SurvieEnTerreInconnue
 
                     case ConsoleKey.A:
                         break;
-
+                    case ConsoleKey.C:
+                        break;
                     case ConsoleKey.R:
                         return true;
 
@@ -285,7 +320,8 @@ namespace SurvieEnTerreInconnue
 
                     case ConsoleKey.A:
                         break;
-
+                    case ConsoleKey.C:
+                        break;
                     case ConsoleKey.R:
                         return true;
 
@@ -343,7 +379,8 @@ namespace SurvieEnTerreInconnue
 
                     case ConsoleKey.A:
                         break;
-
+                    case ConsoleKey.C:
+                        break;
                     case ConsoleKey.R:
                         return true;
 
@@ -401,7 +438,8 @@ namespace SurvieEnTerreInconnue
 
                     case ConsoleKey.A:
                         break;
-
+                    case ConsoleKey.C:
+                        break;
                     case ConsoleKey.R:
                         return true;
 
@@ -459,7 +497,8 @@ namespace SurvieEnTerreInconnue
 
                     case ConsoleKey.A:
                         break;
-
+                    case ConsoleKey.C:
+                        break;
                     case ConsoleKey.R:
                         return true;
 
