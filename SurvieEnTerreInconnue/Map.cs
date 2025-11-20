@@ -27,7 +27,6 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine();
             Console.Write("Votre choix : ");
             
-            //
             ConsoleKeyInfo selectedAction = Console.ReadKey();
             return selectedAction.Key;
         }

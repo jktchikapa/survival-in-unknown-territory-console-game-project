@@ -5,7 +5,9 @@
         static void Main(string[] args)
         {
             //Map.ProcessDisplayBaseInput();
-
+            //Map.ProcessDisplayForestInput();
+            //Map.ProcessDisplayMountainInput();
+            Map.ProcessDisplayPrairieInput();
             /*Display.DisplayGameTitle();
             Console.Clear();
             Menu.DisplayGameHistory();
@@ -15,7 +17,7 @@
             Menu.ProcessDisplayMenuInput();
             //Menu.DisplayManufacturingMenu();
            // Menu.ProcessInventoryInput();*/
-            Menu.ProcessDisplayEndMessageInput();
+            // Menu.ProcessDisplayEndMessageInput();
         }
     }
 }

@@ -218,8 +218,6 @@ namespace SurvieEnTerreInconnue
             }
             Console.Clear();
         }
-
-
-
     }
+    
 }

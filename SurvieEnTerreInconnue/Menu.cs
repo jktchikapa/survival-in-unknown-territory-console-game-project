@@ -168,7 +168,7 @@ namespace SurvieEnTerreInconnue
             Thread.Sleep(2000);
             Console.WriteLine();
 
-            Display.AnimateText("\"Votre maison vous protégera du froid glacial de l'hiver qui approche+");
+            Display.AnimateText("Votre maison vous protégera du froid glacial de l'hiver qui approche");
             Thread.Sleep(2000);
             Console.WriteLine();
             Console.WriteLine();
