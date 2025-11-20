@@ -7,8 +7,8 @@
             //Map.ProcessDisplayBaseInput();
             //Map.ProcessDisplayForestInput();
             //Map.ProcessDisplayMountainInput();
-            Map.ProcessDisplayPrairieInput();
-            /*Display.DisplayGameTitle();
+            //Map.ProcessDisplayPrairieInput();
+            Display.DisplayGameTitle();
             Console.Clear();
             Menu.DisplayGameHistory();
             Console.Clear();
