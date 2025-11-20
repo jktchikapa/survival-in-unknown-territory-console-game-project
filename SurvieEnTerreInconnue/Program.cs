@@ -4,11 +4,11 @@
     {
         static void Main(string[] args)
         {
-            //Map.ProcessDisplayBaseInput();
+            Map.ProcessDisplayBaseInput();
             //Map.ProcessDisplayForestInput();
             //Map.ProcessDisplayMountainInput();
             //Map.ProcessDisplayPrairieInput();
-            Display.DisplayGameTitle();
+            /*Display.DisplayGameTitle();
             Console.Clear();
             Menu.DisplayGameHistory();
             Console.Clear();

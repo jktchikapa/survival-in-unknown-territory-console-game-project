@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SurvieEnTerreInconnue
@@ -136,6 +137,8 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine();
             Display.AnimateText("Nous espérons vous revoir bientôt !");
             Console.WriteLine();
+            Thread.Sleep(3000);
+            Environment.Exit(0);
         }
 
         public static void DisplayGameHistory()
@@ -154,24 +157,6 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine();
         }
 
-        public static void DisplayStartMessage()
-        {
-            Display.AnimateText(" ██████╗ ██████╗ ███╗   ███╗██████╗ ████████╗███████╗     █████╗ " +
-                            "\r\n██╔════╝██╔═══██╗████╗ ████║██╔══██╗╚══██╔══╝██╔════╝    ██╔══██╗" +
-                            "\r\n██║     ██║   ██║██╔████╔██║██████╔╝   ██║   █████╗      ███████║" +
-                            "\r\n██║     ██║   ██║██║╚██╔╝██║██╔═══╝    ██║   ██╔══╝      ██╔══██║" +
-                            "\r\n╚██████╗╚██████╔╝██║ ╚═╝ ██║██║        ██║   ███████╗    ██║  ██║" +
-                            "\r\n ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝        ╚═╝   ╚══════╝    ╚═╝  ╚═╝\r\n                                                                " +
-                            " \r\n██████╗ ███████╗██████╗  ██████╗ ██╗   ██╗██████╗ ███████╗      " +
-                            " \r\n██╔══██╗██╔════╝██╔══██╗██╔═══██╗██║   ██║██╔══██╗██╔════╝       " +
-                            "\r\n██████╔╝█████╗  ██████╔╝██║   ██║██║   ██║██████╔╝███████╗       " +
-                            "\r\n██╔══██╗██╔══╝  ██╔══██╗██║   ██║██║   ██║██╔══██╗╚════██║       " +
-                            "\r\n██║  ██║███████╗██████╔╝╚██████╔╝╚██████╔╝██║  ██║███████║       " +
-                            "\r\n╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝       ");
-            Thread.Sleep(2000);
-            Display.CountDown();
-            Console.Clear();
-        }
         public static ConsoleKey DisplayEndMessage()
         {
             Console.Clear();

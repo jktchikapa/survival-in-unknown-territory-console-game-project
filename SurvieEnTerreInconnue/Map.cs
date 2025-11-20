@@ -13,12 +13,14 @@ namespace SurvieEnTerreInconnue
             Console.Clear();
             Display.DisplayBasePosition();
             Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.White;
             Display.AnimateText("Vous êtes actuellement sur le terrain de base");
             Console.WriteLine();
             Console.WriteLine();
             Display.AnimateText("Veuillez sélectionner une action à effectuer :\n");
             Console.WriteLine();
             Thread.Sleep(100);
+            Console.ResetColor();
             Console.WriteLine("[E]xplorer les différents territoires");
             Console.WriteLine("[A]fficher l'inventaire");
             Console.WriteLine("[F]abriquer des matériaux");
@@ -33,6 +35,7 @@ namespace SurvieEnTerreInconnue
 
         public static bool ProcessDisplayBaseInput()
         {
+            Console.ResetColor();
             bool stayAtBase = true;
 
             while (stayAtBase)
@@ -76,6 +79,7 @@ namespace SurvieEnTerreInconnue
         public static ConsoleKey DisplayDirection()
         {
             Console.Clear();
+            Console.ResetColor();
             Display.AnimateText("Veuillez sélectionner une option :");
             Console.WriteLine();
             Console.WriteLine();
