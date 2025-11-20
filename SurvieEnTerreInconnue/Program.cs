@@ -12,8 +12,6 @@
             Console.Clear();
             Menu.DisplayGameHistory();
             Console.Clear();
-            Menu.DisplayStartMessage();
-            Console.Clear();
             Menu.ProcessDisplayMenuInput();
             //Menu.DisplayManufacturingMenu();
            // Menu.ProcessInventoryInput();*/
