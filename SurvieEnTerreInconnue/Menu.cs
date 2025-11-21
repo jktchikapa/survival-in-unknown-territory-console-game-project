@@ -47,6 +47,11 @@ namespace SurvieEnTerreInconnue
                     case ConsoleKey.J:
                         Console.Clear();
                         Display.AnimateText("Chargement de la partie...");
+                        Map.GenerateMap();
+                        Map.DisplayGridMap();
+                        Console.WriteLine("\nAppuyez sur une touche pour commencer à explorer...");
+                        Console.ReadKey();
+                        Map.ShowTerrainAtCurrentPosition();
                         Thread.Sleep(1000);
                         break;
 
@@ -227,19 +232,21 @@ namespace SurvieEnTerreInconnue
             Display.DisplayManufacturingItems();
             Console.WriteLine();
 
-            Console.WriteLine("\t\t***********************************************************");
-            Console.WriteLine("\t\t[F]eu : Cette action nécessite du Bois et du Silex");
-            Console.WriteLine("\t\t[H]ache : Cette action nécessite du Bois et Du Fer");
-            Console.WriteLine("\t\t[V]itre : Cette action nécessite du Sable et du Feu");
-            Console.WriteLine("\t\t[P]lanche : Cette action nécessite du Bois ainsi qu'une Hache");
-            Console.WriteLine("\t\t[B]rique : Cette action nécessite du Feu et de l'Argile");
-            Console.WriteLine("\t\t[I]solant : Cette action nécessite 3x de l'herbe");
-            Console.WriteLine("\t\t[M]aison : Cette action nécessite 4x des Planches, 4x des Isolants, 4x des Briques ainsi que 2x des Vitres");
-            Console.WriteLine("\t\t[N]ourriture : Cette action nécéssite du Feu et du Bois ");
-            Console.WriteLine("\t\t[C]onsulter Inventaire : Vous pouvez consulter votre inventaire");
-            Console.WriteLine("\t\t[R]etour au menu principal");
-            Console.WriteLine("[Q]uitter le jeu");
-            Console.WriteLine("\t\t***********************************************************");
+            Console.WriteLine("\t********************************************************************************************************");
+
+            Console.WriteLine($"\t* {"[F]eu".PadRight(10)}: Cette action nécessite du Bois et du Silex                                               *");
+            Console.WriteLine($"\t* {"[H]ache".PadRight(10)}: Cette action nécessite du Bois et du Fer                                                 *");
+            Console.WriteLine($"\t* {"[V]itre".PadRight(10)}: Cette action nécessite du Sable et du Feu                                                *");
+            Console.WriteLine($"\t* {"[P]lanche".PadRight(10)}: Cette action nécessite du Bois ainsi qu'une Hache                                        *");
+            Console.WriteLine($"\t* {"[B]rique".PadRight(10)}: Cette action nécessite du Feu et de l'Argile                                             *");
+            Console.WriteLine($"\t* {"[I]solant".PadRight(10)}: Cette action nécessite 3x de l'Herbe                                                     *");
+            Console.WriteLine($"\t* {"[M]aison".PadRight(10)}: Cette action nécessite 4x des Planches, 4x des Isolants, 4x des Briques et 2x des Vitres *");
+            Console.WriteLine($"\t* {"[N]ourriture".PadRight(10)}: Cette action nécessite du Feu et du Bois                                               *");
+            Console.WriteLine($"\t* {"[C]onsulter Inventaire".PadRight(10)}: Vous pouvez consulter votre inventaire                                       *");
+            Console.WriteLine($"\t* {"[R]etour au menu principal".PadRight(10)}                                                                           *");
+            Console.WriteLine($"\t* {"[Q]uitter le jeu".PadRight(10)}                                                                                     *");
+
+            Console.WriteLine("\t********************************************************************************************************");
             Console.WriteLine();
             Console.Write("Votre choix : ");
 

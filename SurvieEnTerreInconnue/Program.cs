@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            Map.GenerateMap();
+            /*Map.GenerateMap();
             Map.DisplayGridMap();
             Console.WriteLine("\nAppuyez sur une touche pour commencer à explorer...");
             Console.ReadKey();
@@ -12,6 +12,8 @@
             /*Map.GenerateMap();
             Map.ProcessExplorationInput();*/
             //Menu.ProcessInventoryInput();
+            //Menu.DisplayManufacturingMenu();
+            Menu.ProcessDisplayMenuInput();
         }
     }
 }

@@ -25,11 +25,13 @@ namespace SurvieEnTerreInconnue
             {
                 for (int j = 0; j < mapGrid.GetLength(1); j++)
                 {
+                    // Si la postion est aux coordonnées (0.0) alors nous sommes sur le terrain de base
                     if (i == 0 && j == 0)
                     {
                         mapGrid[i, j] = 0; // Base
                         discovered[i, j] = true;
                     }
+                    // Sinon on génère un terrain aléatoirement
                     else
                     {
                         mapGrid[i, j] = randomGenerator.Next(1, 7);
@@ -38,7 +40,7 @@ namespace SurvieEnTerreInconnue
             }
         }
 
-        // Afficher la carte avec des couleurs de fond
+        // Afficher la carte avec la bonne couleur de fond
         public static void DisplayGridMap()
         {
             Console.Clear();
@@ -51,7 +53,7 @@ namespace SurvieEnTerreInconnue
                     {
                         Console.BackgroundColor = ConsoleColor.White;
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write(" @ ");
+                        Console.Write(" )( ");
                         Console.ResetColor();
                     }
                     // Si découvert
@@ -74,6 +76,7 @@ namespace SurvieEnTerreInconnue
             }
         }
 
+        // On va attribuer une couleur de fond unique à chaque terrain
         public static void SetTerrainColor(int terrain)
         {
             switch (terrain)
@@ -104,7 +107,7 @@ namespace SurvieEnTerreInconnue
                     break;
             }
         }
-
+        // On coolecte le matériels en fonction
         public static void CollectMaterials()
         {
             string terrain = GetCurrentTerrain();
@@ -461,9 +464,7 @@ namespace SurvieEnTerreInconnue
             Display.DisplayMountainPosition();
             return DisplayTerrainMenu("dans la montagne");
         }
-        // Fonction qui gère le menu de tous les terrains à la fois
-        // displayFunction = la fonction d'affichage du terrain (DisplayForest, DisplayDesert, etc.)
-        // Évite de répéter le même code 6 fois pour chaque terrain
+      //Une fonction qui passe en paramètres une fonction entière
         public static bool ProcessTerrainInput(Func<ConsoleKey> displayFunction)
         {
             bool stayInTerrain = true;
