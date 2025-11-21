@@ -68,7 +68,8 @@ namespace SurvieEnTerreInconnue
 
                     case ConsoleKey.C:
                         Console.Clear();
-                        Console.WriteLine("\nAppuyez sur une touche pour retourner au menu...");
+                        DisplayProgrammersCredits();
+                        Console.WriteLine("\n\nAppuyez sur une touche pour retourner au menu...");
                         Console.ReadKey();
                         break;
 
@@ -86,7 +87,17 @@ namespace SurvieEnTerreInconnue
         }
         public static void DisplayProgrammersCredits()
         {
-            Display.AnimateText("Ce jeu a été programmé par Romuald Arnaud et Jessica Karelle");
+            Display.DisplayCreditMessage();
+            Console.WriteLine();
+            Display.AnimateText("Ce jeu a été programmé par : ");
+            Display.AnimateText("\n- Romuald Arnaud ");
+            Display.AnimateText("\n-Jessica Karelle");
+            Display.AnimateText("\n\nNous sommes tous deux des étudiants de la Technique de l'Informatique au Cégep de Saint-Jean-sur-Richelieu.");
+            Display.AnimateText("\n\rCe projet a été réalisé dans le cadre d' un travail pratique pour le cours : 420-1A6-ST ALGORITHMIE ET PROGRAMMATION STRUCTURÉE.");
+            Display.AnimateText("\nSession : Automne 2025");
+            Display.AnimateText("\nTout droits réservés.");
+            Display.AnimateText("\nBien que le concept initial du jeu ne nous appartienne pas,nous gardons tout de même les droits sur le code.");
+            Display.AnimateText("\nToute forme de plagiat ou de modification du code source de ce jeu est donc interdite.");
 
         }
         public static ConsoleKey DisplayLeaveMessage()
