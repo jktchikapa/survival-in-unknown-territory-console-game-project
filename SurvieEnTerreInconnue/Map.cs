@@ -86,7 +86,7 @@ namespace SurvieEnTerreInconnue
                     break;
                 case 1: // Forêt
                     Console.BackgroundColor = ConsoleColor.DarkGreen;
-                    break;
+                    break; 
                 case 2: // Prairie
                     Console.BackgroundColor = ConsoleColor.Green;
                     break;
