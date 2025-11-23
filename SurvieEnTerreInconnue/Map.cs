@@ -10,15 +10,32 @@ namespace SurvieEnTerreInconnue
 {
     internal class Map
     {
-        public static double probabilyDiscovery;
         public static int playerPositionX = 0;
         public static int playerPositionY = 0;
         public static int[,] mapGrid = new int[10, 10];
         public static bool[,] discovered = new bool[10, 10];
         public static Random randomGenerator = new Random();
         public static string[] resourceNames = {"Fer", "Bois", "Silex", "Argile", "Herbes", "Sable",
-                                "Feu", "Haches", "Vitre", "Planche", "Briques", "Isolants", "Maisons" };
-        public static int[] resourceAmounts = {0, 0, 0, 0, 0, 0,  0, 0, 0, 0, 0, 0, 0 };
+                                "Feu", "Haches", "Vitre", "Planche", "Briques", "Isolants", "Maisons", "Fruits", "Eau" , "Gibier", "Poisson" };
+        //resourceNames[0] = Fer
+        //resourceNames[1] = Bois
+        //resourceNames[2] = Silex 
+        //resourceNames[3] = Argile
+        //resourceNames[4] = Herbe
+        //resourceNames[5] = Sable
+        //resourceNames[6] = Feu
+        //resourceNames[7] = Haches
+        //resourceNames[8] = Vitre
+        //resourceNames[9] = Planche
+        //resourceNames[10] = Briques
+        //resourceNames[11] = Isolants
+        //resourceNames[12] = Maison
+        //resourceNames[13] = Fruits
+        //resourceNames[14] = Eau
+        //resourceNames[15] = Gibier
+        //resourceNames[16] = Poisson
+
+        public static int[] resourceAmounts = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
         public static void GenerateMap()
         {
@@ -26,22 +43,19 @@ namespace SurvieEnTerreInconnue
             {
                 for (int j = 0; j < mapGrid.GetLength(1); j++)
                 {
-                    // Si la postion est aux coordonnées (0.0) alors nous sommes sur le terrain de base
                     if (i == 0 && j == 0)
                     {
-                        mapGrid[i, j] = 0; // Base
-                        discovered[i, j] = true;
+                        mapGrid[i, j] = 0; //Base
+                        discovered[i, j] = true; //Logiquement la base est déja découverte quand le jeu commençe
                     }
-                    // Sinon on génère un terrain aléatoirement
                     else
                     {
-                        mapGrid[i, j] = randomGenerator.Next(1, 7);
+                        mapGrid[i, j] = randomGenerator.Next(1, 7); //Autres types de terrain
                     }
                 }
             }
         }
-
-        // Afficher la carte avec la bonne couleur de fond
+        // Cette méthode affiche la grille du jeu, si on est à la position du joueur on affiche son symbole sinon si on mets la couleur attribuer à chaque terrain, sinon on affiche le terrain en noir (vide)
         public static void DisplayGridMap()
         {
             Console.Clear();
@@ -49,15 +63,15 @@ namespace SurvieEnTerreInconnue
             {
                 for (int j = 0; j < mapGrid.GetLength(1); j++)
                 {
-                    // Si c'est la position du joueur
                     if (playerPositionX == j && playerPositionY == i)
                     {
-                        Console.BackgroundColor = ConsoleColor.White;
-                        Console.ForegroundColor = ConsoleColor.Red;
+                        int terrain = mapGrid[i, j];
+                        SetTerrainColor(terrain);
+
+                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
                         Console.Write(" )( ");
                         Console.ResetColor();
                     }
-                    // Si découvert
                     else if (discovered[i, j])
                     {
                         int terrain = mapGrid[i, j];
@@ -65,7 +79,6 @@ namespace SurvieEnTerreInconnue
                         Console.Write("    ");
                         Console.ResetColor();
                     }
-                    // Non découvert
                     else
                     {
                         Console.BackgroundColor = ConsoleColor.Black;
@@ -76,8 +89,7 @@ namespace SurvieEnTerreInconnue
                 Console.WriteLine();
             }
         }
-
-        // On va attribuer une couleur de fond unique à chaque terrain
+        // On va attriubuer à chaque terrain une couleur symbolique qui permettra de facilement l'identifier, par exemple la forêt c'est le vert
         public static void SetTerrainColor(int terrain)
         {
             switch (terrain)
@@ -87,7 +99,7 @@ namespace SurvieEnTerreInconnue
                     break;
                 case 1: // Forêt
                     Console.BackgroundColor = ConsoleColor.DarkGreen;
-                    break; 
+                    break;
                 case 2: // Prairie
                     Console.BackgroundColor = ConsoleColor.Green;
                     break;
@@ -108,7 +120,7 @@ namespace SurvieEnTerreInconnue
                     break;
             }
         }
-        // On coolecte le matériels en fonction
+        // Cette fonction va collecter le matériel selon les probabilités de chance de collecte de chaque ressource (voir les probabilités de chaque terrain en dessous de cette méthode) 
         public static void CollectMaterials()
         {
             string terrain = GetCurrentTerrain();
@@ -120,33 +132,27 @@ namespace SurvieEnTerreInconnue
                     break;
 
                 case "Forêt":
-                    Console.WriteLine("Vous collectez du Bois !");
-                    resourceAmounts[1]++; 
+                    ProbabilityDiscoveryInForest();
                     break;
 
                 case "Prairie":
-                    Console.WriteLine("Vous collectez de l'Herbe !");
-                    resourceAmounts[4]++; 
+                    ProbabilityDiscoveryInPrairie();
                     break;
 
                 case "Désert":
-                    Console.WriteLine("Vous collectez du Sable !");
-                    resourceAmounts[5]++;
+                    ProbabilityDiscoveryInDesert();
                     break;
 
                 case "Rivière":
-                    Console.WriteLine("Vous collectez du Silex !");
-                    resourceAmounts[2]++; 
+                    ProbabilityDiscoveryInRiver();
                     break;
 
                 case "Marais":
-                    Console.WriteLine("Vous collectez de l'Argile !");
-                    resourceAmounts[3]++; 
+                    ProbabilityDiscoveryInSwamp();
                     break;
 
                 case "Montagne":
-                    Console.WriteLine("Vous collectez du Fer !");
-                    resourceAmounts[0]++;
+                    ProbabilityDiscoveryInMountain();
                     break;
 
                 default:
@@ -154,126 +160,162 @@ namespace SurvieEnTerreInconnue
                     break;
             }
         }
-
+        // Probabilité  de découverte des ressources dans le désert
         public static void ProbabilityDiscoveryInDesert()
         {
-            probabilyDiscovery = randomGenerator.Next(1, 100);
+            int roll = randomGenerator.Next(0, 100);
 
-            if (probabilyDiscovery < 1)
+            if (roll < 1) 
             {
-                Console.WriteLine("Vous avez collecter de l'eau !");
+                Console.WriteLine("Vous avez collecté de l'eau !");
+                resourceAmounts[14]++; 
             }
-            else if (probabilyDiscovery < 90) 
+            else if (roll < 90) 
             {
-                Console.WriteLine("Vous avez collecter du sable");
+                Console.WriteLine("Vous avez collecté du sable");
+                resourceAmounts[5]++; 
             }
-            else
+            else 
             {
-                Console.WriteLine();
+                Console.WriteLine("Vous n'avez rien trouvé...");
             }
         }
+        // Probabilité  de découverte des ressources dans la forêt
         public static void ProbabilityDiscoveryInForest()
         {
-            probabilyDiscovery = randomGenerator.Next(1, 100);
+            int roll = randomGenerator.Next(0, 100);
 
-            if (probabilyDiscovery < 5)
+            if (roll < 5)
             {
-                probabilyDiscovery = randomGenerator.Next(0, 2);
+                int subChoice = randomGenerator.Next(0, 2);
 
-                switch(probabilyDiscovery)
+                if (subChoice == 0)
                 {
-                    case 0:
-                        Console.WriteLine("Vous avez collecter de l'eau");
-                        break;
-                    case 1:
-                        Console.WriteLine("Vous avez collecter des fruits");
-                        break;
-                    default:
-                        break;
+                    Console.WriteLine("Vous avez collecté de l'eau");
+                    resourceAmounts[14]++; 
+                }
+                else
+                {
+                    Console.WriteLine("Vous avez collecté des fruits");
+                    resourceAmounts[13]++; 
                 }
             }
-            else if (probabilyDiscovery < 10) 
+            else if (roll < 15) 
             {
-                Console.WriteLine("Vous avez collecter dU gibier");
+                Console.WriteLine("Vous avez collecté du gibier");
+                resourceAmounts[15]++; 
             }
-            else
+            else 
             {
-                Console.WriteLine("Vous avez collecter du bois");
+                Console.WriteLine("Vous avez collecté du bois");
+                resourceAmounts[1]++;
             }
         }
+        // Probabilité  de découverte des ressources dans le marais
         public static void ProbabilityDiscoveryInSwamp()
         {
-            probabilyDiscovery = randomGenerator.Next(1, 100);
+            int roll = randomGenerator.Next(0, 100);
 
-            if (probabilyDiscovery < 5)
+            if (roll < 5) 
             {
-                Console.WriteLine("Vous avez collecter du poisson");
+                Console.WriteLine("Vous avez collecté du poisson");
+                resourceAmounts[15]++; 
             }
-            else if (probabilyDiscovery < 45) 
+            else if (roll < 45) 
             {
-                Console.WriteLine("Vous avez collecter de l'argile");
+                Console.WriteLine("Vous avez collecté de l'argile");
+                resourceAmounts[3]++;
             }
-            else
+            else 
             {
-                Console.WriteLine("Vous avez collecter de l'eau !");
+                Console.WriteLine("Vous avez collecté de l'eau !");
+                resourceAmounts[14]++; 
             }
         }
+        // Probabilité  de découverte des ressources dans la rivière
         public static void ProbabilityDiscoveryInRiver()
         {
-            probabilyDiscovery = randomGenerator.Next(1, 100);
+            int roll = randomGenerator.Next(0, 100);
 
-            if (probabilyDiscovery < 20)
+            if (roll < 20) 
             {
-                Console.WriteLine("Vous avez collecter du poisson");
+                Console.WriteLine("Vous avez collecté du poisson");
+                resourceAmounts[15]++; 
             }
-            else if (probabilyDiscovery < 30) 
+            else if (roll < 50) 
             {
-                Console.WriteLine("Vous avez collecter de l'eau");
+                Console.WriteLine("Vous avez collecté de l'eau");
+                resourceAmounts[14]++;
             }
-            else
+            else 
             {
-                Console.WriteLine("Vous avez collecter du silex");
+                Console.WriteLine("Vous avez collecté du silex");
+                resourceAmounts[2]++; 
             }
         }
+        // Probabilité  de découverte des ressources dans la prairie
         public static void ProbabilityDiscoveryInPrairie()
         {
-            probabilyDiscovery = randomGenerator.Next(1, 100);
+            int roll = randomGenerator.Next(0, 100);
 
-            if (probabilyDiscovery < 20)
+            if (roll < 30) 
             {
-                Console.WriteLine("Vous avez collecter du poisson");
+                Console.WriteLine("Vous avez collecté des fruits");
+                resourceAmounts[13]++;
             }
-            else
+            else 
             {
-                Console.WriteLine("Vous avez collecter du silex");
+                Console.WriteLine("Vous avez collecté de l'herbe");
+                resourceAmounts[4]++; 
             }
         }
+        // Probabilité  de découverte des ressources dans la montagne
+        public static void ProbabilityDiscoveryInMountain()
+        {
+            int roll = randomGenerator.Next(0, 100);
 
+            if (roll < 2) 
+            {
+                Console.WriteLine("Vous avez collecté de l'argile");
+                resourceAmounts[3]++;
+            }
+            else if (roll < 7) 
+            {
+                Console.WriteLine("Vous avez collecté de l'eau");
+                resourceAmounts[14]++; 
+            }
+            else 
+            {
+                Console.WriteLine("Vous avez collecté du fer");
+                resourceAmounts[0]++; 
+            }
+        }
+        // Cette méthode trouve le terrain en fonction de la génération aléatoire d'un nombre (voir début de la class)
         public static string GetCurrentTerrain()
         {
             int terrain = mapGrid[playerPositionY, playerPositionX];
 
             switch (terrain)
             {
-                case 0: 
+                case 0:
                     return "Base";
                 case 1:
                     return "Forêt";
                 case 2:
                     return "Prairie";
-                case 3: 
+                case 3:
                     return "Désert";
-                case 4: 
+                case 4:
                     return "Rivière";
                 case 5:
                     return "Marais";
                 case 6:
                     return "Montagne";
-                default: 
+                default:
                     return "";
             }
         }
-
+        // Cette méthode affiche le terrain en fonction de la position du joueur
         public static void ShowTerrainAtCurrentPosition()
         {
             discovered[playerPositionY, playerPositionX] = true;
@@ -326,6 +368,47 @@ namespace SurvieEnTerreInconnue
 
             ConsoleKeyInfo selectedAction = Console.ReadKey();
             return selectedAction.Key;
+        }
+        public static ConsoleKey DisplayForest()
+        {
+            Console.Clear();
+            Display.DisplayForestPosition();
+            return DisplayTerrainMenu("dans la forêt");
+        }
+
+        public static ConsoleKey DisplayPrairie()
+        {
+            Console.Clear();
+            Display.DisplayPrairiePosition();
+            return DisplayTerrainMenu("dans la prairie");
+        }
+
+        public static ConsoleKey DisplayDesert()
+        {
+            Console.Clear();
+            Display.DisplayDesertPosition();
+            return DisplayTerrainMenu("dans le désert");
+        }
+
+        public static ConsoleKey DisplayRiver()
+        {
+            Console.Clear();
+            Display.DisplayRiverPosition();
+            return DisplayTerrainMenu("près de la rivière");
+        }
+
+        public static ConsoleKey DisplaySwamp()
+        {
+            Console.Clear();
+            Display.DisplaySwampPosition();
+            return DisplayTerrainMenu("dans le marais");
+        }
+
+        public static ConsoleKey DisplayMountain()
+        {
+            Console.Clear();
+            Display.DisplayMountainPosition();
+            return DisplayTerrainMenu("dans la montagne");
         }
 
         public static ConsoleKey DisplayBase()
@@ -401,7 +484,7 @@ namespace SurvieEnTerreInconnue
 
         public static ConsoleKey DisplayDirection()
         {
-           
+
             Console.Clear();
             DisplayGridMap();
             Console.WriteLine();
@@ -425,6 +508,21 @@ namespace SurvieEnTerreInconnue
             return selectedAction.Key;
         }
 
+        public static void ShowBoundaryMessage(string direction)
+        {
+            string article;
+            if (direction == "Ouest" || direction == "Est")
+            {
+                article = "à l'";
+            }
+            else
+            {
+                article = "au ";
+            }
+            Console.ForegroundColor = ConsoleColor.DarkRed; 
+            Console.WriteLine($"\nVous ne pouvez pas aller plus {article}{direction} !");
+            Console.ResetColor();
+        }
         public static void ProcessExplorationInput()
         {
             bool exploring = true;
@@ -438,19 +536,16 @@ namespace SurvieEnTerreInconnue
                 {
                     case ConsoleKey.N:
                     case ConsoleKey.UpArrow:
-                        if (playerPositionY > 0) 
+                        if (playerPositionY > 0)
                         {
-                            playerPositionY--; 
+                            playerPositionY--;
                             discovered[playerPositionY, playerPositionX] = true;
                         }
                         else
                         {
-                            Console.Clear();
-                            Display.AnimateText("Vous ne pouvez pas aller plus au Nord !");
-                            Thread.Sleep(1500);
+                            ShowBoundaryMessage("Nord");
                         }
                         break;
-
 
                     case ConsoleKey.O:
                     case ConsoleKey.LeftArrow:
@@ -461,26 +556,23 @@ namespace SurvieEnTerreInconnue
                         }
                         else
                         {
-                            Console.Clear();
-                            Display.AnimateText("Vous ne pouvez pas aller plus à l'Ouest !");
-                            Thread.Sleep(1500);
+                            ShowBoundaryMessage("Ouest");
                         }
                         break;
 
                     case ConsoleKey.S:
                     case ConsoleKey.DownArrow:
-                        if (playerPositionY < mapGrid.GetLength(0) - 1) 
+                        if (playerPositionY < mapGrid.GetLength(0) - 1)
                         {
-                            playerPositionY++; 
+                            playerPositionY++;
                             discovered[playerPositionY, playerPositionX] = true;
                         }
                         else
                         {
-                            Console.Clear();
-                            Display.AnimateText("Vous ne pouvez pas aller plus au Sud !");
-                            Thread.Sleep(1500);
+                            ShowBoundaryMessage("Sud");
                         }
                         break;
+
                     case ConsoleKey.E:
                     case ConsoleKey.RightArrow:
                         if (playerPositionX < mapGrid.GetLength(1) - 1)
@@ -490,9 +582,7 @@ namespace SurvieEnTerreInconnue
                         }
                         else
                         {
-                            Console.Clear();
-                            Display.AnimateText("Vous ne pouvez pas aller plus à l'Est !");
-                            Thread.Sleep(1500);
+                            ShowBoundaryMessage("Est");
                         }
                         break;
 
@@ -524,57 +614,20 @@ namespace SurvieEnTerreInconnue
             }
         }
 
-        public static ConsoleKey DisplayForest()
-        {
-            Console.Clear();
-            Display.DisplayForestPosition();
-            return DisplayTerrainMenu("dans la forêt");
-        }
-
-        public static ConsoleKey DisplayPrairie()
-        {
-            Console.Clear();
-            Display.DisplayPrairiePosition();
-            return DisplayTerrainMenu("dans la prairie");
-        }
-
-        public static ConsoleKey DisplayDesert()
-        {
-            Console.Clear();
-            Display.DisplayDesertPosition();
-            return DisplayTerrainMenu("dans le désert");
-        }
-
-        public static ConsoleKey DisplayRiver()
-        {
-            Console.Clear();
-            Display.DisplayRiverPosition();
-            return DisplayTerrainMenu("près de la rivière");
-        }
-
-        public static ConsoleKey DisplaySwamp()
-        {
-            Console.Clear();
-            Display.DisplaySwampPosition();
-            return DisplayTerrainMenu("dans le marais");
-        }
-
-        public static ConsoleKey DisplayMountain()
-        {
-            Console.Clear();
-            Display.DisplayMountainPosition();
-            return DisplayTerrainMenu("dans la montagne");
-        }
-      //Une fonction qui passe en paramètres une fonction entière
+       
+        //on aurait pu faire cette méthode pour chaque terrain mais ça aurait été trop long dans notre code, j'ai trouvé comment passer une méthode en paramètre sur Stackoverflow pour optimiser notre code
+        //On va passer en paramètre chaque méthode pour ne pas à avoir les mêmes choses pour chaque terrain, cette méthode va retourner l'action que l'utilisateur choisira
         public static bool ProcessTerrainInput(Func<ConsoleKey> displayFunction)
         {
             bool stayInTerrain = true;
 
             while (stayInTerrain)
             {
+                //input sera la consoleKey qui sera retourner par chaque méthode par exemple dans le DisplayForest
                 ConsoleKey input = displayFunction();
                 Console.WriteLine();
 
+                //En codant, je me suis rendu compte que ce menu était le même pour tout les terrains
                 switch (input)
                 {
                     case ConsoleKey.E:
@@ -612,7 +665,7 @@ namespace SurvieEnTerreInconnue
 
             return true;
         }
-
+        //Ces méthodes vont retourner le choix de l'utilisateur
         public static bool ProcessDisplayForestInput()
         {
             return ProcessTerrainInput(DisplayForest);

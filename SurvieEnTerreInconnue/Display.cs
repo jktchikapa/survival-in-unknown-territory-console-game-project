@@ -13,7 +13,7 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine();
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkGray;
-            Display.AnimateTextTitle("███████╗██╗   ██╗██████╗ ██╗   ██╗██╗███████╗    ███████╗███╗   ██╗    ████████╗███████╗██████╗ ██████╗ ███████╗" +
+            Display.AnimateText("███████╗██╗   ██╗██████╗ ██╗   ██╗██╗███████╗    ███████╗███╗   ██╗    ████████╗███████╗██████╗ ██████╗ ███████╗" +
                                 "\r\n██╔════╝██║   ██║██╔══██╗██║   ██║██║██╔════╝    ██╔════╝████╗  ██║    ╚══██╔══╝██╔════╝██╔══██╗██╔══██╗██╔════╝" +
                                 "\r\n███████╗██║   ██║██████╔╝██║   ██║██║█████╗      █████╗  ██╔██╗ ██║       ██║   █████╗  ██████╔╝██████╔╝█████╗ " +
                                 " \r\n╚════██║██║   ██║██╔══██╗╚██╗ ██╔╝██║██╔══╝      ██╔══╝  ██║╚██╗██║       ██║   ██╔══╝  ██╔══██╗██╔══██╗██╔══╝  " +
@@ -31,10 +31,18 @@ namespace SurvieEnTerreInconnue
 
             Console.ReadKey();
         }
-
+        public static void DisplayPrincipalMenu()
+        {
+            Console.WriteLine("███╗   ███╗███████╗███╗   ██╗██╗   ██╗       " +
+                        "\r\n████╗ ████║██╔════╝████╗  ██║██║   ██║       " +
+                        "\r\n██╔████╔██║█████╗  ██╔██╗ ██║██║   ██║       " +
+                        "\r\n██║╚██╔╝██║██╔══╝  ██║╚██╗██║██║   ██║      " +
+                        " \r\n██║ ╚═╝ ██║███████╗██║ ╚████║╚██████╔╝      " +
+                        " \r\n╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝        ");
+        }
         public static void DisplayWelcomeMessage()
         {
-            Display.AnimateTextTitle("██████╗ ██╗███████╗███╗   ██╗██╗   ██╗███████╗███╗   ██╗██╗   ██╗███████╗               " +
+            Display.AnimateText("██████╗ ██╗███████╗███╗   ██╗██╗   ██╗███████╗███╗   ██╗██╗   ██╗███████╗               " +
                                 "\r\n██╔══██╗██║██╔════╝████╗  ██║██║   ██║██╔════╝████╗  ██║██║   ██║██╔════╝                 " +
                                 "\r\n██████╔╝██║█████╗  ██╔██╗ ██║██║   ██║█████╗  ██╔██╗ ██║██║   ██║█████╗                   " +
                                 "\r\n██╔══██╗██║██╔══╝  ██║╚██╗██║╚██╗ ██╔╝██╔══╝  ██║╚██╗██║██║   ██║██╔══╝                   " +
@@ -50,7 +58,7 @@ namespace SurvieEnTerreInconnue
         }
         public static void DisplayGoodByeMessage()
         {
-            Display.AnimateTextTitle(" █████╗ ██╗   ██╗    ██████╗ ███████╗██╗   ██╗ ██████╗ ██╗██████╗ ██╗" +
+            Display.AnimateText(" █████╗ ██╗   ██╗    ██████╗ ███████╗██╗   ██╗ ██████╗ ██╗██████╗ ██╗" +
                                 "\r\n██╔══██╗██║   ██║    ██╔══██╗██╔════╝██║   ██║██╔═══██╗██║██╔══██╗██║" +
                                 "\r\n███████║██║   ██║    ██████╔╝█████╗  ██║   ██║██║   ██║██║██████╔╝██║" +
                                 "\r\n██╔══██║██║   ██║    ██╔══██╗██╔══╝  ╚██╗ ██╔╝██║   ██║██║██╔══██╗╚═╝" +
@@ -184,11 +192,7 @@ namespace SurvieEnTerreInconnue
                                 "\r\n╚═╝     ╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝╚═╝ ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝");
             Console.ResetColor();
         }
-        public static void AnimateText(string texte, ConsoleColor couleur = ConsoleColor.White, int timeLimit = 20)
-        {
-            ConsoleColor savedColor = Console.ForegroundColor;
-            Console.ForegroundColor = couleur;
-
+            /*
             foreach (char c in texte)
             {
                 Console.Write(c);
@@ -196,26 +200,26 @@ namespace SurvieEnTerreInconnue
             }
 
             Console.ForegroundColor = savedColor;
-        }
+         
+            */
 
         // Monsieur Kevin m'a aidé à faire ce bout de code (fonction) parce que la méthode précédente ne marchait pas très bien avec les Ascii Art,il a juste améliorer AnimateText()
-        public static void AnimateTextTitle(string texte, ConsoleColor couleur = ConsoleColor.White, int timeLimit = 20)
+        public static void AnimateText(string texte, ConsoleColor couleur = ConsoleColor.White, int timeLimit = 30)
         {
-            ConsoleColor color = Console.ForegroundColor;
+            ConsoleColor savedColor = Console.ForegroundColor;
             Console.ForegroundColor = couleur;
 
             for (int i = 0; i < texte.Length; i++)
             {
                 Console.Write(texte[i]);
-                if (i % 4 == 0)
+                if (i % 2 == 0)
                 {
                     Thread.Sleep(timeLimit);
                 }
             }
 
-            Console.ForegroundColor = color;
+            Console.ForegroundColor = savedColor;
         }
-
     }
 }
     

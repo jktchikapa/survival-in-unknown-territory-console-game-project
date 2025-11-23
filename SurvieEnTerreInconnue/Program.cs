@@ -13,7 +13,10 @@
             Map.ProcessExplorationInput();*/
             //Menu.ProcessInventoryInput();
             //Menu.DisplayManufacturingMenu();
-            Menu.ProcessDisplayMenuInput();
+            //Menu.ProcessDisplayMenuInput();
+            //"Menu.DisplayInventoryMenu1();
+            //Menu.ProcessInventoryInput();
+            Menu.ProcessDisplayManufacturingInput();
         }
     }
 }
