@@ -16,9 +16,10 @@
             //Menu.ProcessDisplayMenuInput();
             //"Menu.DisplayInventoryMenu1();
             //Menu.ProcessInventoryInput();
-            Menu.ProcessDisplayManufacturingInput();
+            //Menu.ProcessDisplayManufacturingInput();
             //Menu.ProcessDisplayEndMessageInput();
-        
+            //Menu.ProcessDisplayMenuInput();
+            Menu.DisplayEndMessage();
         }
     }
 }

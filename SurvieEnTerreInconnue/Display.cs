@@ -8,6 +8,7 @@ namespace SurvieEnTerreInconnue
 {
     internal class Display
     {
+        public static string art = "";
         public static void DisplayGameTitle()
         {
             Console.WriteLine();
@@ -85,6 +86,7 @@ namespace SurvieEnTerreInconnue
                         "\r\n╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝");
             Console.ResetColor();
         }
+       
         //Afficher la position dans le désert
         public static void DisplayDesertPosition()
         {
@@ -197,6 +199,26 @@ namespace SurvieEnTerreInconnue
                                 "\r\n██║     ██║  ██║██████╔╝██║  ██║██║╚██████╗██║  ██║   ██║   ██║╚██████╔╝██║ ╚████║" +
                                 "\r\n╚═╝     ╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝╚═╝ ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝");
             Console.ResetColor();
+        }
+        public static string  DisplayHouse()
+        {
+            art = @"                                           /\
+                                      /\  //\\
+                               /\    //\\///\\\        /\
+                              //\\  ///\////\\\\  /\  //\\
+                 /\          /  ^ \/^ ^/^  ^  ^ \/^ \/  ^ \
+                / ^\    /\  / ^   /  ^/ ^ ^ ^   ^\ ^/  ^^  \
+               /^   \  / ^\/ ^ ^   ^ / ^  ^    ^  \/ ^   ^  \       *
+              /  ^ ^ \/^  ^\ ^ ^ ^   ^  ^   ^   ____  ^   ^  \     /|\
+             / ^ ^  ^ \ ^  _\___________________|  |_____^ ^  \   /||o\
+            / ^^  ^ ^ ^\  /______________________________\ ^ ^ \ /|o|||\
+           /  ^  ^^ ^ ^  /________________________________\  ^  /|||||o|\
+          /^ ^  ^ ^^  ^    ||___|___||||||||||||___|__|||      /||o||||||\
+         / ^   ^   ^    ^  ||___|___||||||||||||___|__|||          | |
+        / ^ ^ ^  ^  ^  ^   ||||||||||||||||||||||||||||||oooooooooo| |ooooooo
+        ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
+                ;
+            return art;
         }
             /*
             foreach (char c in texte)

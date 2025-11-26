@@ -416,10 +416,7 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Vous êtes actuellement sur le terrain de base");
-            Console.WriteLine();
-            Console.WriteLine();
             Console.WriteLine("Veuillez sélectionner une action à effectuer :\n");
-            Console.WriteLine();
             Console.ResetColor();
             Console.WriteLine("[E]xplorer les différents territoires");
             Console.WriteLine("[A]fficher l'inventaire");
@@ -637,8 +634,7 @@ namespace SurvieEnTerreInconnue
                         break;
 
                     case ConsoleKey.C:
-                        Map.CollectMaterials();
-                        Console.WriteLine("\nAppuyez sur une touche pour continuer...");
+                        CollectMaterials();
                         Console.ReadKey();
                         break;
 

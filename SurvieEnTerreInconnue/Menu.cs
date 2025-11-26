@@ -82,20 +82,6 @@ namespace SurvieEnTerreInconnue
             Display.AnimateText("\nCe jeu a été développé par :", ConsoleColor.White, 50);
             Display.AnimateText("\n - Romuald Arnaud", ConsoleColor.White, 50);
             Display.AnimateText("\n - Jessica Karelle\n", ConsoleColor.White, 50);
-
-            Display.AnimateText("\nÉTABLISSEMENT :", ConsoleColor.White, 50);
-            Display.AnimateText("\n  Cégep de Saint-Jean-sur-Richelieu", ConsoleColor.White, 50);
-            Display.AnimateText("\n  Technique de l'Informatique\n");
-
-            Display.AnimateText("\nCONTEXTE :" ,ConsoleColor.White, 50);
-            Display.AnimateText("\n  Cours : 420-1A6-ST", ConsoleColor.White, 50);
-            Display.AnimateText("\n  Algorithmie et Programmation Structurée", ConsoleColor.White, 50);
-            Display.AnimateText("\n  Session : Automne 2025\n", ConsoleColor.White, 50);
-
-            Display.AnimateText("\n© 2025 - Tous droits réservés", ConsoleColor.White, 50);
-            Display.AnimateText("\nLe code source est protégé par le droit d'auteur.", ConsoleColor.White, 50);
-            Display.AnimateText("\nToute reproduction ou modification non autorisée est interdite.\n", ConsoleColor.White, 50);
-
         }
         // Méthode qui affiche le message de fin du jeu, on rassure que l'utilisateur a choisi cette option parce qu'il le voulait et non par erreur
         public static ConsoleKey DisplayLeaveMessage()
@@ -169,62 +155,12 @@ namespace SurvieEnTerreInconnue
             Display.AnimateText("\n\tConstruisez-vous un abri au plus vite si vous souhaitez survivre ...");
         }
         // Cette méthode (même si c'est peu probable qu'un joueur arrive à la fin du jeu) affichera le message de victoire du jeu
-        public static ConsoleKey DisplayEndMessage()
+        public static void DisplayEndMessage()
         {
-            Console.Clear();
-            Display.AnimateText("Les premiers flocons tombent doucement sur le toit de votre abri...");
-            Thread.Sleep(1500);
-            Display.AnimateText("\nVous avez réussi. Contre toute attente, vous avez survécu.");
-            Thread.Sleep(2000);
-            Console.WriteLine();
-            Display.AnimateText("\nVotre maison vous protégera du froid glacial de l'hiver qui approche.");
-            Thread.Sleep(2000);
-            Display.AnimateText("\nMais au fond de vous, une question persiste...");
-            Thread.Sleep(1000);
-            Console.WriteLine();
-            Display.AnimateText("\nAllez-vous rester ici pour toujours ?");
-            Thread.Sleep(1000);
-            Display.AnimateText("\n\nÊtes-vous prêt à continuer votre aventure ?");
-            Console.ResetColor();
-            Thread.Sleep(1000);
-            Console.WriteLine("\n\n[O]ui, je veux m'échapper de cette île !");
-            Console.WriteLine("[N]on, je préfère rester en sécurité ici");
-            Console.Write("\nVotre choix : ");
-
-            ConsoleKeyInfo selectedAction = Console.ReadKey();
-            return selectedAction.Key;
+            Console.WriteLine(Display.DisplayHouse()); 
+            Console.WriteLine("Vous avez reussi à vous construire une maison !");
         }
-        public static void ProcessDisplayEndMessageInput()
-        {
-            ConsoleKey input = DisplayEndMessage();
-            Console.WriteLine();
-
-            switch (input)
-            {
-                case ConsoleKey.O:
-                    Console.Clear();
-                    Display.AnimateText("Votre aventure débute dès maintenant...");
-                    Thread.Sleep(2000);
-                    Display.AnimateText("\nÀ suivre dans la prochaine mise à jour du jeu !");
-                    Thread.Sleep(2000);
-                    break;
-
-                case ConsoleKey.N:
-                    Console.Clear();
-                    Display.AnimateText("Peut-être partirez-vous un jour...");
-                    Thread.Sleep(2000);
-                    Display.AnimateText("\nEn attendant, vous restez bien au chaud dans votre abri.");
-                    Thread.Sleep(2000);
-                    break;
-
-                default:
-                    Console.Clear();
-                    Display.AnimateText("Choix invalide.Veuillez réessayer");
-                    Thread.Sleep(1500);
-                    break;
-            }
-        }
-
+       
         // Cette méthode affiche le menu de fabrication du jeu
         public static ConsoleKey DisplayManufacturingMenu()
         {
@@ -309,7 +245,6 @@ namespace SurvieEnTerreInconnue
                     case ConsoleKey.M:
                         Console.Clear();
                         Crafting.BuildHouse();
-                        Console.WriteLine("\nAppuyez sur une touche pour continuer...");
                         Console.ReadKey();
                         break;
 
@@ -319,7 +254,7 @@ namespace SurvieEnTerreInconnue
 
                     case ConsoleKey.R:
                         ProcessDisplayMenuInput();
-                        return true; 
+                        return continueManufacturing = true; 
 
                     case ConsoleKey.E:
                         Map.GenerateMap();
@@ -328,7 +263,7 @@ namespace SurvieEnTerreInconnue
 
                     case ConsoleKey.Q:
                         ProcessDisplayLeaveMessageInput();
-                        return false;
+                        return continueManufacturing= false;
 
                     default:
                         Console.Clear();
@@ -345,16 +280,14 @@ namespace SurvieEnTerreInconnue
         {
             Console.Clear();
             Display.DisplayInventoryItems();
-            Display.AnimateText("\nBienvenue dans l'inventaire du jeu", ConsoleColor.White,15);
-            Thread.Sleep(1000);
-            Display.AnimateText("\nDans cette section, vous pouvez consulter toutes les ressources et matériaux à votre disposition", ConsoleColor.White, 16);
-            Thread.Sleep(1000);
-            Display.AnimateText("\nVeuillez sélectionner une option :", ConsoleColor.White, 12);
-            Console.WriteLine("\n\n[R]essources : Consultez les ressources que vous possédez");
+            Console.WriteLine("\nBienvenue dans l'inventaire du jeu");
+            Console.WriteLine("\nDans cette section, vous pouvez consulter toutes les ressources et matériaux à votre disposition");
+            Console.WriteLine("Veuillez sélectionner une option :");
+            Console.WriteLine("\n[R]essources : Consultez les ressources que vous possédez");
             Console.WriteLine("[M]atériaux : Consulter les matériaux que vous avez fabriqué");
             Console.WriteLine("[Q]uitter l'inventaire");
             Console.WriteLine();
-            Console.Write("Votre choix : ");
+            Display.AnimateText("Votre choix : ");
 
             ConsoleKeyInfo selectedAction = Console.ReadKey();
             return selectedAction.Key;
