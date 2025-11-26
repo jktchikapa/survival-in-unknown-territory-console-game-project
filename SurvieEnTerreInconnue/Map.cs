@@ -46,7 +46,7 @@ namespace SurvieEnTerreInconnue
                     if (i == 0 && j == 0)
                     {
                         mapGrid[i, j] = 0; //Base
-                        discovered[i, j] = true; //Logiquement la base est déja découverte quand le jeu commençe
+                        discovered[i, j] = true; //Logiquement la base est deja découverte quand le jeu commençe
                     }
                     else
                     {
@@ -68,7 +68,7 @@ namespace SurvieEnTerreInconnue
                         int terrain = mapGrid[i, j];
                         SetTerrainColor(terrain);
 
-                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                        Console.ForegroundColor = ConsoleColor.White;
                         Console.Write(" )( ");
                         Console.ResetColor();
                     }
@@ -350,21 +350,19 @@ namespace SurvieEnTerreInconnue
         public static ConsoleKey DisplayTerrainMenu(string terrainName)
         {
             Console.ResetColor();
-            Thread.Sleep(1000);
             Console.WriteLine();
-            Display.AnimateText($"Vous êtes actuellement {terrainName}");
+            Console.WriteLine($"Vous êtes actuellement {terrainName}");
             Console.WriteLine();
             Console.WriteLine();
-            Display.AnimateText("Veuillez sélectionner une action à effectuer :");
+            Console.WriteLine("Veuillez sélectionner une action à effectuer :");
             Console.WriteLine();
-            Thread.Sleep(100);
             Console.WriteLine("[E]xplorer les différents territoires");
             Console.WriteLine("[A]fficher l'inventaire");
             Console.WriteLine("[C]ollecter des ressources");
             Console.WriteLine("[R]etour au menu principal");
             Console.WriteLine("[Q]uitter le jeu");
             Console.WriteLine();
-            Console.Write("Votre choix : ");
+            Display.AnimateText("Votre choix : ");
 
             ConsoleKeyInfo selectedAction = Console.ReadKey();
             return selectedAction.Key;
@@ -415,15 +413,13 @@ namespace SurvieEnTerreInconnue
         {
             Console.Clear();
             Display.DisplayBasePosition();
-            Thread.Sleep(1000);
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.White;
-            Display.AnimateText("Vous êtes actuellement sur le terrain de base");
+            Console.WriteLine("Vous êtes actuellement sur le terrain de base");
             Console.WriteLine();
             Console.WriteLine();
-            Display.AnimateText("Veuillez sélectionner une action à effectuer :\n");
+            Console.WriteLine("Veuillez sélectionner une action à effectuer :\n");
             Console.WriteLine();
-            Thread.Sleep(100);
             Console.ResetColor();
             Console.WriteLine("[E]xplorer les différents territoires");
             Console.WriteLine("[A]fficher l'inventaire");
@@ -431,7 +427,7 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine("[R]etour au menu principal");
             Console.WriteLine("[Q]uitter le jeu");
             Console.WriteLine();
-            Console.Write("Votre choix : ");
+            Display.AnimateText("Votre choix : ");
 
             ConsoleKeyInfo selectedAction = Console.ReadKey();
             return selectedAction.Key;
@@ -522,6 +518,7 @@ namespace SurvieEnTerreInconnue
             Console.ForegroundColor = ConsoleColor.DarkRed; 
             Console.WriteLine($"\nVous ne pouvez pas aller plus {article}{direction} !");
             Console.ResetColor();
+            Thread.Sleep(500);
         }
         public static void ProcessExplorationInput()
         {

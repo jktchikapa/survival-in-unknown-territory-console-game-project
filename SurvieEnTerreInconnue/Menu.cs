@@ -39,10 +39,7 @@ namespace SurvieEnTerreInconnue
                 switch (input)
                 {
                     case ConsoleKey.J:
-                        Console.Clear();
                         Map.GenerateMap();
-                        Map.DisplayGridMap();
-                        Console.ReadKey();
                         Map.ShowTerrainAtCurrentPosition();
                         Thread.Sleep(1000);
                         break;
@@ -148,6 +145,7 @@ namespace SurvieEnTerreInconnue
                     return true;
             }
         }
+
         // Si l'utilisateur a choisi "oui, je souhaite quitter la partie", on lui affiche un beau message d'aurevoir 
         public static void DisplayGoodByeMessage()
         {
@@ -189,8 +187,8 @@ namespace SurvieEnTerreInconnue
             Display.AnimateText("\n\nÊtes-vous prêt à continuer votre aventure ?");
             Console.ResetColor();
             Thread.Sleep(1000);
-            Console.WriteLine("\n[O]ui, je veux m'échapper de cette île !");
-            Console.WriteLine("\n[N]on, je préfère rester en sécurité ici");
+            Console.WriteLine("\n\n[O]ui, je veux m'échapper de cette île !");
+            Console.WriteLine("[N]on, je préfère rester en sécurité ici");
             Console.Write("\nVotre choix : ");
 
             ConsoleKeyInfo selectedAction = Console.ReadKey();
@@ -246,6 +244,7 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine($"\t* {"[N]ourriture".PadRight(10)}: Cette action nécessite du Feu et du Bois                                               *");
             Console.WriteLine($"\t* {"[C]onsulter Inventaire".PadRight(10)}: Vous pouvez consulter votre inventaire                                       *");
             Console.WriteLine($"\t* {"[R]etour au menu principal".PadRight(10)}                                                                           *");
+            Console.WriteLine($"\t* {"[E]xplorer ou continuer d'explorer les territoires".PadRight(10)}                                                   *");
             Console.WriteLine($"\t* {"[Q]uitter le jeu".PadRight(10)}                                                                                     *");
             Console.WriteLine("\t********************************************************************************************************");
             Console.Write("\n\nVotre choix : ");
@@ -322,8 +321,14 @@ namespace SurvieEnTerreInconnue
                         ProcessDisplayMenuInput();
                         return true; 
 
+                    case ConsoleKey.E:
+                        Map.GenerateMap();
+                        Map.ShowTerrainAtCurrentPosition();
+                        break; 
+
                     case ConsoleKey.Q:
-                        return false; 
+                        ProcessDisplayLeaveMessageInput();
+                        return false;
 
                     default:
                         Console.Clear();

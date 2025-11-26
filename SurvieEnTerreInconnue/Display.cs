@@ -88,6 +88,7 @@ namespace SurvieEnTerreInconnue
         //Afficher la position dans le désert
         public static void DisplayDesertPosition()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("██████╗ ███████╗███████╗███████╗██████╗ ████████╗" +
                                 "\r\n██╔══██╗██╔════╝██╔════╝██╔════╝██╔══██╗╚══██╔══╝" +
                                 "\r\n██║  ██║█████╗  ███████╗█████╗  ██████╔╝   ██║   " +
@@ -99,6 +100,7 @@ namespace SurvieEnTerreInconnue
         //Afficher la position dans la rivière
         public static void DisplayRiverPosition()
         {
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("██████╗ ██╗██╗   ██╗██╗███████╗██████╗ ███████╗" +
                         "\r\n██╔══██╗██║██║   ██║██║██╔════╝██╔══██╗██╔════╝" +
                         "\r\n██████╔╝██║██║   ██║██║█████╗  ██████╔╝█████╗ " +
@@ -109,6 +111,7 @@ namespace SurvieEnTerreInconnue
         }
         public static void DisplayPrairiePosition()
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("██████╗ ██████╗  █████╗ ██╗██████╗ ██╗███████╗" +
                         "\r\n██╔══██╗██╔══██╗██╔══██╗██║██╔══██╗██║██╔════╝" +
                         "\r\n██████╔╝██████╔╝███████║██║██████╔╝██║█████╗  " +
@@ -120,6 +123,7 @@ namespace SurvieEnTerreInconnue
         //Afficher la position dans la forêt
         public static void DisplayForestPosition()
         {
+            Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("███████╗ ██████╗ ██████╗ ███████╗████████╗" +
                         "\r\n██╔════╝██╔═══██╗██╔══██╗██╔════╝╚══██╔══╝" +
                         "\r\n█████╗  ██║   ██║██████╔╝█████╗     ██║  " +
@@ -131,6 +135,7 @@ namespace SurvieEnTerreInconnue
         //Afficher la postion dans le marais
         public static void DisplaySwampPosition()
         {
+            Console.ForegroundColor = ConsoleColor.Gray; 
             Console.WriteLine("███╗   ███╗ █████╗ ██████╗  █████╗ ██╗███████╗" +
                                 "\r\n████╗ ████║██╔══██╗██╔══██╗██╔══██╗██║██╔════╝" +
                                 "\r\n██╔████╔██║███████║██████╔╝███████║██║███████╗" +
@@ -142,6 +147,7 @@ namespace SurvieEnTerreInconnue
         //Afficher la postion dans les montagnes
         public static void DisplayMountainPosition()
         {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("███╗   ███╗ ██████╗ ███╗   ██╗████████╗ █████╗  ██████╗ ███╗   ██╗███████╗" +
                         "\r\n████╗ ████║██╔═══██╗████╗  ██║╚══██╔══╝██╔══██╗██╔════╝ ████╗  ██║██╔════╝" +
                         "\r\n██╔████╔██║██║   ██║██╔██╗ ██║   ██║   ███████║██║  ███╗██╔██╗ ██║█████╗  " +

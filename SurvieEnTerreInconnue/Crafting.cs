@@ -67,7 +67,7 @@ namespace SurvieEnTerreInconnue
 
             if (missingPlanks <= 0 && missingBricks <= 0 && missingInsulators <= 0 && missingGlass <= 0)
             {
-                Console.WriteLine("Vous avez fabriqué une maison !");
+                Menu.ProcessDisplayEndMessageInput();
                 Map.resourceAmounts[9] -= 4;
                 Map.resourceAmounts[10] -= 4;
                 Map.resourceAmounts[11] -= 4;
@@ -81,6 +81,7 @@ namespace SurvieEnTerreInconnue
                 if (missingPlanks > 0)
                 {
                     Console.WriteLine($"- {missingPlanks} planche(s)");
+
                 } 
                 if (missingBricks > 0) 
                 {
