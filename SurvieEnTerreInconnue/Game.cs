@@ -8,5 +8,6 @@ namespace SurvieEnTerreInconnue
 {
     internal class Game
     {
+
     }
 }

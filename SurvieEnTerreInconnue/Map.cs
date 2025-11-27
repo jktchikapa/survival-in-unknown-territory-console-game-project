@@ -17,6 +17,8 @@ namespace SurvieEnTerreInconnue
         public static Random randomGenerator = new Random();
         public static string[] resourceNames = {"Fer", "Bois", "Silex", "Argile", "Herbes", "Sable",
                                 "Feu", "Haches", "Vitre", "Planche", "Briques", "Isolants", "Maisons", "Fruits", "Eau" , "Gibier", "Poisson" };
+        public static int numberOfTripsRemaining = 100;
+
         //resourceNames[0] = Fer
         //resourceNames[1] = Bois
         //resourceNames[2] = Silex 
@@ -533,6 +535,7 @@ namespace SurvieEnTerreInconnue
                         if (playerPositionY > 0)
                         {
                             playerPositionY--;
+                            numberOfTripsRemaining--;
                             discovered[playerPositionY, playerPositionX] = true;
                         }
                         else
@@ -546,6 +549,7 @@ namespace SurvieEnTerreInconnue
                         if (playerPositionX > 0)
                         {
                             playerPositionX--;
+                            numberOfTripsRemaining--;
                             discovered[playerPositionY, playerPositionX] = true;
                         }
                         else
@@ -559,6 +563,7 @@ namespace SurvieEnTerreInconnue
                         if (playerPositionY < mapGrid.GetLength(0) - 1)
                         {
                             playerPositionY++;
+                            numberOfTripsRemaining--;
                             discovered[playerPositionY, playerPositionX] = true;
                         }
                         else
@@ -572,6 +577,7 @@ namespace SurvieEnTerreInconnue
                         if (playerPositionX < mapGrid.GetLength(1) - 1)
                         {
                             playerPositionX++;
+                            numberOfTripsRemaining--;
                             discovered[playerPositionY, playerPositionX] = true;
                         }
                         else
