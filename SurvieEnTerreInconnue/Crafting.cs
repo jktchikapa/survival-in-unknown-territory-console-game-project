@@ -104,7 +104,7 @@ namespace SurvieEnTerreInconnue
             int missingIron = 1 - Map.resourceAmounts[0];
 
             if (missingWood <= 0 && missingIron <= 0)
-            {
+            {   
                 Console.WriteLine("Vous avez fabriqué une hache !");
                 Map.resourceAmounts[1]--;
                 Map.resourceAmounts[0]--;

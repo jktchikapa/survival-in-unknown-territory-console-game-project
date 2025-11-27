@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -9,6 +10,7 @@ namespace SurvieEnTerreInconnue
 {
     internal class Menu
     {
+        public static List<string> saveList = new List<string>();
         // Méthode qui affiche le menu principal du jeu
         public static ConsoleKey DisplayMenu()
         {
@@ -16,10 +18,10 @@ namespace SurvieEnTerreInconnue
             Display.DisplayPrincipalMenu();
             Console.WriteLine();
             Console.WriteLine("Veuillez sélectionner une action :");
-            Console.WriteLine("[J]ouer");
             Console.WriteLine("[D]émarer une nouvelle partie");
+            Console.WriteLine("[C]hargé une partie");
             Console.WriteLine("[S]auvegarder une partie");
-            Console.WriteLine("[C]rédits");
+            Console.WriteLine("[A]uteurs");
             Console.WriteLine("[Q]uitter");
             Console.WriteLine();
             Console.Write("Votre choix : ");
@@ -38,25 +40,21 @@ namespace SurvieEnTerreInconnue
 
                 switch (input)
                 {
-                    case ConsoleKey.J:
+                    case ConsoleKey.D:
                         Map.GenerateMap();
                         Map.ShowTerrainAtCurrentPosition();
                         Thread.Sleep(1000);
                         break;
 
-                    case ConsoleKey.D:
-                        Console.Clear();
-                        Map.GenerateMap();
-                        Map.ShowTerrainAtCurrentPosition();
+                    case ConsoleKey.C:
                         break;
 
                     case ConsoleKey.S:
-                        Console.Clear();
-                        Display.AnimateText("Partie sauvegardée avec succès !");
-                        Thread.Sleep(2000);
+                        Game.DataSerialisation();
+
                         break;
 
-                    case ConsoleKey.C:
+                    case ConsoleKey.A:
                         Console.Clear();
                         DisplayProgrammersCredits();
                         Console.WriteLine("\n\nAppuyez sur une touche pour retourner au menu...");
@@ -84,6 +82,7 @@ namespace SurvieEnTerreInconnue
             Display.AnimateText("\n - Romuald Arnaud", ConsoleColor.White, 50);
             Display.AnimateText("\n - Jessica Karelle\n", ConsoleColor.White, 50);
         }
+
         // Méthode qui affiche le message de fin du jeu, on rassure que l'utilisateur a choisi cette option parce qu'il le voulait et non par erreur
         public static ConsoleKey DisplayLeaveMessage()
         {
@@ -115,14 +114,6 @@ namespace SurvieEnTerreInconnue
                     return true;
 
                 case ConsoleKey.S:
-                    Console.Clear();
-                    Display.AnimateText("Sauvegarde en cours...");
-                    Thread.Sleep(1000);
-                    Display.AnimateText("\nPartie sauvegardée avec succès !");
-                    Thread.Sleep(1500);
-                    Console.Clear();
-                    DisplayGoodByeMessage();
-                    Thread.Sleep(3000);
                     return false;
 
                 default:

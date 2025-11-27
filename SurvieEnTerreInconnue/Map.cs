@@ -18,6 +18,7 @@ namespace SurvieEnTerreInconnue
         public static string[] resourceNames = {"Fer", "Bois", "Silex", "Argile", "Herbes", "Sable",
                                 "Feu", "Haches", "Vitre", "Planche", "Briques", "Isolants", "Maisons", "Fruits", "Eau" , "Gibier", "Poisson" };
         public static int numberOfTripsRemaining = 100;
+        public static List<int> playerPosition = new List<int>();
 
         //resourceNames[0] = Fer
         //resourceNames[1] = Bois
@@ -49,6 +50,7 @@ namespace SurvieEnTerreInconnue
                     {
                         mapGrid[i, j] = 0; //Base
                         discovered[i, j] = true; //Logiquement la base est deja découverte quand le jeu commençe
+                        playerPosition.Add(mapGrid[i,j]);
                     }
                     else
                     {
@@ -80,6 +82,7 @@ namespace SurvieEnTerreInconnue
                         SetTerrainColor(terrain);
                         Console.Write("    ");
                         Console.ResetColor();
+                        playerPosition.Add(mapGrid[i,j]);
                     }
                     else
                     {
@@ -484,6 +487,7 @@ namespace SurvieEnTerreInconnue
             DisplayGridMap();
             Console.WriteLine();
             Console.WriteLine($"Position du joueur: ({playerPositionX}, {playerPositionY}) - {GetCurrentTerrain()}");
+            Console.WriteLine($"Nombre de déplacement(s) restant(s) : {numberOfTripsRemaining}");
             Console.WriteLine();
             Console.ResetColor();
             Console.WriteLine("Veuillez sélectionner une option :");
