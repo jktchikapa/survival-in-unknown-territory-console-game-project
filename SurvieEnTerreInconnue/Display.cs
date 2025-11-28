@@ -71,28 +71,7 @@ namespace SurvieEnTerreInconnue
                         "\r\n╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝");
             Console.ResetColor();
         }
-        public static void DisplayBase()
-        {
-            Console.WriteLine("      _______________________________________________________        ");
-            Console.WriteLine("     /\\                                                      \\       ");
-            Console.WriteLine(" (O)===)><><><><><><><><><><><><><><><><><><><><><><><><><><><)==(O)");
-            Console.WriteLine("     \\/''''''''''''''''''''''''''''''''''''''''''''''''''''''/      ");
-            Console.WriteLine("     (                                                      (       ");
-            Console.WriteLine("      )                                                      )      ");
-            Console.WriteLine("     (                  TERRAIN DE BASE                    (       ");
-            Console.WriteLine("      )                                                      )      ");
-            Console.WriteLine("     (               Vous êtes au point de départ          (       ");
-            Console.WriteLine("      )                                                      )      ");
-            Console.WriteLine("     (           Choisissez votre prochaine direction      (       ");
-            Console.WriteLine("      )                                                      )      ");
-            Console.WriteLine("     (                                                      (       ");
-            Console.WriteLine("      )                                                      )      ");
-            Console.WriteLine("     (                                                      (       ");
-            Console.WriteLine("      )                                                      )      ");
-            Console.WriteLine("     /\\'''''''''''''''''''''''''''''''''''''''''''''''''''''\\      ");
-            Console.WriteLine(" (O)===)><><><><><><><><><><><><><><><><><><><><><><><><><><><)==(O)");
-            Console.WriteLine("     \\/______________________________________________________/       ");
-        }
+       
         //Afficher la position dans le désert
         public static void DisplayDesertPosition()
         {
@@ -143,30 +122,21 @@ namespace SurvieEnTerreInconnue
         }
         public static void DisplayRiver()
         {
-            Console.WriteLine("                  _____,,,\\//,,\\\\,/,                              ");
-            Console.WriteLine("                 /------------- -----                              ");
-            Console.WriteLine("                ///-------------  ----                             ");
-            Console.WriteLine("               o////- ----------- --                               ");
-            Console.WriteLine("               !!//o/---  -------                                  ");
-            Console.WriteLine("             o*) !///,~,,\\\\,\\/,,/,//,,                          ");
-            Console.WriteLine("               o!*!o'(\\          /\\                              ");
-            Console.WriteLine("             | ! o \",) \\/\\  /\\  /  \\/\\                        ");
-            Console.WriteLine("            o  !o! !!|    \\/  \\/     /                           ");
-            Console.WriteLine("           ( * (  o!'; |\\   \\       /                            ");
-            Console.WriteLine("            o o ! * ` | \\  /       \\                             ");
-            Console.WriteLine("           o  |  o 'o| | :  \\       /                            ");
-            Console.WriteLine("            *  o !*!': |o|  /      /                              ");
-            Console.WriteLine("                (o''| `| : /      /                               ");
-            Console.WriteLine("                ! *|`  \\|/       \\\\                             ");
-            Console.WriteLine("               ' !o!':\\  \\\\        \\                           ");
-            Console.WriteLine("                ( ('|  \\  `._______/                             ");
-            Console.WriteLine("~~~~\\\\\\~~\\~~~~~~~\\~oO._*  o !*!`  `.________/                ");
-            Console.WriteLine("  ~~~~ ~~ ~~~~~~~ ~~oO*OoOo (o''|           /                     ");
-            Console.WriteLine("    ~~~~~~~~  ~~~~~~ 'oO*OoO!*|'o!!          \\                   ");
-            Console.WriteLine("~~~~~~~  ~~~~~~~~~ ~~* oO*OoO *!'| '         /                    ");
-            Console.WriteLine(" ~~~  ~   ~~~~~  ~~~~~~~ oO*OoO!!':o!'       /                    ");
-            Console.WriteLine(" ~ ~  ~~~~~  ~  ~~  ~ *~~oO*OoOo!`         /                      ");
-            Console.WriteLine("___________________________________________________________________________");
+            Console.WriteLine("                  _.._" +
+                "\r\n   _________....-~    ~-.______" +
+                "\r\n~~~                            ~~~~-----...___________..--------" +
+                "\r\n                                           |   |     |" +
+                "\r\n                                           | |   |  ||" +
+                "\r\n                                           |  |  |   |" +
+                "\r\n                                           |'. .' .`.|" +
+                "\r\n___________________________________________|0oOO0oO0o|____________" +
+                "\r\n -          -         -       -      -    / '  '. ` ` \\    -    -" +
+                "\r\n      --                  --       --   /    '  . `   ` \\    --" +
+                "\r\n---            ---          ---       /  '                \\ ---" +
+                "\r\n     ----               ----        /       ' ' .    ` `    \\  ----" +
+                "\r\n-----         -----         ----- /   '   '        `      `   " +
+                "\\\r\n     .-~~-.          ------     /          '    . `     `    `  " +
+                "\\\r\n    (_^..^_)-------           /  '    '      '      `");
         }
         public static void DisplayPrairiePosition()
         {
@@ -255,56 +225,15 @@ namespace SurvieEnTerreInconnue
         }
         public static void DisplayMountain()
         {
-            Console.WriteLine("                         _                                         ");
-            Console.WriteLine("                        /#\\                                       ");
-            Console.WriteLine("                       /###\\ /\\                                  ");
-            Console.WriteLine("                      /###\\ /##\\ /\\                             ");
-            Console.WriteLine("                     /#\\ /####\\/##\\                             ");
-            Console.WriteLine("                    /#/ /#/ /##\\ _/\\                            ");
-            Console.WriteLine("                  //// //\\ /_/ /#\\ _/#\\ _/##\\ /\\             ");
-            Console.WriteLine("                 /// / /\\ /#\\ \\ _/###\\_ /##\\__/ _\\          ");
-            Console.WriteLine("                /\\ / ..\\ / /_{ \\ \\ _/ /// / \\\\              ");
-            Console.WriteLine("        /\\ / /\\ ...  \\_/ / /\\ } \\ | / /\\ \\ /_/ /\\ /\\      ");
-            Console.WriteLine("     _ /\\ /// /.\\  ..%:. /... /\\ . \\ {: \\\\ /. \\ / \\ / ___ / \\");
-            Console.WriteLine("    /.\\.\\.\\// \\/... \\.::::..... _/..\\ ..\\|:. . / ..\\\\ /..\\ /...\\ /\\ \\");
-            Console.WriteLine("   /...\\.../..:.\\ ..:::::::..:..... . ...\\{:... /%...\\\\/..%.\\ /./:..\\_\\_\\");
-            Console.WriteLine("  .:..\\..::.....:::;;;;;;::::::::.:::::.\\.}.....::%.:.\\ .:::.\\ /.%:::.:..\\");
-            Console.WriteLine("  ::::...:::;;:::::;;;;;;;;;;;;;;:::::;;::{:::::::;;;:.. .:;:... ::;;::::.. ");
-            Console.WriteLine("  ;;;;:::;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;];;;;;;;;;;::::::;;;;:.::;;;;;;;;;:..");
-            Console.WriteLine("  ;;;;;;;;;;;;;;ii;;;;;;;;;;;;;;;;;;;;;;;;;[;;;;;;;;;;;;;;;;;;;;;;;:;;;;;;;;;;;;;;;");
-            Console.WriteLine("  ;;;;;;;;;;;;;;;;;;;iiiiiii;;;;;;;;;;;;;;};;ii;;iiii;;;;i;;;;;;;;;;;;;;;ii;;;");
-            Console.WriteLine("  iiii;;;iiiiiiiiiiIIIIIIIIIIIIiiiiiiIiiiiii{iiIIIiiiiiiiiiiiiiiiiii;;;;;iiiilliiiii");
-            Console.WriteLine("  IIIiiiIIllllllIIllllIIIIlllIIIlIiiIIIIIIIIIIIIlIIIIllIIIIIIIiiiiiiiiiillIIIllII");
-            Console.WriteLine("  IIIiiiilIIIIIIllTIIIIllIIlIlIIITTTTlIlIlIIIlIITTTTTTTIIIIlIIllIlIlllIIIIIIITT");
-            Console.WriteLine("  IIIIilIIIIITTTTTTTIIIIIIIIIIIIITTTTTIIIIIIIIITTTTTTTTTTIIIIIIIIIlIIIIIIIIITTTT");
-            Console.WriteLine("  IIIIIIIIITTTTTTTTTTTTTIIIIIIIITTTTTTTTTIIIIIITTTTTTTTTTTTTTTIIIIIIIIIIIIIITTTTT");
-            Console.WriteLine("___________________________________________________________________________");
+            Console.WriteLine("   /\\\r\n         /**" +
+                "\\\r\n        /****\\   /" +
+                "\\\r\n       /      \\ /**" +
+                "\\\r\n      /  /\\    /    \\        /\\    /\\  /\\      /\\            /\\/\\/\\  /" +
+                "\\\r\n     /  /  \\  /      \\      /  \\/\\/  \\/  \\  /\\/  \\/\\  /\\  /\\/ / /  \\/  " +
+                "\\\r\n    /  /    \\/ /\\     \\    /    \\ \\  /    \\/ /   /  \\/  \\/  \\  /    \\   " +
+                "\\\r\n   /  /      \\/  \\/\\   \\  /      \\    /   /    \\\r\n__/__/_______/___/__\\___\\__________________________________________________");
         }
-        public static void DisplayDesert()
-        {
-            Console.WriteLine("             /||\\                                                   ");
-            Console.WriteLine("             ||||                                                   ");
-            Console.WriteLine("             |||| _____.-..-.                                       ");
-            Console.WriteLine("             |||| /|\\ .-~@@/ / qp \\                               ");
-            Console.WriteLine("        /|\\ |||| ||| .'@ _@/..\\-.__.-/                            ");
-            Console.WriteLine("        ||| |||| ||| /@.-~/|~~`\\|__|/                              ");
-            Console.WriteLine("        ||| |||| ||| |'--<|| '~~'                                  ");
-            Console.WriteLine("        ||| |||| d|| |>--<\\@\\                                     ");
-            Console.WriteLine("        ||| |||||||/ \\>---<\\@`\\.                                  ");
-            Console.WriteLine("        ||b._||||~~'  `\\>---<`\\`\\.                                ");
-            Console.WriteLine("        \\||||||||     `\\>----`\\@`\\.                               ");
-            Console.WriteLine("         `~~~||||  _   `\\>-----`\\@`\\.                             ");
-            Console.WriteLine("             |||| (_)   `\\>-----<`\\.`\\.                           ");
-            Console.WriteLine("             |||| (_)    `\\>------`\\.@`\\.                         ");
-            Console.WriteLine("~~~~~~~~~~~~~||||~~~~~~~~~~~~~~(__)~~~~~~~~`\\>-------<`\\.`\\~~~~~~~");
-            Console.WriteLine("  \\/..__..--. |||| \\/ . ..____( _)@@@--..____\\..--\\@@@/~`\\@@>-._ \\/ .");
-            Console.WriteLine("\\/ \\/ \\/ \\/ /--.-\\@@@@--@/---\\@@@/---\\@/--@@@@/-\\.--._        ");
-            Console.WriteLine("   . \\/ _..\\/-...--.. |---\\@@/---\\@@@@/~~~~\\@@@@/---\\@@/---| .\\/");
-            Console.WriteLine("        . \\/ |----@@----\\@@/-----\\@@/-----@@----|  .             ");
-            Console.WriteLine(". \\/ . \\/ ~-..__------@@------@@------__.-~ . \\/                 ");
-            Console.WriteLine("   __...--..__..__ . \\/ ~~~--..____------____..--~~~ \\/_..--..   ");
-            Console.WriteLine("\\/ . . \\/ \\/ __..--... \\/ ~~~~~~~~~ \\/ . \\/ .                   ");
-        }
+       
         //Afficher l'inventaire
         public static void DisplayInventoryItems()
         {
@@ -400,6 +329,20 @@ namespace SurvieEnTerreInconnue
             }
 
             Console.ForegroundColor = savedColor;
+        }
+
+        public static void DisplayPlaneCrash()
+        {
+            Console.WriteLine(                       
+                "\r\n                                       |" +
+                "\r\n                                       |" +
+                "\r\n                                     .-'-." +
+                "\r\n                                    ' ___ '" +
+                "\r\n                          ---------'  .-.  '---------" +
+                "\r\n          _________________________'  '-'  '_________________________" +
+                "\r\n           ''''''-|---|--/    \\==][^',_m_,'^][==/    \\--|---|-''''''" +
+                "\r\n                         \\    /  ||/   H   \\||  \\    /" +
+                "\r\n                          '--'   OO   O|O   OO   '--'");
         }
     }
 }
