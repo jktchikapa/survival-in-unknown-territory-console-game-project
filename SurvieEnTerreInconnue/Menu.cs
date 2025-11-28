@@ -47,6 +47,7 @@ namespace SurvieEnTerreInconnue
                         break;
 
                     case ConsoleKey.C:
+                        Game.DataDeserialisation();
                         break;
 
                     case ConsoleKey.S:
