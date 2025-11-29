@@ -16,13 +16,13 @@
             //Menu.ProcessDisplayMenuInput();
             //"Menu.DisplayInventoryMenu1();
             //Menu.ProcessInventoryInput();
-            //Menu.ProcessDisplayManufacturingInput();
+            Menu.ProcessDisplayManufacturingInput();
             //Menu.DisplayEndMessage();
             //Menu.ProcessDisplayMenuInput();
             //Display.DisplayMountain();
             //Display.DisplayForest();
             //Map.DisplayDirection();
-            Display.DisplayPlaneCrash();
+            //Display.DisplayPlaneCrash();
         }
     }
 }

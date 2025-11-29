@@ -18,23 +18,17 @@ namespace SurvieEnTerreInconnue
                 File.AppendAllText(FileName, JsonSerializer.Serialize(Map.playerPositionX) + "\n");
                 File.AppendAllText(FileName, JsonSerializer.Serialize(Map.playerPositionY) + "\n");
 
-                //Créer une nouvelle liste qui contiendra les valeurs du tableau mapGrid
                 List<List<int>> mapGridList = new List<List<int>>();
-                // le i représente le numéro de la ligne du tableau
                 for (int i = 0; i < 10; i++)
                 {
-                    //Créer une nouvelle listes pour chaque ligne du tableau,on va stocker les lignes
                     List<int> row = new List<int>();
-                    //le j représente le numéro de la colonne, on va parcourir toute les colonnes de la ligne i et on va stocker chaque valeur dans le row
                     for (int j = 0; j < 10; j++)
                     {
                         row.Add(Map.mapGrid[i, j]);
                     }
-                    // quand la ligne est rempli on ajoute la ligne dans la liste
                     mapGridList.Add(row);
                 }
                 File.AppendAllText(FileName, JsonSerializer.Serialize(mapGridList) + "\n");
-                //même choses que pour le préceédent, juste que c'est une liste de bool
                 List<List<bool>> discoveredList = new List<List<bool>>();
                 for (int i = 0; i < 10; i++)
                 {
@@ -73,7 +67,7 @@ namespace SurvieEnTerreInconnue
                 if (!File.Exists(FileName))
                 {
                     Console.Clear();
-                    Display.AnimateText("Aucune sauvegarde trouvée.", ConsoleColor.Yellow);
+                    Display.AnimateText("Aucune sauvegarde trouvée.");
                     Console.WriteLine("\nAppuyez sur une touche pour continuer...");
                     Console.ReadKey();
                     return;
@@ -105,7 +99,7 @@ namespace SurvieEnTerreInconnue
                 Map.numberOfTripsRemaining = JsonSerializer.Deserialize<int>(loaded[5]);
 
                 Console.Clear();
-                Display.AnimateText("Partie chargée avec succès !", ConsoleColor.Green);
+                Display.AnimateText("Partie chargée avec succès !");
                 Console.WriteLine("\nAppuyez sur une touche pour continuer...");
                 Console.ReadKey();
 

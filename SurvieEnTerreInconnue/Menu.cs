@@ -52,7 +52,6 @@ namespace SurvieEnTerreInconnue
 
                     case ConsoleKey.S:
                         Game.DataSerialisation();
-
                         break;
 
                     case ConsoleKey.A:
@@ -172,7 +171,7 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine($"\t* {"[M]aison".PadRight(10)}: Cette action nécessite 4x des Planches, 4x des Isolants, 4x des Briques et 2x des Vitres *");
             Console.WriteLine($"\t* {"[N]ourriture".PadRight(10)}: Cette action nécessite du Feu et du Bois                                               *");
             Console.WriteLine($"\t* {"[C]onsulter Inventaire".PadRight(10)}: Vous pouvez consulter votre inventaire                                       *");
-            Console.WriteLine($"\t* {"[R]etour au menu principal".PadRight(10)}                                                                           *");
+            Console.WriteLine($"\t* {"[ESC]Retour au menu principal".PadRight(10)}                                                                        *");
             Console.WriteLine($"\t* {"[E]xplorer ou continuer d'explorer les territoires".PadRight(10)}                                                   *");
             Console.WriteLine($"\t* {"[Q]uitter le jeu".PadRight(10)}                                                                                     *");
             Console.WriteLine("\t********************************************************************************************************");
@@ -245,7 +244,7 @@ namespace SurvieEnTerreInconnue
                         ProcessInventoryInput();
                         break;
 
-                    case ConsoleKey.R:
+                    case ConsoleKey.Escape:
                         ProcessDisplayMenuInput();
                         return continueManufacturing = true; 
 
@@ -278,6 +277,7 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine("Veuillez sélectionner une option :");
             Console.WriteLine("\n[R]essources : Consultez les ressources que vous possédez");
             Console.WriteLine("[M]atériaux : Consulter les matériaux que vous avez fabriqué");
+            Console.WriteLine("[ESC]Retour au menu principal");
             Console.WriteLine("[Q]uitter l'inventaire");
             Console.WriteLine();
             Display.AnimateText("Votre choix : ");
@@ -309,10 +309,15 @@ namespace SurvieEnTerreInconnue
                         Console.ReadKey();
                         break;
 
-                    case ConsoleKey.Q:
+                    case ConsoleKey.Escape:
+                        ProcessDisplayMenuInput();
                         continueInventory = false;
                         break;
 
+                    case ConsoleKey.Q:
+                        continueInventory = false;
+                        break;
+                   
                     default:
                         Console.Clear();
                         Display.AnimateText("Choix invalide. Veuillez réessayer.");
