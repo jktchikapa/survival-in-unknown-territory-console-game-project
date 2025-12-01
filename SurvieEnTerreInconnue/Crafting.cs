@@ -1,29 +1,14 @@
 ﻿using System;
+using System.Reflection;
 using System.Xml.Linq;
 
 namespace SurvieEnTerreInconnue
 {
     internal class Crafting
     {
-        //resourceNames[0] = Fer
-        //resourceNames[1] = Bois
-        //resourceNames[2] = Silex 
-        //resourceNames[3] = Argile
-        //resourceNames[4] = Herbe
-        //resourceNames[5] = Sable
-        //resourceNames[6] = Feu
-        //resourceNames[7] = Haches
-        //resourceNames[8] = Vitre
-        //resourceNames[9] = Planche
-        //resourceNames[10] = Briques
-        //resourceNames[11] = Isolants
-        //resourceNames[12] = Maison
-        //resourceNames[13] = Fruits
-        //resourceNames[14] = Eau
-        //resourceNames[15] = Gibier
-        //resourceNames[16] = Poisson
         public static void HintWhereToFind(int index)
         {
+            
             Console.ForegroundColor = ConsoleColor.Cyan;
             switch (index)
             {
@@ -43,20 +28,24 @@ namespace SurvieEnTerreInconnue
                     Console.WriteLine("\nIndice : Vous trouverez de l'herbe dans la prairie.\n");
                     break;
                 case 5:
-                    Console.WriteLine("\nVous trouvez des fruits dans \n");
+                    Console.WriteLine("\nIndice : Vous trouvez des fruits dans la forêt \n");
                     break;
                 case 6:
-                    Console.WriteLine("\nVous trouverez de l'eau dans \n");
+                    Console.WriteLine("\nIndice : Vous trouverez de l'eau dans le marais et la rivière\n");
                     break;
                 case 7:
-                    Console.WriteLine("\nVous trouverez du gibier dans \n");
+                    Console.WriteLine("\nIndice : Vous trouverez du gibier dans la forêt\n");
                     break;
                 case 8:
-                    Console.WriteLine("\nVous trouverez du poisson dans \n");
+                    Console.WriteLine("\nIndice : Vous trouverez du poisson dans la rivière et le marais \n");
+                    break;
+                case 9:
+                    Console.WriteLine("\nIndice : Vous trouverez du sable dans le désert \n");
                     break;
             }
 
             Console.ResetColor();
+
         }
         public static void BuildHouse()
         {
@@ -146,7 +135,7 @@ namespace SurvieEnTerreInconnue
                 if (missingSand > 0)
                 {
                     Console.WriteLine("- 1 sable");
-                    HintWhereToFind(5);
+                    HintWhereToFind(9);
                 }
 
                 if (missingFire > 0)
@@ -156,7 +145,7 @@ namespace SurvieEnTerreInconnue
                 }
             }
         }
-
+       
         public static void BuildPlank()
         {
             int missingWood = 1 - Map.resourceAmounts[1];
@@ -213,7 +202,7 @@ namespace SurvieEnTerreInconnue
                 }
             }
         }
-
+       
         public static void BuildInsulator()
         {
             int missingGrass = 3 - Map.resourceAmounts[4];
@@ -261,5 +250,87 @@ namespace SurvieEnTerreInconnue
                 }
             }
         }
+       
+        public static void CookFish()
+        {
+            int missingFish = 1 - Map.resourceAmounts[16];
+
+            if(missingFish <= 0)
+            {
+                Console.WriteLine("\nVous avez cuisiner un poisson. Bonne appétit. Profitez bien des 30% d'énergie que ce repas vous offre !");
+                Map.resourceAmounts[16]--; 
+                Map.resourceAmounts[6]--; 
+                Map.playerEnergy += 30;
+            }
+            else
+            {
+                Console.WriteLine($"\nVous ne pouvez pas cuisiner de poisson, il vous manque au moins {missingFish} poisson pour pouvoir le cuisiner");
+                HintWhereToFind(8);
+            }
+        }
+
+        public static void CookMeat()
+        {
+            int missingMeal = 1 - Map.resourceAmounts[15];
+
+            if(missingMeal <= 0)
+            {
+                Console.WriteLine("\nVous avez cuisiné du gibier. Bonne appétit. Profitez bien des 50% d'énergie que ce repas vous offre ! ");
+                Map.resourceAmounts[15]--; 
+                Map.resourceAmounts[6]--;  
+                Map.playerEnergy += 50;
+            }
+
+            else
+            {
+                Console.WriteLine($"\nVous ne pouvez pas cuisiner de gibier, il vous faut au {missingMeal} gibier pour pouvoir le cuisiner");
+                HintWhereToFind(7);
+            }
+        }
+        /* 5 = fruits; 6 = eau; 7 = gibier; 8 = poisson*/
+        public static void DrinkWater()
+        {
+            int missingWater = 1 - Map.resourceAmounts[14];
+
+            if(missingWater <= 0)
+            {
+                Console.WriteLine("Vous avez bu de l'eau. Vous avez +5%% d'énergie");
+                Map.resourceAmounts[14]--;
+                Map.playerEnergy += 5;
+                MaxPlayerEnergy();
+            }
+            else
+            {
+                Console.WriteLine("Impossible de boire de l'eau, il manque de l'eau dans votre inventaire");
+                HintWhereToFind(6);
+            }
+        }
+        public static void EatFruits()
+        {
+            int missingFruits = 1 - Map.resourceAmounts[13];
+
+            if(missingFruits <= 0)
+            {
+                Console.WriteLine("Vous mangé un fruits, vous avez +10% d'energie ");
+                Map.resourceAmounts[13]--;
+                Map.playerEnergy += 10;
+                MaxPlayerEnergy();
+
+            }
+            else
+            {
+                Console.WriteLine("Impossible de manger un fruit, il manque des fruits dans votre inventaire");
+                HintWhereToFind(5);
+            }
+        }
+
+        public static void MaxPlayerEnergy()
+        {
+            if (Map.playerEnergy > 100)
+            {
+                Map.playerEnergy = 100;
+            }
+        }
+
     }
 }

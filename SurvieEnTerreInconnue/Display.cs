@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +10,6 @@ namespace SurvieEnTerreInconnue
 {
     internal class Display
     {
-        public static string art = "";
         public static void DisplayGameTitle()
         {
             Console.WriteLine();
@@ -55,7 +56,7 @@ namespace SurvieEnTerreInconnue
                         " \r\n██║ ╚═╝ ██║███████╗██║ ╚████║╚██████╔╝      " +
                         " \r\n╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝        ");
         }
-      
+
         public static void DisplayGoodByeMessage()
         {
             Console.Clear();
@@ -88,7 +89,7 @@ namespace SurvieEnTerreInconnue
                         "\r\n╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝");
             Console.ResetColor();
         }
-       
+
         //Afficher la position dans le désert
         public static void DisplayDesertPosition()
         {
@@ -102,26 +103,7 @@ namespace SurvieEnTerreInconnue
                                 "\r\n╚═════╝ ╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝   ╚═╝   ");
             Console.ResetColor();
         }
-        public static void DisplayDesert()
-        {
-            Console.WriteLine("           ,                        '           .        '        ,  " +
-                "\r\n   .            .        '       .         ,         " +
-                "\r\n                                                   .       '     +" +
-                "\r\n       +          .-'''''-.     " +
-                "\r\n                .'         `.   +     .     ________||" +
-                "\r\n       ___     :             :     |       /        ||  .     '___" +
-                "\r\n  ____/   \\   :               :   ||.    _/      || ||\\_______/   " +
-                "\\\r\n /         \\  :      _/|      :   `|| __/      ,.|| ||             " +
-                "\\\r\n/  ,   '  . \\  :   =/_/      :     |'_______     || ||  ||   .      " +
-                "\\\r\n    |        \\__`._/ |     .'   ___|        \\__   \\\\||  ||...    ,   " +
-                "\\\r\n   l|,   '   (   /  ,|...-'        \\   '   ,     __\\||_//___          " +
-                "\r\n ___|____     \\_/^\\/||__    ,    .  ,__             ||//    \\    .  ," +
-                "\r\n           _/~  `\"\"~`\"` \\_           ''(       ....,||/       '   " +
-                "\r\n ..,...  __/  -'/  `-._ `\\_\\__        | \\           ||  _______   ." +
-                "\r\n   itz/jgs/ccm'`  `\\   \\  \\-.\\        /(_1_,..      || /" +
-                "\r\n                                            ______/" +
-                "\"\"\"\"");
-        }
+
         //Afficher la position dans la rivière
         public static void DisplayRiverPosition()
         {
@@ -135,24 +117,7 @@ namespace SurvieEnTerreInconnue
                         "\r\n╚═╝  ╚═╝╚═╝  ╚═══╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝");
             Console.ResetColor();
         }
-        public static void DisplayRiver()
-        {
-            Console.WriteLine("                  _.._" +
-                "\r\n   _________....-~    ~-.______" +
-                "\r\n~~~                            ~~~~-----...___________..--------" +
-                "\r\n                                           |   |     |" +
-                "\r\n                                           | |   |  ||" +
-                "\r\n                                           |  |  |   |" +
-                "\r\n                                           |'. .' .`.|" +
-                "\r\n___________________________________________|0oOO0oO0o|____________" +
-                "\r\n -          -         -       -      -    / '  '. ` ` \\    -    -" +
-                "\r\n      --                  --       --   /    '  . `   ` \\    --" +
-                "\r\n---            ---          ---       /  '                \\ ---" +
-                "\r\n     ----               ----        /       ' ' .    ` `    \\  ----" +
-                "\r\n-----         -----         ----- /   '   '        `      `   " +
-                "\\\r\n     .-~~-.          ------     /          '    . `     `    `  " +
-                "\\\r\n    (_^..^_)-------           /  '    '      '      `");
-        }
+
         public static void DisplayPrairiePosition()
         {
             Console.Clear();
@@ -165,17 +130,7 @@ namespace SurvieEnTerreInconnue
                         "\r\n╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚═╝╚══════╝");
             Console.ResetColor();
         }
-        public static void DisplayPrairie()
-        {
-            Console.WriteLine("        wWWWw               wWWWw                                  ");
-            Console.WriteLine("   vVVVv (___) wWWWw         (___)  vVVVv                          ");
-            Console.WriteLine("   (___)  ~Y~  (___)  vVVVv   ~Y~   (___)                          ");
-            Console.WriteLine("    ~Y~   \\|    ~Y~   (___)    |/    ~Y~                          ");
-            Console.WriteLine("    \\|   \\ |/   \\| /  \\~Y~/   \\|    \\ |/                      ");
-            Console.WriteLine("   \\\\|// \\\\|// \\\\|/// \\\\|//  \\\\|// \\\\\\|///            ");
-            Console.WriteLine("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-            Console.WriteLine("___________________________________________________________________________");
-        }
+
         //Afficher la position dans la forêt
         public static void DisplayForestPosition()
         {
@@ -189,24 +144,12 @@ namespace SurvieEnTerreInconnue
                         "\r\n╚═╝      ╚═════╝ ╚═╝  ╚═╝╚══════╝   ╚═╝   ");
             Console.ResetColor();
         }
-        public static void DisplayForest()
-        {
-            Console.WriteLine("       ^            ^            ^            ^            ^       ");
-            Console.WriteLine("      ^^^          ^^^          ^^^          ^^^          ^^^      ");
-            Console.WriteLine("     ^^^^^        ^^^^^        ^^^^^        ^^^^^        ^^^^^     ");
-            Console.WriteLine("    ^^^^^^^      ^^^^^^^      ^^^^^^^      ^^^^^^^      ^^^^^^^    ");
-            Console.WriteLine("   ^^^^^^^^^    ^^^^^^^^^    ^^^^^^^^^    ^^^^^^^^^    ^^^^^^^^^   ");
-            Console.WriteLine("      |||          |||          |||          |||          |||      ");
-            Console.WriteLine("      |||          |||          |||          |||          |||      ");
-            Console.WriteLine("  vvvv|||vvvv  vvvv|||vvvv  vvvv|||vvvv  vvvv|||vvvv  vvvv|||vvvv  ");
-            Console.WriteLine("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
-            Console.WriteLine("______________________________________________________________________");
-        }
+
         //Afficher la postion dans le marais
         public static void DisplaySwampPosition()
         {
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Gray; 
+            Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("███╗   ███╗ █████╗ ██████╗  █████╗ ██╗███████╗" +
                                 "\r\n████╗ ████║██╔══██╗██╔══██╗██╔══██╗██║██╔════╝" +
                                 "\r\n██╔████╔██║███████║██████╔╝███████║██║███████╗" +
@@ -215,19 +158,7 @@ namespace SurvieEnTerreInconnue
                                 "\r\n╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚══════╝");
             Console.ResetColor();
         }
-        public static void DisplaySwamp()
-        {
-            Console.WriteLine("    |           |       |              |         |          |      ");
-            Console.WriteLine("    |           |       |              |         |          |      ");
-            Console.WriteLine("    |     |     |   |   |      |       |    |    |     |    |      ");
-            Console.WriteLine("  .-|-.   |   .-|-..|..-|-.  .-|-.   .-|-.  |  .-|-.   |  .-|-.    ");
-            Console.WriteLine(" /  |  \\ | \\ /  | / | /  | \\/  | \\ /  | \\ | \\/  | \\ | \\/  | \\   ");
-            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            Console.WriteLine("~~ @ ~~~~ @ ~~~~~ @ ~~~ @ ~~~~~ @ ~~~~ @ ~~~~ @ ~~~~ @ ~~~~~ @ ~~~~ @ ~~");
-            Console.WriteLine("~~~~ @ ~~~~~ @ ~~~~ @ ~~~~~ @ ~~~~ @ ~~~~~ @ ~~~~ @ ~~~~~ @ ~~~~ @ ~~~~~");
-            Console.WriteLine("~~ @ ~~~~ @ ~~~~~ @ ~~~ @ ~~~~~ @ ~~~~ @ ~~~~ @ ~~~~ @ ~~~~~ @ ~~~~ @ ~~");
-            Console.WriteLine("___________________________________________________________________________");
-        }
+
         //Afficher la postion dans les montagnes
         public static void DisplayMountainPosition()
         {
@@ -240,17 +171,6 @@ namespace SurvieEnTerreInconnue
                         "\r\n██║ ╚═╝ ██║╚██████╔╝██║ ╚████║   ██║   ██║  ██║╚██████╔╝██║ ╚████║███████╗" +
                         "\r\n╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝");
             Console.ResetColor();
-        }
-        public static void DisplayMountain()
-        {
-            Console.WriteLine("     _    .  ,   .           ." +
-                "\r\n    *  / \\_ *  / \\_      _  *        *   /\\'__        *" +
-                "\r\n      /    \\  /    \\,   ((        .    _/  /  \\  *'." +
-                "\r\n .   /\\/\\  /\\/ :' __ \\_  `          _^/  ^/    `--." +
-                "\r\n    /    \\/  \\  _/  \\-'\\      *    /.' ^_   \\_   .'\\  *" +
-                "\r\n  /\\  .-   `. \\/     \\ /==~=-=~=-=-;.  _/ \\ -. `_/   " +
-                "\\\r\n /  `-.__ ^   / .-'.--\\ =-=~_=-=~=^/  _ `--./ .-'  `-" +
-                "\r\n/jgs     `.  / /       `.~-^=-=~=^=.-'      '-._ `._");
         }
 
         //Afficher l'inventaire
@@ -321,7 +241,7 @@ namespace SurvieEnTerreInconnue
             Console.ResetColor();
 
         }
-     
+
         // Monsieur Kevin m'a aidé à faire ce bout de code (fonction) parce que la méthode précédente ne marchait pas très bien avec les Ascii Art,il a juste améliorer AnimateText()
         public static void AnimateText(string texte, ConsoleColor couleur = ConsoleColor.White, int timeLimit = 30)
         {
@@ -342,7 +262,7 @@ namespace SurvieEnTerreInconnue
 
         public static void DisplayPlaneCrash()
         {
-            Console.WriteLine(                       
+            Console.WriteLine(
                 "\r\n                                       |" +
                 "\r\n                                       |" +
                 "\r\n                                     .-'-." +
@@ -364,7 +284,117 @@ namespace SurvieEnTerreInconnue
                 "\r\n      /    \\   /    \\          *   |       |  )),`   (   .  )     *" +
                 "\r\n   *   `||` ..  `||`   . *.   ... ==========='`   ... '--`-` ... * jb .");
         }
+
+        public static void DisplayRules()
+        {
+            Console.WriteLine("██████╗ ███████╗ ██████╗ ██╗     ███████╗███████╗" +
+                        "\r\n██╔══██╗██╔════╝██╔════╝ ██║     ██╔════╝██╔════╝" +
+                        "\r\n██████╔╝█████╗  ██║  ███╗██║     █████╗  ███████╗" +
+                        "\r\n██╔══██╗██╔══╝  ██║   ██║██║     ██╔══╝  ╚════██║" +
+                        "\r\n██║  ██║███████╗╚██████╔╝███████╗███████╗███████║" +
+                        "\r\n╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚══════╝╚══════╝╚══════╝");
+        }
+        public static void DisplayCooking()
+        {
+            Console.WriteLine("██████╗ ███████╗██████╗  █████╗ ███████╗" +
+                        "\r\n██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔════╝" +
+                        "\r\n██████╔╝█████╗  ██████╔╝███████║███████╗" +
+                        "\r\n██╔══██╗██╔══╝  ██╔═══╝ ██╔══██║╚════██║" +
+                        "\r\n██║  ██║███████╗██║     ██║  ██║███████║" +
+                        "\r\n╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝  ╚═╝╚══════╝");
+        }
+        public static void DisplayEnergyBar()
+        {
+            Console.Write("\nÉnergie: [");
+            int barLength = 30;
+            int filledBars = (Map.playerEnergy * barLength) / 100;
+
+            ConsoleColor barColor = ConsoleColor.White;
+
+            if (Map.playerEnergy > 75)
+            {
+                barColor = ConsoleColor.DarkGreen; 
+            }
+            else if (Map.playerEnergy > 50)
+            {
+                barColor = ConsoleColor.Green;
+            }
+            else if(Map.playerEnergy <= 50 && Map.playerEnergy > 20)
+            {
+                barColor= ConsoleColor.Red;
+            }
+            else
+            {
+                barColor = ConsoleColor.DarkRed;
+            }
+            Console.ForegroundColor = barColor;
+            for (int i = 0; i < filledBars; i++)
+            {
+                Console.Write("█");
+            }
+
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            for (int i = filledBars; i < barLength; i++)
+            {
+                Console.Write("░");
+            }
+
+            Console.WriteLine($"] {Map.playerEnergy}%");
+        }
+        public static void DisplayGameOver()
+        {
+            Console.WriteLine("██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██╗   ██╗███████╗██████╗ " +
+                        "\r\n██╔════╝ ██╔══██╗████╗ ████║██╔════╝    ██╔═══██╗██║   ██║██╔════╝██╔══██╗" +
+                        "\r\n██║  ███╗███████║██╔████╔██║█████╗      ██║   ██║██║   ██║█████╗  ██████╔╝" +
+                        "\r\n██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗" +
+                        "\r\n╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║" +
+                        "\r\n ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝");
+        }
+        public static void DisplayLoseMessage()
+        {
+            DisplayGameOver();
+            Console.WriteLine();
+           
+            ProcessNewGameConfirmation();
+        }
+        public static ConsoleKey DisplayNewGameConfirmation()
+        {
+            Console.Clear();
+            Console.WriteLine("Voulez vous rejouer une nouvelle partie ?");
+            Console.WriteLine("[O]ui");
+            Console.WriteLine("[N]on");
+            ConsoleKeyInfo keyInfo = Console.ReadKey();
+            return keyInfo.Key;
+        }
+
+        public static void ProcessNewGameConfirmation()
+        {
+            bool waitingForChoice = true;
+            while (waitingForChoice)
+            {
+                ConsoleKey input = DisplayNewGameConfirmation();
+                switch (input)
+                {
+                    case ConsoleKey.O:
+                        Map.ResetGame();
+                        Map.ShowTerrainAtCurrentPosition();
+                        waitingForChoice = false;
+                        break;
+                    case ConsoleKey.N:
+                        waitingForChoice = false;
+                        Console.WriteLine("Appuyer sur une touche pour quitter le jeu ...");
+                        Console.ReadKey();
+                        Process.GetCurrentProcess().Kill();
+                        break;
+                    default:
+                        Console.WriteLine("\nChoix invalide. Veuillez réessayer");
+                        Thread.Sleep(1000);
+                        break;
+                }
+            }
+        }
     }
 }
+
     
 

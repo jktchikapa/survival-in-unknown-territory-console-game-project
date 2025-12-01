@@ -44,19 +44,15 @@ namespace SurvieEnTerreInconnue
 
                 File.AppendAllText(FileName, JsonSerializer.Serialize(Map.resourceAmounts) + "\n");
                 File.AppendAllText(FileName, JsonSerializer.Serialize(Map.numberOfTripsRemaining) + "\n");
-                File.AppendAllText(FileName, JsonSerializer.Serialize(Map.isFirstGame) + "\n");
+                File.AppendAllText(FileName, JsonSerializer.Serialize(Map.playerEnergy) + "\n");
 
-                Console.Clear();
-                Display.AnimateText("Partie sauvegardée avec succès !", ConsoleColor.Green);
                 Console.WriteLine("\nAppuyez sur une touche pour continuer...");
                 Console.ReadKey();
             }
             catch (Exception ex)
             {
                 Console.Clear();
-                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine($"Erreur lors de la sauvegarde : {ex.ToString()}");
-                Console.ResetColor();
                 Console.WriteLine("\nAppuyez sur une touche pour continuer...");
                 Console.ReadKey();
             }
@@ -67,7 +63,7 @@ namespace SurvieEnTerreInconnue
         {
             try
             {
-                if (!File.Exists(FileName))
+                if (!File.Exists(FileName)) 
                 {
                     Console.Clear();
                     Display.AnimateText("Aucune sauvegarde trouvée.");
@@ -100,13 +96,13 @@ namespace SurvieEnTerreInconnue
 
                 Map.resourceAmounts = JsonSerializer.Deserialize<int[]>(loaded[4]);
                 Map.numberOfTripsRemaining = JsonSerializer.Deserialize<int>(loaded[5]);
-                Map.isFirstGame = JsonSerializer.Deserialize<bool>(loaded[6]);
+                Map.playerEnergy = JsonSerializer.Deserialize<int>(loaded[6]);
+
 
                 Console.Clear();
                 Display.AnimateText("Partie chargée avec succès !");
                 Console.WriteLine("\nAppuyez sur une touche pour continuer...");
                 Console.ReadKey();
-
                 Map.ShowTerrainAtCurrentPosition();
             }
             catch (Exception ex)

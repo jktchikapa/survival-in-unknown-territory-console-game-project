@@ -10,7 +10,8 @@ namespace SurvieEnTerreInconnue
 {
     internal class Map
     {
-        public static bool isFirstGame = true;
+      
+        //gameDuration = gameEnd - gameStart;
         public static int playerPositionX = 0;
         public static int playerPositionY = 0;
         public static int[,] mapGrid = new int[10, 10];
@@ -19,6 +20,7 @@ namespace SurvieEnTerreInconnue
         public static string[] resourceNames = {"Fer", "Bois", "Silex", "Argile", "Herbes", "Sable",
                                 "Feu", "Haches", "Vitre", "Planche", "Briques", "Isolants", "Maisons", "Fruits", "Eau" , "Gibier", "Poisson" };
         public static int numberOfTripsRemaining = 200;
+        public static int playerEnergy = 100;
 
         //resourceNames[0] = Fer
         //resourceNames[1] = Bois
@@ -40,16 +42,26 @@ namespace SurvieEnTerreInconnue
 
         public static int[] resourceAmounts = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-        //Méthode qui compte le nombre de voyages restants 
+        //Méthode qui compte le nombre de voyages restants et diminue l'énergie du joueur à chaque déplacements
         public static bool ManageNumberOfTrip()
         {
             numberOfTripsRemaining--;
+            playerEnergy--;
 
-            if (numberOfTripsRemaining < 0)
+            if (playerEnergy <= 0)
             {
-               return false;
+                Console.Clear();
+                Display.DisplayLoseMessage();
+                return false;
             }
-           return true;
+
+            if (numberOfTripsRemaining <= 0)
+            {
+                Console.Clear();
+                Display.DisplayLoseMessage();
+                return false;
+            }
+            return true;
         }
         public static void GenerateMap()
         {
@@ -69,45 +81,105 @@ namespace SurvieEnTerreInconnue
                 }
             }
         }
+        /*
         //Méthode affichant la grille du jeu
         public static void DisplayGridMap()
         {
             Console.Clear();
+            Console.OutputEncoding = Encoding.UTF8;
+
+            //Boucles pour les lignes (y)
             for (int i = 0; i < mapGrid.GetLength(0); i++)
             {
+                // Boucles pour les colonnes (x)
                 for (int j = 0; j < mapGrid.GetLength(1); j++)
                 {
+                    // Si position du joueur
                     if (playerPositionX == j && playerPositionY == i)
                     {
                         int terrain = mapGrid[i, j];
                         SetTerrainColor(terrain);
 
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.Write(" )( ");
+                        Console.Write("  👤  ");    
                         Console.ResetColor();
                     }
+                    //Sinon si découvert
                     else if (discovered[i, j])
                     {
                         int terrain = mapGrid[i, j];
                         SetTerrainColor(terrain);
-                        Console.Write("    ");
+
+                        Console.Write("  ");
+                        SetTerrainEmoji(terrain);
+                        Console.Write("  ");
+
                         Console.ResetColor();
                     }
+                    // Sinon case noire
                     else
                     {
                         Console.BackgroundColor = ConsoleColor.Black;
-                        Console.Write("    ");
+                        Console.Write("      ");      
                         Console.ResetColor();
                     }
                 }
                 Console.WriteLine();
             }
         }
+        */
+
+        public static void DisplayGridMap()
+        {
+            Console.Clear();
+            Console.OutputEncoding = Encoding.UTF8;
+
+            //Boucles pour les lignes (y)
+            for (int i = 0; i < mapGrid.GetLength(0); i++)
+            {
+                // Boucles pour les colonnes (x)
+                for (int j = 0; j < mapGrid.GetLength(1); j++)
+                {
+                    // Si position du joueur
+                    if (playerPositionX == j && playerPositionY == i)
+                    {
+                        int terrain = mapGrid[i, j];
+                        SetTerrainColor(terrain);
+
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write("  👤  ");
+                        Console.ResetColor();
+                    }
+                    //Sinon si découvert
+                    else if (discovered[i, j])
+                    {
+                        int terrain = mapGrid[i, j];
+                        SetTerrainColor(terrain);
+
+                        Console.Write("  ");
+                        SetTerrainEmoji(terrain);
+                        Console.Write("  ");
+
+                        Console.ResetColor();
+                    }
+                    // Sinon case noire
+                    else
+                    {
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.Write("      ");
+                        Console.ResetColor();
+                    }
+                }
+                Console.WriteLine();
+            }
+        }
+
         //Méthode qui va rétablir toutes les données du joueur à zéro
         public static void ResetGame()
         {
             playerPositionX = 0;
             playerPositionY = 0;
+            playerEnergy = 100;
 
             numberOfTripsRemaining = 200;
 
@@ -127,13 +199,11 @@ namespace SurvieEnTerreInconnue
             discovered[0, 0] = true;
 
             GenerateMap();
-
         }
 
         public static void StartNewGame()
         {
             Map.ResetGame();
-
         }
 
         //Méthode qui attribue une couleur à un terrain spécifique
@@ -167,8 +237,38 @@ namespace SurvieEnTerreInconnue
                     break;
             }
         }
-
-        //Méthode qui collecte les matériaux de chaque terrain en fonction de leurs probabilités
+        public static void SetTerrainEmoji(int terrain)
+        {
+            Console.OutputEncoding = Encoding.UTF8;
+            switch (terrain)
+            {
+                case 0: // Base
+                    Console.Write("🏠");
+                    break;
+                case 1: // Forêt
+                    Console.Write("🌲");
+                    break;
+                case 2: // Prairie
+                    Console.Write("🌿");
+                    break;
+                case 3: // Désert
+                    Console.Write("🏜️");
+                    break;
+                case 4: // Rivière
+                    Console.Write("🌊");
+                    break;
+                case 5: // Marais
+                    Console.Write("🌫️"); 
+                    break;
+                case 6: // Montagne
+                    Console.Write("⛰️");
+                    break;
+                default:
+                    Console.Write("");
+                    break;
+            }
+        }
+       // ui collecte les matériaux de chaque terrain en fonction de leurs probabilités
         public static void CollectMaterials()
         {
             string terrain = GetCurrentTerrain();
@@ -212,7 +312,7 @@ namespace SurvieEnTerreInconnue
         {
             int roll = randomGenerator.Next(0, 100);
 
-            if (roll < 1) 
+            if (roll < 10) 
             {
                 Console.WriteLine("Vous avez collecté de l'eau !");
                 resourceAmounts[14]++; 
@@ -244,6 +344,7 @@ namespace SurvieEnTerreInconnue
                 }
                 else
                 {
+                    
                     Console.WriteLine("Vous avez collecté des fruits");
                     resourceAmounts[13]++; 
                 }
@@ -414,6 +515,8 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine("[E]xplorer les différents territoires");
             Console.WriteLine("[A]fficher l'inventaire");
             Console.WriteLine("[C]ollecter des ressources");
+            Console.WriteLine("[M]anger un fruits");
+            Console.WriteLine("[B]oire de l'eau");
             Console.WriteLine("[ESC]Retour au menu principal");
             Console.WriteLine("[Q]uitter le jeu");
             Console.WriteLine();
@@ -427,13 +530,13 @@ namespace SurvieEnTerreInconnue
         {
             Console.Clear();
             Display.DisplayForestPosition();
-
+            /*
             for (int i = 0; i < 3; i++)
             {
                 Console.WriteLine();
             }
 
-            Display.DisplayForest();
+            Display.DisplayForest();*/
             return DisplayTerrainMenu("dans la forêt");
         }
 
@@ -442,13 +545,13 @@ namespace SurvieEnTerreInconnue
         {
             Console.Clear();
             Display.DisplayPrairiePosition();
-
+            /*
             for (int i = 0; i < 3; i++)
             {
                 Console.WriteLine();
             }
 
-            Display.DisplayPrairie();
+            Display.DisplayPrairie();*/
             return DisplayTerrainMenu("dans la prairie");
         }
 
@@ -457,13 +560,14 @@ namespace SurvieEnTerreInconnue
         {
             Console.Clear();
             Display.DisplayDesertPosition();
-
+            /*
             for (int i = 0; i < 3; i++)
             {
                 Console.WriteLine();
             }
 
             Display.DisplayDesert();
+            */
             return DisplayTerrainMenu("dans le désert");
         }
 
@@ -473,12 +577,14 @@ namespace SurvieEnTerreInconnue
             Console.Clear();
             Display.DisplayRiverPosition();
 
+            /*
             for (int i = 0; i < 3; i++)
             {
                 Console.WriteLine();
             }
 
             Display.DisplayRiver();
+            */
             return DisplayTerrainMenu("près de la rivière");
         }
 
@@ -488,12 +594,14 @@ namespace SurvieEnTerreInconnue
             Console.Clear();
             Display.DisplaySwampPosition();
 
+            /*
             for (int i = 0; i < 3; i++)
             {
                 Console.WriteLine();
             }
 
             Display.DisplaySwamp();
+            */
             return DisplayTerrainMenu("dans le marais");
         }
 
@@ -503,12 +611,13 @@ namespace SurvieEnTerreInconnue
             Console.Clear();
             Display.DisplayMountainPosition();
 
+            /*
             for (int i = 0; i < 3; i++)
             {
                 Console.WriteLine();
             }
 
-            Display.DisplayMountain();
+            Display.DisplayMountain();*/
             return DisplayTerrainMenu("dans la montagne");
         }
         //Méthode qui affiche le terrain de base, ainsi que son mene
@@ -582,16 +691,16 @@ namespace SurvieEnTerreInconnue
         //Méthode qui affiche la carte, ainsi que les différents directions pour explorer la carte et quelques informations de bases ( position du joueur, terrain actuel et nombres de voyages restants)
         public static ConsoleKey DisplayDirection()
         {
-
+           
             Console.Clear();
             DisplayGridMap();
             Console.WriteLine();
             Console.WriteLine($"Position du joueur: ({playerPositionX}, {playerPositionY}) - {GetCurrentTerrain()}");
             Console.WriteLine($"Nombre de déplacement(s) restant(s) : {numberOfTripsRemaining}");
+            Display.DisplayEnergyBar();
             Console.WriteLine();
             Console.ResetColor();
             Console.WriteLine("Veuillez sélectionner une option :");
-            Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("[N]ord : Vous vous déplacez vers le haut");
             Console.WriteLine("[O]uest : Vous vous déplacez vers la gauche");
@@ -698,11 +807,9 @@ namespace SurvieEnTerreInconnue
                         exploring = false;
                         break;
 
-                    case ConsoleKey.M:
+                    case ConsoleKey.Escape:
                         exploring = false;
                         Console.Clear();
-                        Display.AnimateText("Retour au menu principal...");
-                        Thread.Sleep(1500);
                         Menu.ProcessDisplayMenuInput();
                         break;
 
@@ -750,7 +857,15 @@ namespace SurvieEnTerreInconnue
                         Console.ReadKey();
                         break;
 
+                    case ConsoleKey.M:
+                        Crafting.EatFruits();
+                        Menu.WaitForKeyPress();  
+                        break;
 
+                    case ConsoleKey.B:
+                        Crafting.DrinkWater();
+                        Menu.WaitForKeyPress();  
+                        break;
                     case ConsoleKey.Escape:
                         stayInTerrain = false;
                         Menu.ProcessDisplayMenuInput();
