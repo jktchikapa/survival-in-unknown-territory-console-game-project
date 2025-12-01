@@ -10,7 +10,7 @@ namespace SurvieEnTerreInconnue
     {
         public const string FileName = "data.txt";
 
-        //Méthode qui sérialise les données et les transforme en format JSON (texte)
+        //Méthode qui sérialise les données et les transforme en format JSON 
         public static void DataSerialisation()
         {
             try
@@ -46,6 +46,8 @@ namespace SurvieEnTerreInconnue
                 File.AppendAllText(FileName, JsonSerializer.Serialize(Map.numberOfTripsRemaining) + "\n");
                 File.AppendAllText(FileName, JsonSerializer.Serialize(Map.playerEnergy) + "\n");
 
+                Console.Clear();
+                Console.WriteLine("Sauvegarde de la partie effectué avec succès");
                 Console.WriteLine("\nAppuyez sur une touche pour continuer...");
                 Console.ReadKey();
             }

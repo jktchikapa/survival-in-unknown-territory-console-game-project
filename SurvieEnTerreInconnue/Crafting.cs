@@ -49,6 +49,7 @@ namespace SurvieEnTerreInconnue
         }
         public static void BuildHouse()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             int missingPlanks = 4 - Map.resourceAmounts[9];
             int missingBricks = 4 - Map.resourceAmounts[10];
             int missingInsulators = 4 - Map.resourceAmounts[11];
@@ -89,12 +90,13 @@ namespace SurvieEnTerreInconnue
 
         public static void BuildAxe()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             int missingWood = 1 - Map.resourceAmounts[1];
             int missingIron = 1 - Map.resourceAmounts[0];
 
             if (missingWood <= 0 && missingIron <= 0)
             {   
-                Console.WriteLine("Vous avez fabriqué une hache !");
+                Console.WriteLine("Vous avez fabriqué une hache 🪓 !");
                 Map.resourceAmounts[1]--;
                 Map.resourceAmounts[0]--;
                 Map.resourceAmounts[7]++;
@@ -118,12 +120,13 @@ namespace SurvieEnTerreInconnue
 
         public static void BuildGlass()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             int missingSand = 1 - Map.resourceAmounts[5];
             int missingFire = 1 - Map.resourceAmounts[6];
 
             if (missingSand <= 0 && missingFire <= 0)
             {
-                Console.WriteLine("Vous avez fabriqué une vitre !");
+                Console.WriteLine("Vous avez fabriqué une vitre 🪟!");
                 Map.resourceAmounts[5]--;
                 Map.resourceAmounts[6]--;
                 Map.resourceAmounts[8]++;
@@ -148,12 +151,13 @@ namespace SurvieEnTerreInconnue
        
         public static void BuildPlank()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             int missingWood = 1 - Map.resourceAmounts[1];
             int missingAxe = 1 - Map.resourceAmounts[7];
 
             if (missingWood <= 0 && missingAxe <= 0)
             {
-                Console.WriteLine("Vous avez fabriqué une planche !");
+                Console.WriteLine("Vous avez fabriqué une planche 🪵 !");
                 Map.resourceAmounts[1]--;
                 Map.resourceAmounts[7]--;
                 Map.resourceAmounts[9]++;
@@ -176,12 +180,13 @@ namespace SurvieEnTerreInconnue
 
         public static void BuildBrick()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             int missingClay = 1 - Map.resourceAmounts[3];
             int missingFire = 1 - Map.resourceAmounts[6];
 
             if (missingClay <= 0 && missingFire <= 0)
             {
-                Console.WriteLine("Vous avez fabriqué une brique !");
+                Console.WriteLine("Vous avez fabriqué une brique 🧱!");
                 Map.resourceAmounts[3]--;
                 Map.resourceAmounts[6]--;
                 Map.resourceAmounts[10]++;
@@ -205,6 +210,7 @@ namespace SurvieEnTerreInconnue
        
         public static void BuildInsulator()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             int missingGrass = 3 - Map.resourceAmounts[4];
 
             if (missingGrass <= 0)
@@ -223,12 +229,13 @@ namespace SurvieEnTerreInconnue
 
         public static void BuildFire()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             int missingWood = 1 - Map.resourceAmounts[1];
             int missingFlint = 1 - Map.resourceAmounts[2];
 
             if (missingWood <= 0 && missingFlint <= 0)
             {
-                Console.WriteLine("Vous avez fabriqué du feu !");
+                Console.WriteLine("Vous avez fabriqué du feu 🔥!");
                 Map.resourceAmounts[1]--;
                 Map.resourceAmounts[2]--;
                 Map.resourceAmounts[6]++;
@@ -253,11 +260,12 @@ namespace SurvieEnTerreInconnue
        
         public static void CookFish()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             int missingFish = 1 - Map.resourceAmounts[16];
 
             if(missingFish <= 0)
             {
-                Console.WriteLine("\nVous avez cuisiner un poisson. Bonne appétit. Profitez bien des 30% d'énergie que ce repas vous offre !");
+                Console.WriteLine("\nVous avez cuisiner un poisson 🐠. Bonne appétit. Profitez bien des 30% d'énergie ⚡ que ce repas vous offre !");
                 Map.resourceAmounts[16]--; 
                 Map.resourceAmounts[6]--; 
                 Map.playerEnergy += 30;
@@ -271,11 +279,12 @@ namespace SurvieEnTerreInconnue
 
         public static void CookMeat()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             int missingMeal = 1 - Map.resourceAmounts[15];
 
             if(missingMeal <= 0)
             {
-                Console.WriteLine("\nVous avez cuisiné du gibier. Bonne appétit. Profitez bien des 50% d'énergie que ce repas vous offre ! ");
+                Console.WriteLine("\nVous avez cuisiné du gibier 🍖. Bonne appétit. Profitez bien des 50% d'énergie⚡ que ce repas vous offre ! ");
                 Map.resourceAmounts[15]--; 
                 Map.resourceAmounts[6]--;  
                 Map.playerEnergy += 50;
@@ -290,11 +299,12 @@ namespace SurvieEnTerreInconnue
         /* 5 = fruits; 6 = eau; 7 = gibier; 8 = poisson*/
         public static void DrinkWater()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             int missingWater = 1 - Map.resourceAmounts[14];
 
             if(missingWater <= 0)
             {
-                Console.WriteLine("Vous avez bu de l'eau. Vous avez +5%% d'énergie");
+                Console.WriteLine("Vous avez bu de l'eau 💧. Vous avez +5%% d'énergie ⚡");
                 Map.resourceAmounts[14]--;
                 Map.playerEnergy += 5;
                 MaxPlayerEnergy();
@@ -307,11 +317,12 @@ namespace SurvieEnTerreInconnue
         }
         public static void EatFruits()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             int missingFruits = 1 - Map.resourceAmounts[13];
 
             if(missingFruits <= 0)
             {
-                Console.WriteLine("Vous mangé un fruits, vous avez +10% d'energie ");
+                Console.WriteLine("Vous mangé un fruits 🍇, vous avez +10% d'energie ⚡");
                 Map.resourceAmounts[13]--;
                 Map.playerEnergy += 10;
                 MaxPlayerEnergy();

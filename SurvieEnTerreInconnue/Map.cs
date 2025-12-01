@@ -310,16 +310,17 @@ namespace SurvieEnTerreInconnue
         //Probabilité de collecte de ressources dans le désert
         public static void ProbabilityDiscoveryInDesert()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             int roll = randomGenerator.Next(0, 100);
 
             if (roll < 10) 
             {
-                Console.WriteLine("Vous avez collecté de l'eau !");
+                Console.WriteLine("Vous avez collecté de l'eau 💧!");
                 resourceAmounts[14]++; 
             }
             else if (roll < 90) 
             {
-                Console.WriteLine("Vous avez collecté du sable");
+                Console.WriteLine("Vous avez collecté du sable ⏳");
                 resourceAmounts[5]++; 
             }
             else 
@@ -331,6 +332,7 @@ namespace SurvieEnTerreInconnue
         //Probabilité de collecte de ressources dans la forêt
         public static void ProbabilityDiscoveryInForest()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             int roll = randomGenerator.Next(0, 100);
 
             if (roll < 5)
@@ -339,24 +341,24 @@ namespace SurvieEnTerreInconnue
 
                 if (subChoice == 0)
                 {
-                    Console.WriteLine("Vous avez collecté de l'eau");
+                    Console.WriteLine("Vous avez collecté de l'eau 💧");
                     resourceAmounts[14]++; 
                 }
                 else
                 {
                     
-                    Console.WriteLine("Vous avez collecté des fruits");
+                    Console.WriteLine("Vous avez collecté des fruits 🪵");
                     resourceAmounts[13]++; 
                 }
             }
             else if (roll < 15) 
             {
-                Console.WriteLine("Vous avez collecté du gibier");
+                Console.WriteLine("Vous avez collecté du gibier 🦌 ");
                 resourceAmounts[15]++; 
             }
             else 
             {
-                Console.WriteLine("Vous avez collecté du bois");
+                Console.WriteLine("Vous avez collecté du bois 🪵");
                 resourceAmounts[1]++;
             }
         }
@@ -364,21 +366,22 @@ namespace SurvieEnTerreInconnue
         //Probabilité de collecte de ressources dans le marais
         public static void ProbabilityDiscoveryInSwamp()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             int roll = randomGenerator.Next(0, 100);
 
             if (roll < 5) 
             {
-                Console.WriteLine("Vous avez collecté du poisson");
+                Console.WriteLine("Vous avez collecté du poisson 🐟");
                 resourceAmounts[15]++; 
             }
             else if (roll < 45) 
             {
-                Console.WriteLine("Vous avez collecté de l'argile");
+                Console.WriteLine("Vous avez collecté de l'argile 🌰");
                 resourceAmounts[3]++;
             }
             else 
             {
-                Console.WriteLine("Vous avez collecté de l'eau !");
+                Console.WriteLine("Vous avez collecté de l'eau 💧!");
                 resourceAmounts[14]++; 
             }
         }
@@ -386,21 +389,22 @@ namespace SurvieEnTerreInconnue
         //Probabilité de collecte de ressources dans la rivière
         public static void ProbabilityDiscoveryInRiver()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             int roll = randomGenerator.Next(0, 100);
 
             if (roll < 20) 
             {
-                Console.WriteLine("Vous avez collecté du poisson");
+                Console.WriteLine("Vous avez collecté du poisson 🐟");
                 resourceAmounts[15]++; 
             }
             else if (roll < 50) 
             {
-                Console.WriteLine("Vous avez collecté de l'eau");
+                Console.WriteLine("Vous avez collecté de l'eau 💧");
                 resourceAmounts[14]++;
             }
             else 
             {
-                Console.WriteLine("Vous avez collecté du silex");
+                Console.WriteLine("Vous avez collecté du silex 🪨");
                 resourceAmounts[2]++; 
             }
         }
@@ -408,16 +412,17 @@ namespace SurvieEnTerreInconnue
         //Probabilité de collecte de ressources dans la prairie
         public static void ProbabilityDiscoveryInPrairie()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             int roll = randomGenerator.Next(0, 100);
 
             if (roll < 30) 
             {
-                Console.WriteLine("Vous avez collecté des fruits");
+                Console.WriteLine("Vous avez collecté des fruits 🪵");
                 resourceAmounts[13]++;
             }
             else 
             {
-                Console.WriteLine("Vous avez collecté de l'herbe");
+                Console.WriteLine("Vous avez collecté de l'herbe 🌱");
                 resourceAmounts[4]++; 
             }
         }
@@ -425,21 +430,22 @@ namespace SurvieEnTerreInconnue
         //Probabilité de collecte de ressources dans la montagne
         public static void ProbabilityDiscoveryInMountain()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             int roll = randomGenerator.Next(0, 100);
 
             if (roll < 2) 
             {
-                Console.WriteLine("Vous avez collecté de l'argile");
+                Console.WriteLine("Vous avez collecté de l'argile 🌰");
                 resourceAmounts[3]++;
             }
             else if (roll < 7) 
             {
-                Console.WriteLine("Vous avez collecté de l'eau");
+                Console.WriteLine("Vous avez collecté de l'eau 💧");
                 resourceAmounts[14]++; 
             }
             else 
             {
-                Console.WriteLine("Vous avez collecté du fer");
+                Console.WriteLine("Vous avez collecté du fer ⚙️ ");
                 resourceAmounts[0]++; 
             }
         }
@@ -560,14 +566,6 @@ namespace SurvieEnTerreInconnue
         {
             Console.Clear();
             Display.DisplayDesertPosition();
-            /*
-            for (int i = 0; i < 3; i++)
-            {
-                Console.WriteLine();
-            }
-
-            Display.DisplayDesert();
-            */
             return DisplayTerrainMenu("dans le désert");
         }
 
@@ -576,15 +574,6 @@ namespace SurvieEnTerreInconnue
         {
             Console.Clear();
             Display.DisplayRiverPosition();
-
-            /*
-            for (int i = 0; i < 3; i++)
-            {
-                Console.WriteLine();
-            }
-
-            Display.DisplayRiver();
-            */
             return DisplayTerrainMenu("près de la rivière");
         }
 
@@ -593,15 +582,6 @@ namespace SurvieEnTerreInconnue
         {
             Console.Clear();
             Display.DisplaySwampPosition();
-
-            /*
-            for (int i = 0; i < 3; i++)
-            {
-                Console.WriteLine();
-            }
-
-            Display.DisplaySwamp();
-            */
             return DisplayTerrainMenu("dans le marais");
         }
 
@@ -610,14 +590,6 @@ namespace SurvieEnTerreInconnue
         {
             Console.Clear();
             Display.DisplayMountainPosition();
-
-            /*
-            for (int i = 0; i < 3; i++)
-            {
-                Console.WriteLine();
-            }
-
-            Display.DisplayMountain();*/
             return DisplayTerrainMenu("dans la montagne");
         }
         //Méthode qui affiche le terrain de base, ainsi que son mene
