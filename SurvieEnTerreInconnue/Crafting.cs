@@ -63,7 +63,7 @@ namespace SurvieEnTerreInconnue
 
             if (missingPlanks <= 0 && missingBricks <= 0 && missingInsulators <= 0 && missingGlass <= 0)
             {
-                Menu.DisplayEndMessage();
+                Display.DisplayEndMessage();
                 Map.resourceAmounts[9] -= 4;
                 Map.resourceAmounts[10] -= 4;
                 Map.resourceAmounts[11] -= 4;

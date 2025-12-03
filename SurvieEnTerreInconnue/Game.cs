@@ -21,22 +21,23 @@ namespace SurvieEnTerreInconnue
                 File.AppendAllText(FileName, JsonSerializer.Serialize(Map.playerPositionX) + "\n");
                 File.AppendAllText(FileName, JsonSerializer.Serialize(Map.playerPositionY) + "\n");
 
+                // Créer la liste  vide
                 List<List<int>> mapGridList = new List<List<int>>();
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < Map.mapGrid.GetLength(0); i++) // Boucle sur les lignes (i)
                 {
-                    List<int> row = new List<int>();
-                    for (int j = 0; j < 10; j++)
+                    List<int> row = new List<int>(); // Nouvelle ligne vide
+                    for (int j = 0; j < Map.mapGrid.GetLength(1); j++) // Boucle sur les colonnes (j)
                     {
-                        row.Add(Map.mapGrid[i, j]);
+                        row.Add(Map.mapGrid[i, j]); // Ajouter chaque case
                     }
-                    mapGridList.Add(row);
+                    mapGridList.Add(row); // Ajouter la ligne à la liste
                 }
                 File.AppendAllText(FileName, JsonSerializer.Serialize(mapGridList) + "\n");
                 List<List<bool>> discoveredList = new List<List<bool>>();
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < Map.discovered.GetLength(0); i++)
                 {
                     List<bool> row = new List<bool>();
-                    for (int j = 0; j < 10; j++)
+                    for (int j = 0; j < Map.discovered.GetLength(1); j++)
                     {
                         row.Add(Map.discovered[i, j]);
                     }
@@ -101,8 +102,6 @@ namespace SurvieEnTerreInconnue
                 Map.resourceAmounts = JsonSerializer.Deserialize<int[]>(loaded[4]);
                 Map.numberOfTripsRemaining = JsonSerializer.Deserialize<int>(loaded[5]);
                 Map.playerEnergy = JsonSerializer.Deserialize<int>(loaded[6]);
-
-
                 Console.Clear();
                 Display.AnimateText("Partie chargée avec succès !");
                 Console.WriteLine("\nAppuyez sur une touche pour continuer...");
