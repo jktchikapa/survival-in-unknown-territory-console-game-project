@@ -103,7 +103,15 @@ namespace SurvieEnTerreInconnue
                 Display.AnimateText("Partie chargée avec succès !");
                 Console.WriteLine("\nAppuyez sur une touche pour continuer...");
                 Console.ReadKey();
-                Map.ShowTerrainAtCurrentPosition();
+                if(Map.playerPositionX == 0 && Map.playerPositionY == 0)
+                {
+                    Map.GenerateMap();
+                    Map.ShowTerrainAtCurrentPosition();
+                }
+                else
+                {
+                    Map.ShowTerrainAtCurrentPosition();
+                }
             }
             catch (Exception ex)
             {

@@ -36,7 +36,6 @@ namespace SurvieEnTerreInconnue
                         break;
 
                     case ConsoleKey.C:
-                        Map.hasStartedGame = true;
                         Game.DataDeserialisation();
                         break;
 

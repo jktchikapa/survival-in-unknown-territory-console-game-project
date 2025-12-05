@@ -4,7 +4,6 @@
     {
         static void Main(string[] args)
         {
-            Console.ResetColor();
             Display.DisplayGameTitle();
             Menu.ProcessDisplayMenuInput();
         }
