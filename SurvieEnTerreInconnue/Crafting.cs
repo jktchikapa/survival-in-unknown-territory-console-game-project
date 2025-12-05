@@ -15,16 +15,36 @@ namespace SurvieEnTerreInconnue
             Console.ForegroundColor = ConsoleColor.Cyan;
             switch (index)
             {
-                case 0:Console.WriteLine("\nIndice : Vous trouverez du fer dans la montagne.\n");break;
-                case 1: Console.WriteLine("\nIndice : Vous trouverez du bois dans la forêt.\n");break;
-                case 2: Console.WriteLine("\nIndice : Vous trouverez du silex dans la rivière.\n");break;
-                case 3:Console.WriteLine("\nIndice : Vous trouverez de l'argile dans le marais.\n");break;
-                case 4: Console.WriteLine("\nIndice : Vous trouverez de l'herbe dans la prairie.\n"); break;
-                case 5:Console.WriteLine("\nIndice : Vous trouvez des fruits dans la forêt \n");break;
-                case 6:Console.WriteLine("\nIndice : Vous trouverez de l'eau dans le marais et la rivière\n");break;
-                case 7: Console.WriteLine("\nIndice : Vous trouverez du gibier dans la forêt\n");break;
-                case 8: Console.WriteLine("\nIndice : Vous trouverez du poisson dans la rivière et le marais \n"); break;
-                case 9:Console.WriteLine("\nIndice : Vous trouverez du sable dans le désert \n");break;
+                case 0:
+                    Console.WriteLine("\nIndice : Vous trouverez du fer dans la montagne.\n");
+                    break;
+                case 1:
+                    Console.WriteLine("\nIndice : Vous trouverez du bois dans la forêt.\n");
+                    break;
+                case 2:
+                    Console.WriteLine("\nIndice : Vous trouverez du silex dans la rivière.\n");
+                    break;
+                case 3:
+                    Console.WriteLine("\nIndice : Vous trouverez de l'argile dans le marais.\n");
+                    break;
+                case 4:
+                    Console.WriteLine("\nIndice : Vous trouverez de l'herbe dans la prairie.\n"); 
+                    break;
+                case 5:
+                    Console.WriteLine("\nIndice : Vous trouvez des fruits dans la forêt \n");
+                    break;
+                case 6:
+                    Console.WriteLine("\nIndice : Vous trouverez de l'eau dans le marais et la rivière\n");
+                    break;
+                case 7: 
+                    Console.WriteLine("\nIndice : Vous trouverez du gibier dans la forêt\n");
+                    break;
+                case 8: 
+                    Console.WriteLine("\nIndice : Vous trouverez du poisson dans la rivière et le marais \n");
+                    break;
+                case 9:
+                    Console.WriteLine("\nIndice : Vous trouverez du sable dans le désert \n");
+                    break;
             }
             Console.ResetColor();
         }

@@ -17,6 +17,7 @@ namespace SurvieEnTerreInconnue
         {
             Console.Clear();
             Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("███████╗██╗   ██╗██████╗ ██╗   ██╗██╗███████╗    ███████╗███╗   ██╗    ████████╗███████╗██████╗ ██████╗ ███████╗" +
                                 "\r\n██╔════╝██║   ██║██╔══██╗██║   ██║██║██╔════╝    ██╔════╝████╗  ██║    ╚══██╔══╝██╔════╝██╔══██╗██╔══██╗██╔════╝" +
                                 "\r\n███████╗██║   ██║██████╔╝██║   ██║██║█████╗      █████╗  ██╔██╗ ██║       ██║   █████╗  ██████╔╝██████╔╝█████╗ " +
@@ -39,6 +40,7 @@ namespace SurvieEnTerreInconnue
         /// </summary>
         public static void DisplayPrincipalMenu()
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Clear();
             Console.WriteLine("███╗   ███╗███████╗███╗   ██╗██╗   ██╗       " +
                         "\r\n████╗ ████║██╔════╝████╗  ██║██║   ██║       " +
@@ -46,6 +48,7 @@ namespace SurvieEnTerreInconnue
                         "\r\n██║╚██╔╝██║██╔══╝  ██║╚██╗██║██║   ██║      " +
                         " \r\n██║ ╚═╝ ██║███████╗██║ ╚████║╚██████╔╝      " +
                         " \r\n╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝        ");
+            Console.ResetColor();
         }
 
         /// <summary>
@@ -54,6 +57,7 @@ namespace SurvieEnTerreInconnue
         public static void DisplayCreditMessage()
         {
             Console.Clear();
+            Console.ResetColor();
             Console.WriteLine(" ██████╗██████╗ ███████╗██████╗ ██╗████████╗       " +
                             "\r\n██╔════╝██╔══██╗██╔════╝██╔══██╗██║╚══██╔══╝       " +
                             "\r\n██║     ██████╔╝█████╗  ██║  ██║██║   ██║          " +
@@ -178,6 +182,7 @@ namespace SurvieEnTerreInconnue
         /// </summary>
         public static void DisplayInventoryItems()
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("██╗███╗   ██╗██╗   ██╗███████╗███╗   ██╗████████╗ █████╗ ██╗██████╗ ███████╗" +
                         "\r\n██║████╗  ██║██║   ██║██╔════╝████╗  ██║╚══██╔══╝██╔══██╗██║██╔══██╗██╔════╝" +
                         "\r\n██║██╔██╗ ██║██║   ██║█████╗  ██╔██╗ ██║   ██║   ███████║██║██████╔╝█████╗  " +
@@ -192,6 +197,7 @@ namespace SurvieEnTerreInconnue
         /// </summary>
         public static void DisplayInventoryItem2()
         {
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("███╗   ███╗ █████╗ ████████╗███████╗██████╗ ██╗███████╗██╗   ██╗██╗  ██╗" +
                         "\r\n████╗ ████║██╔══██╗╚══██╔══╝██╔════╝██╔══██╗██║██╔════╝██║   ██║╚██╗██╔╝" +
                         "\r\n██╔████╔██║███████║   ██║   █████╗  ██████╔╝██║█████╗  ██║   ██║ ╚███╔╝" +
@@ -206,6 +212,7 @@ namespace SurvieEnTerreInconnue
         /// </summary>
         public static void DisplayInventoryItem1()
         {
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("██████╗ ███████╗███████╗███████╗ ██████╗ ██╗   ██╗██████╗  ██████╗███████╗███████╗" +
                                 "\r\n██╔══██╗██╔════╝██╔════╝██╔════╝██╔═══██╗██║   ██║██╔══██╗██╔════╝██╔════╝██╔════╝" +
                                 "\r\n██████╔╝█████╗  ███████╗███████╗██║   ██║██║   ██║██████╔╝██║     █████╗  ███████╗" +
@@ -220,6 +227,7 @@ namespace SurvieEnTerreInconnue
         /// </summary>
         public static void DisplayManufacturingItems()
         {
+             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("███████╗ █████╗ ██████╗ ██████╗ ██╗ ██████╗ █████╗ ████████╗██╗ ██████╗ ███╗   ██╗" +
                                 "\r\n██╔════╝██╔══██╗██╔══██╗██╔══██╗██║██╔════╝██╔══██╗╚══██╔══╝██║██╔═══██╗████╗  ██║" +
                                 "\r\n█████╗  ███████║██████╔╝██████╔╝██║██║     ███████║   ██║   ██║██║   ██║██╔██╗ ██║" +
@@ -278,12 +286,14 @@ namespace SurvieEnTerreInconnue
         /// </summary>
         public static void DisplayCooking()
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("██████╗ ███████╗██████╗  █████╗ ███████╗" +
                         "\r\n██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔════╝" +
                         "\r\n██████╔╝█████╗  ██████╔╝███████║███████╗" +
                         "\r\n██╔══██╗██╔══╝  ██╔═══╝ ██╔══██║╚════██║" +
                         "\r\n██║  ██║███████╗██║     ██║  ██║███████║" +
                         "\r\n╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝  ╚═╝╚══════╝");
+            Console.ResetColor();
         }
 
         /// <summary>
@@ -325,7 +335,6 @@ namespace SurvieEnTerreInconnue
                 Console.Write("░");
             }
             Console.WriteLine($"] {Map.playerEnergy}%");
-            Console.ResetColor();
         }
 
         /// <summary>
@@ -333,12 +342,14 @@ namespace SurvieEnTerreInconnue
         /// </summary>
         public static void DisplayGameOver()
         {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine("██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██╗   ██╗███████╗██████╗ " +
                         "\r\n██╔════╝ ██╔══██╗████╗ ████║██╔════╝    ██╔═══██╗██║   ██║██╔════╝██╔══██╗" +
                         "\r\n██║  ███╗███████║██╔████╔██║█████╗      ██║   ██║██║   ██║█████╗  ██████╔╝" +
                         "\r\n██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗" +
                         "\r\n╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║" +
                         "\r\n ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝");
+            Console.ResetColor();
         }
 
         /// <summary>
@@ -361,8 +372,9 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine("Voulez vous rejouer une nouvelle partie ?");
             Console.WriteLine("[O]ui");
             Console.WriteLine("[N]on");
-            ConsoleKeyInfo keyInfo = Console.ReadKey();
-            return keyInfo.Key;
+
+            ConsoleKeyInfo selectedAction = Console.ReadKey();
+            return selectedAction.Key;
         }
 
         /// <summary>
@@ -400,7 +412,7 @@ namespace SurvieEnTerreInconnue
         public static void DisplayInventoryMenu2()
         {
             Console.Clear();
-            Display.DisplayInventoryItem2();
+            DisplayInventoryItem2();
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("\t\t******************************************************");
@@ -420,7 +432,7 @@ namespace SurvieEnTerreInconnue
         public static void DisplayInventoryMenu1()
         {
             Console.Clear();
-            Display.DisplayInventoryItem1();
+            DisplayInventoryItem1();
             Console.WriteLine();
             Console.WriteLine("\t\t*****************************************************");
             Console.WriteLine($"\t\t* {$"{Map.resourceNames[0]}".PadRight(20)}: {$"{Map.resourceAmounts[0].ToString()}".PadRight(28)}*");
@@ -442,7 +454,7 @@ namespace SurvieEnTerreInconnue
         public static ConsoleKey DisplayInventoryPrincipalMenu()
         {
             Console.Clear();
-            Display.DisplayInventoryItems();
+            DisplayInventoryItems();
             Console.WriteLine("\nBienvenue dans l'inventaire du jeu");
             Console.WriteLine("\nDans cette section, vous pouvez consulter toutes les ressources et matériaux à votre disposition");
             Console.WriteLine("Veuillez sélectionner une option :");
@@ -452,7 +464,7 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine("[ESC]Retour au menu principal");
             Console.WriteLine("[Q]uitter l'inventaire");
             Console.WriteLine();
-            Display.AnimateText("Votre choix : ");
+            AnimateText("Votre choix : ");
 
             ConsoleKeyInfo selectedAction = Console.ReadKey();
             return selectedAction.Key;
@@ -464,7 +476,7 @@ namespace SurvieEnTerreInconnue
         public static ConsoleKey DisplayCookingMenu()
         {
             Console.Clear();
-            Display.DisplayCooking();
+            DisplayCooking();
             Console.WriteLine();
             Console.WriteLine("Veuillez sélectionner l'aliments que vous souhaitez cuisiner :");
             Console.WriteLine("[P]oisson");
@@ -476,8 +488,8 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine("[Q]uitter le jeu");
             Console.Write("\n\nVotre choix : ");
 
-            ConsoleKeyInfo key = Console.ReadKey();
-            return key.Key;
+            ConsoleKeyInfo selectedAction = Console.ReadKey();
+            return selectedAction.Key;
         }
 
         /// <summary>
@@ -486,7 +498,7 @@ namespace SurvieEnTerreInconnue
         public static ConsoleKey DisplayManufacturingMenu()
         {
             Console.Clear();
-            Display.DisplayManufacturingItems();
+                DisplayManufacturingItems();
             Console.WriteLine();
             Console.WriteLine("\t********************************************************************************************************");
             Console.WriteLine($"\t* {"[F]eu".PadRight(10)}: Cette action nécessite du Bois et du Silex                                               *");
@@ -500,6 +512,7 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine($"\t* {"[C]onsulter Inventaire".PadRight(10)}: Vous pouvez consulter votre inventaire                                       *");
             Console.WriteLine($"\t* {"[ESC]Retour au menu principal".PadRight(10)}                                                                        *");
             Console.WriteLine($"\t* {"[E]xplorer ou continuer d'explorer les territoires".PadRight(10)}                                                   *");
+            Console.WriteLine($"\t* {"[A]bandonner la fabrication de matériaux ".PadRight(10)}                                                            *");
             Console.WriteLine($"\t* {"[Q]uitter le jeu".PadRight(10)}                                                                                     *");
             Console.WriteLine("\t********************************************************************************************************");
             Console.Write("\n\nVotre choix : ");
@@ -513,8 +526,8 @@ namespace SurvieEnTerreInconnue
         /// </summary>
         public static void DisplayEndMessage()
         {
-            Display.DisplayHouse();
-            Console.WriteLine("Félicitations. Vous avez réussi à construire une maison qui vous protègera du froid hivernale. Profitez bien");
+            DisplayHouse();
+            Console.WriteLine("\nFélicitations! Vous avez réussi à construire une maison qui vous protègera du froid hivernale. Profitez bien!");
             Process.GetCurrentProcess().Kill();
         }
 
@@ -524,9 +537,9 @@ namespace SurvieEnTerreInconnue
         public static void DisplayGameHistory()
         {
             Console.Clear();
-            Display.AnimateText("Vous vous réveillez après un crash d'avion ...");
+            AnimateText("Vous vous réveillez après un crash d'avion ...");
             Thread.Sleep(100);
-            Display.AnimateText("\nL'hiver approche ... Construisez vous un abris avant qu'il ene soit trop tard ...");
+            AnimateText("\nL'hiver approche ... Construisez vous un abris avant qu'il ene soit trop tard ...");
             Thread.Sleep(900);
         }
 
@@ -535,17 +548,17 @@ namespace SurvieEnTerreInconnue
         /// </summary>
         public static void DisplayProgrammersCredits()
         {
-            Display.DisplayCreditMessage();
+            DisplayCreditMessage();
 
-            Display.AnimateText("\nCe jeu a été développé par :", ConsoleColor.White, 50);
-            Display.AnimateText("\n - Romuald Arnaud", ConsoleColor.White, 50);
-            Display.AnimateText("\n - Jessica Karelle\n", ConsoleColor.White, 50);
-            Display.AnimateText("\n Nos amélioratrions :\n", ConsoleColor.White, 50);
-            Display.AnimateText("- Plusieurs menus et interfaces pour l'utilisateur\n", ConsoleColor.White, 50);
-            Display.AnimateText("- Système de probabilités de collecte de ressources\n", ConsoleColor.White, 50);
-            Display.AnimateText("- Ajouts d'émojis significatifs pour chaque terrain\n", ConsoleColor.White, 50);
-            Display.AnimateText("- Ajouts des choix Boire/Manger  \n", ConsoleColor.White, 50);
-            Display.AnimateText("- Ajouts d'une barre d'énergie  \n", ConsoleColor.White, 50);
+            AnimateText("\nCe jeu a été développé par :");
+            AnimateText("\n - Romuald Arnaud");
+            AnimateText("\n - Jessica Karelle\n");
+            AnimateText("\n Nos amélioratrions :\n");
+            AnimateText("- Plusieurs menus et interfaces pour l'utilisateur\n");
+            AnimateText("- Système de probabilités de collecte de ressources\n");
+            AnimateText("- Ajouts d'émojis significatifs pour chaque terrain\n");
+            AnimateText("- Ajouts des choix Boire/Manger  \n");
+            AnimateText("- Ajouts d'une barre d'énergie  \n");
         }
         /// <summary>
         /// Méthode qui affiche le menu quitter et se rassure que l'utilisateur n'a pas quitté le jeu par erreur
@@ -553,18 +566,20 @@ namespace SurvieEnTerreInconnue
         public static ConsoleKey DisplayLeaveMessage()
         {
             Console.Clear();
-            Display.AnimateText("Êtes vous sûr de vouloir quitter la partie ?");
+            Console.ResetColor();  
+            AnimateText("Êtes vous sûr de vouloir quitter la partie ?");
             Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine("\n[O]ui, je souhaite quitter la partie");
+            Console.ResetColor();
             Console.WriteLine("[N]on, je ne souhaite plus quitter la partie");
             Console.WriteLine("[S]auvegarder ma progression et quitter");
             Console.WriteLine();
             Console.Write("Votre choix : ");
-           
+
             ConsoleKeyInfo selectedAction = Console.ReadKey();
             return selectedAction.Key;
         }
-
         /// <summary>
         /// Méthode qui affiche un message et attend qu'une touche soit pressée par l'utilisateur.
         /// </summary>
@@ -580,7 +595,7 @@ namespace SurvieEnTerreInconnue
         public static ConsoleKey DisplayMenu()
         {
             Console.Clear();
-            Display.DisplayPrincipalMenu();
+            DisplayPrincipalMenu();
             Console.WriteLine();
             Console.WriteLine("Veuillez sélectionner une action :");
             Console.WriteLine("[D]émarer une nouvelle partie");
@@ -606,7 +621,7 @@ namespace SurvieEnTerreInconnue
         public static ConsoleKey DisplayBase()
         {
             Console.Clear();
-            Display.DisplayBasePosition();
+            DisplayBasePosition();
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Vous êtes actuellement sur le terrain de base");
@@ -632,10 +647,12 @@ namespace SurvieEnTerreInconnue
             Console.Clear();
             Map.DisplayGridMap();
             Console.WriteLine();
+            Console.ResetColor();
             Console.WriteLine($"Position du joueur: ({Map.playerPositionX}, {Map.playerPositionY}) - {Map.GetCurrentTerrain()}");
             Console.WriteLine($"Nombre de déplacement(s) restant(s) : {Map.numberOfTripsRemaining}");
-            Display.DisplayEnergyBar();
+            DisplayEnergyBar();
             Console.WriteLine();
+            Console.ResetColor();
             Console.WriteLine("Veuillez sélectionner une option :");
             Console.WriteLine();
             Console.WriteLine("[N]ord : Vous vous déplacez vers le haut");

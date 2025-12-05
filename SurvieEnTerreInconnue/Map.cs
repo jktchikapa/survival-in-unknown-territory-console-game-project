@@ -219,13 +219,26 @@ namespace SurvieEnTerreInconnue
             string terrain = GetCurrentTerrain();
             switch (terrain)
             {
-                case "Forêt": ProbabilityDiscoveryInForest(); break;
-                case "Prairie": ProbabilityDiscoveryInPrairie(); break;
-                case "Désert": ProbabilityDiscoveryInDesert(); break;
-                case "Rivière": ProbabilityDiscoveryInRiver(); break;
-                case "Marais": ProbabilityDiscoveryInSwamp(); break;
-                case "Montagne": ProbabilityDiscoveryInMountain(); break;
-                default: break;
+                case "Forêt":
+                    ProbabilityDiscoveryInForest();
+                    break;
+                case "Prairie":
+                    ProbabilityDiscoveryInPrairie();
+                    break;
+                case "Désert": 
+                    ProbabilityDiscoveryInDesert(); 
+                    break;
+                case "Rivière":
+                    ProbabilityDiscoveryInRiver(); 
+                    break;
+                case "Marais": 
+                    ProbabilityDiscoveryInSwamp(); 
+                    break;
+                case "Montagne": 
+                    ProbabilityDiscoveryInMountain();
+                    break;
+                default: 
+                    break;
             }
         }
         /// <summary>
@@ -236,7 +249,7 @@ namespace SurvieEnTerreInconnue
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             int roll = randomGenerator.Next(0, 100);
 
-            if (roll < 10) 
+            if (roll < 1) 
             {
                 Console.WriteLine("Vous avez collecté de l'eau 💧!");
                 resourceAmounts[14]++; 
@@ -500,11 +513,22 @@ namespace SurvieEnTerreInconnue
                 Console.WriteLine();
                 switch (input)
                 {
-                    case ConsoleKey.E: ProcessExplorationInput(); stayAtBase = false; break;
-                    case ConsoleKey.A: Menu.ProcessInventoryInput(); break;
-                    case ConsoleKey.F: Menu.ProcessDisplayManufacturingInput(); break;
-                    case ConsoleKey.Escape: stayAtBase = false; Menu.ProcessDisplayMenuInput(); break;
-                    case ConsoleKey.Q: Menu.ProcessDisplayLeaveMessageInput(); return false;
+                    case ConsoleKey.E: ProcessExplorationInput();
+                        stayAtBase = false;
+                        break;
+                    case ConsoleKey.A:
+                        Menu.ProcessInventoryInput();
+                        break;
+                    case ConsoleKey.F:
+                        Menu.ProcessDisplayManufacturingInput();
+                        break;
+                    case ConsoleKey.Escape:
+                        stayAtBase = false; 
+                        Menu.ProcessDisplayMenuInput(); 
+                        break;
+                    case ConsoleKey.Q:
+                        Menu.ProcessDisplayLeaveMessageInput(); 
+                        return false;
                     default:
                         Display.AnimateText("Choix invalide. Veuillez réessayer.");
                         Thread.Sleep(500);
@@ -556,7 +580,6 @@ namespace SurvieEnTerreInconnue
                         }
                         else { ShowBoundaryMessage("Nord"); }
                         break;
-
                     case ConsoleKey.O:
                     case ConsoleKey.LeftArrow:
                         if (playerPositionX > 0)
@@ -590,10 +613,24 @@ namespace SurvieEnTerreInconnue
                         else { ShowBoundaryMessage("Est"); }
                         break;
 
-                    case ConsoleKey.Enter: ShowTerrainAtCurrentPosition(); exploring = false; break;
-                    case ConsoleKey.Escape: exploring = false; Console.Clear(); Menu.ProcessDisplayMenuInput(); break;
-                    case ConsoleKey.Q: exploring = false; Console.Clear(); Menu.ProcessDisplayLeaveMessageInput(); break;
-                    default: Display.AnimateText("Direction invalide. Veuillez réessayer."); Thread.Sleep(1500); break;
+                    case ConsoleKey.Enter: 
+                        ShowTerrainAtCurrentPosition(); 
+                        exploring = false; 
+                        break;
+                    case ConsoleKey.Escape: 
+                        exploring = false; 
+                        Console.Clear(); 
+                        Menu.ProcessDisplayMenuInput();
+                        break;
+                    case ConsoleKey.Q: 
+                        exploring = false;
+                        Console.Clear();
+                        Menu.ProcessDisplayLeaveMessageInput();
+                        break;
+                    default: 
+                        Display.AnimateText("Direction invalide. Veuillez réessayer."); 
+                        Thread.Sleep(1500);
+                        break;
                 }
             }
         }
@@ -612,13 +649,32 @@ namespace SurvieEnTerreInconnue
 
                 switch (input)
                 {
-                    case ConsoleKey.E: ProcessExplorationInput(); stayInTerrain = false; break;
-                    case ConsoleKey.A: Menu.ProcessInventoryInput(); break;
-                    case ConsoleKey.C: CollectMaterials(); Console.ReadKey(); break;
-                    case ConsoleKey.M: Crafting.EatFruits(); Display.WaitForKeyPress(); break;
-                    case ConsoleKey.B: Crafting.DrinkWater(); Display.WaitForKeyPress(); break;
-                    case ConsoleKey.Escape: stayInTerrain = false; Menu.ProcessDisplayMenuInput(); break;
-                    case ConsoleKey.Q: Menu.ProcessDisplayLeaveMessageInput(); return false;
+                    case ConsoleKey.E: 
+                        ProcessExplorationInput(); 
+                        stayInTerrain = false;
+                        break;
+                    case ConsoleKey.A:
+                        Menu.ProcessInventoryInput();
+                        break;
+                    case ConsoleKey.C: 
+                        CollectMaterials();
+                        Console.ReadKey();
+                        break;
+                    case ConsoleKey.M:
+                        Crafting.EatFruits();
+                        Display.WaitForKeyPress();
+                        break;
+                    case ConsoleKey.B: 
+                        Crafting.DrinkWater(); 
+                        Display.WaitForKeyPress();
+                        break;
+                    case ConsoleKey.Escape: 
+                        stayInTerrain = false; 
+                        Menu.ProcessDisplayMenuInput();
+                        break;
+                    case ConsoleKey.Q:
+                        Menu.ProcessDisplayLeaveMessageInput(); 
+                        return false;
                     default:
                         Display.AnimateText("Choix invalide. Veuillez réessayer.");
                         Thread.Sleep(500);

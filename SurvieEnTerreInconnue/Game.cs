@@ -96,7 +96,6 @@ namespace SurvieEnTerreInconnue
                         Map.discovered[i, j] = discoveredList[i][j];
                     }
                 }
-
                 Map.resourceAmounts = JsonSerializer.Deserialize<int[]>(loaded[4]);
                 Map.numberOfTripsRemaining = JsonSerializer.Deserialize<int>(loaded[5]);
                 Map.playerEnergy = JsonSerializer.Deserialize<int>(loaded[6]);
