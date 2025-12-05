@@ -105,7 +105,15 @@ namespace SurvieEnTerreInconnue
             {   
                 Console.WriteLine("Vous avez fabriqué une hache 🪓 !");
                 Map.resourceAmounts[1]--;
+                if (Map.resourceAmounts[1] < 0)
+                {
+                    Map.resourceAmounts[1] = 0;
+                }
                 Map.resourceAmounts[0]--;
+                if (Map.resourceAmounts[0] < 0)
+                {
+                    Map.resourceAmounts[0] = 0;
+                }
                 Map.resourceAmounts[7]++;
             }
             else
@@ -136,7 +144,15 @@ namespace SurvieEnTerreInconnue
             {
                 Console.WriteLine("Vous avez fabriqué une vitre 🪟!");
                 Map.resourceAmounts[5]--;
+                if (Map.resourceAmounts[5] < 0)
+                {
+                    Map.resourceAmounts[5] = 0;
+                }
                 Map.resourceAmounts[6]--;
+                if (Map.resourceAmounts[6] < 0)
+                {
+                    Map.resourceAmounts[6] = 0;
+                }
                 Map.resourceAmounts[8]++;
             }
             else
@@ -169,7 +185,15 @@ namespace SurvieEnTerreInconnue
             {
                 Console.WriteLine("Vous avez fabriqué une planche 🪵 !");
                 Map.resourceAmounts[1]--;
+                if (Map.resourceAmounts[1] < 0)
+                {
+                    Map.resourceAmounts[1] = 0;
+                }
                 Map.resourceAmounts[7]--;
+                if (Map.resourceAmounts[7] < 0)
+                {
+                    Map.resourceAmounts[7] = 0;
+                }
                 Map.resourceAmounts[9]++;
             }
             else
@@ -201,7 +225,15 @@ namespace SurvieEnTerreInconnue
             {
                 Console.WriteLine("Vous avez fabriqué une brique 🧱!");
                 Map.resourceAmounts[3]--;
+                if (Map.resourceAmounts[3] < 0)
+                {
+                    Map.resourceAmounts[3] = 0;
+                }
                 Map.resourceAmounts[6]--;
+                if (Map.resourceAmounts[6] < 0)
+                {
+                    Map.resourceAmounts[6] = 0;
+                }
                 Map.resourceAmounts[10]++;
             }
             else
@@ -255,7 +287,15 @@ namespace SurvieEnTerreInconnue
             {
                 Console.WriteLine("Vous avez fabriqué du feu 🔥!");
                 Map.resourceAmounts[1]--;
+                if (Map.resourceAmounts[1] < 0)
+                {
+                    Map.resourceAmounts[1] = 0;
+                }
                 Map.resourceAmounts[2]--;
+                if (Map.resourceAmounts[2] < 0)
+                {
+                    Map.resourceAmounts[2] = 0;
+                }
                 Map.resourceAmounts[6]++;
             }
             else
@@ -287,8 +327,16 @@ namespace SurvieEnTerreInconnue
             if(missingFish <= 0)
             {
                 Console.WriteLine("\nVous avez cuisiner un poisson 🐠. Bonne appétit. Profitez bien des 30% d'énergie ⚡ que ce repas vous offre !");
-                Map.resourceAmounts[16]--; 
-                Map.resourceAmounts[6]--; 
+                Map.resourceAmounts[16]--;
+                if (Map.resourceAmounts[16] < 0)
+                {
+                    Map.resourceAmounts[16] = 0;
+                }
+                Map.resourceAmounts[6]--;
+                if (Map.resourceAmounts[6] < 0)
+                {
+                    Map.resourceAmounts[6] = 0;
+                }
                 Map.playerEnergy += 30;
                 MaxPlayerEnergy();
             }
@@ -310,8 +358,16 @@ namespace SurvieEnTerreInconnue
             if(missingMeal <= 0)
             {
                 Console.WriteLine("\nVous avez cuisiné du gibier 🍖. Bonne appétit. Profitez bien des 50% d'énergie⚡ que ce repas vous offre ! ");
-                Map.resourceAmounts[15]--; 
-                Map.resourceAmounts[6]--;  
+                Map.resourceAmounts[15]--;
+                if (Map.resourceAmounts[15] <  0)
+                {
+                    Map.resourceAmounts[15] = 0;
+                }
+                Map.resourceAmounts[6]--;
+                if (Map.resourceAmounts[6] < 0)
+                {
+                    Map.resourceAmounts[6] = 0;
+                }
                 Map.playerEnergy += 50;
                 MaxPlayerEnergy();
             }
