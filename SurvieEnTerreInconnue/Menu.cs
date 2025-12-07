@@ -34,39 +34,33 @@ namespace SurvieEnTerreInconnue
                         Map.ShowTerrainAtCurrentPosition();
                         Thread.Sleep(1000);
                         break;
-
                     case ConsoleKey.C:
                         Game.DataDeserialisation();
                         break;
-
                     case ConsoleKey.S:
                         Game.DataSerialisation();
                         break;
-
                     case ConsoleKey.A:
                         Console.Clear();
                         Display.DisplayProgrammersCredits();
                         Display.WaitForKeyPress("\n\nAppuyez sur une touche pour retourner au menu...");
                         break;
-
                     case ConsoleKey.Q:
                         continueGame = ProcessDisplayLeaveMessageInput();
                         break;
-
                     case ConsoleKey.Enter:
-                        if(Map.hasStartedGame)
+                        if (Map.hasStartedGame)
                         {
                             Map.ShowTerrainAtCurrentPosition();
                         }
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.DarkRed;
-                            Console.WriteLine("Veuillez commencer une partie avant de pouvoir la continuer");
+                            Console.WriteLine("Veuillez commencer une partie avant de pouvoir continuer.");
                             Console.ResetColor();
                             Display.WaitForKeyPress("\nAppuyez sur une touche pour retourner au menu principal");
                         }
                         break;
-
                     default:
                         Display.AnimateText("\nChoix invalide. Veuillez réessayer.");
                         Console.ResetColor();
@@ -87,18 +81,19 @@ namespace SurvieEnTerreInconnue
             {
                 case ConsoleKey.O:
                     Console.Clear();
-                    Console.ResetColor();  
+                    Console.ResetColor();
                     DisplayGoodByeMessage();
                     Thread.Sleep(3000);
                     return false;
                 case ConsoleKey.N:
                     return true;
                 case ConsoleKey.S:
+                    Map.wantToQuitGame = true;
                     Game.DataSerialisation();
                     DisplayGoodByeMessage();
                     return false;
                 default:
-                    Console.ResetColor();  
+                    Console.ResetColor();
                     Display.AnimateText("Choix invalide. Retour au menu...");
                     Thread.Sleep(1500);
                     ProcessDisplayMenuInput();
@@ -111,19 +106,8 @@ namespace SurvieEnTerreInconnue
         /// </summary>
         public static void DisplayGoodByeMessage()
         {
-            Console.Clear();
-            Console.ResetColor();
             Display.WaitForKeyPress("\nAppuyez sur une touche pour fermer le jeu...");
             Process.GetCurrentProcess().Kill();
-        }
-
-        /// <summary>
-        /// Méthode qui affiche les règles du jeu
-        /// </summary>
-        public static void DisplayGameRules()
-        {
-            Console.Clear();
-            Console.ReadKey();
         }
 
         /// <summary>
@@ -156,12 +140,13 @@ namespace SurvieEnTerreInconnue
                     case ConsoleKey.R:
                         ProcessDisplayManufacturingInput();
                         break;
-                    case ConsoleKey.Escape: 
+                    case ConsoleKey.Escape:
                         ProcessDisplayMenuInput();
                         continueCooking = false;
                         break;
                     case ConsoleKey.Q
-                    :Display.DisplayLeaveMessage();
+                    :
+                        Display.DisplayLeaveMessage();
                         continueCooking = false;
                         break;
                     default:
@@ -188,11 +173,11 @@ namespace SurvieEnTerreInconnue
                 {
                     case ConsoleKey.F:
                         Console.Clear();
-                        Crafting.BuildFire(); 
+                        Crafting.BuildFire();
                         Display.WaitForKeyPress();
                         break;
                     case ConsoleKey.H:
-                        Console.Clear(); 
+                        Console.Clear();
                         Crafting.BuildAxe();
                         Display.WaitForKeyPress();
                         break;
@@ -203,8 +188,8 @@ namespace SurvieEnTerreInconnue
                         break;
                     case ConsoleKey.P:
                         Console.Clear();
-                        Crafting.BuildPlank(); 
-                        Display.WaitForKeyPress(); 
+                        Crafting.BuildPlank();
+                        Display.WaitForKeyPress();
                         break;
                     case ConsoleKey.B:
                         Console.Clear();
@@ -219,7 +204,7 @@ namespace SurvieEnTerreInconnue
                     case ConsoleKey.M:
                         Console.Clear();
                         Crafting.BuildHouse();
-                        Console.ReadKey();
+                        Console.ReadKey(true);
                         break;
                     case ConsoleKey.N:
                         ProcessCookingMenuInput();
@@ -230,18 +215,20 @@ namespace SurvieEnTerreInconnue
                     case ConsoleKey.Escape:
                         ProcessDisplayMenuInput();
                         return continueManufacturing = true;
-                    case ConsoleKey.E: 
+                    case ConsoleKey.R:
                         Map.GenerateMap();
                         Map.ShowTerrainAtCurrentPosition();
                         break;
-                    case ConsoleKey.A: 
+                    case ConsoleKey.A:
                         continueManufacturing = false;
-                        break;    
+                        break;
                     case ConsoleKey.Q:
-                        ProcessDisplayLeaveMessageInput(); 
+                        ProcessDisplayLeaveMessageInput();
                         return continueManufacturing = false;
-                    default:Console.Clear();
+                    default:
+                        Console.Clear();
                         Display.AnimateText("Action annulée");
+                        Display.WaitForKeyPress();
                         break;
                 }
             }
@@ -262,30 +249,61 @@ namespace SurvieEnTerreInconnue
 
                 switch (input)
                 {
-                  case ConsoleKey.R:
+                    case ConsoleKey.R:
                         Display.DisplayInventoryMenu1();
                         Display.WaitForKeyPress();
                         break;
-                  case ConsoleKey.M:
+                    case ConsoleKey.M:
                         Display.DisplayInventoryMenu2();
                         Display.WaitForKeyPress();
                         break;
-                  case ConsoleKey.E:
-                        Map.ShowTerrainAtCurrentPosition(); 
+                    case ConsoleKey.E:
+                        Map.ShowTerrainAtCurrentPosition();
                         break;
-                  case ConsoleKey.Escape:
+                    case ConsoleKey.Escape:
                         ProcessDisplayMenuInput();
                         continueInventory = false;
                         break;
-                  case ConsoleKey.Q:
+                    case ConsoleKey.Q:
                         continueInventory = false;
                         break;
-                  default:
+                    default:
                         Console.Clear();
                         Display.AnimateText("Choix invalide. Veuillez réessayer.");
-                        Thread.Sleep(500);break;
+                        Display.WaitForKeyPress();
+                        break;
                 }
             }
         }
+
+        /// <summary>
+        ///Méthode qui traite les choix effectuer dans le message de confirmation d'une nouvelle partie
+        /// </summary>
+        public static void ProcessNewGameConfirmation()
+        {
+            bool waitingForChoice = true;
+            while (waitingForChoice)
+            {
+                ConsoleKey input = Display.DisplayNewGameConfirmation();
+                switch (input)
+                {
+                    case ConsoleKey.O:
+                        Map.ResetGame();
+                        Map.ShowTerrainAtCurrentPosition();
+                        waitingForChoice = false;
+                        break;
+                    case ConsoleKey.N:
+                        waitingForChoice = false;
+                        Display.WaitForKeyPress("Appuyer sur une touche pour quitter le jeu ...");
+                        Process.GetCurrentProcess().Kill();
+                        break;
+                    default:
+                        Console.WriteLine("\nChoix invalide. Veuillez réessayer");
+                        Display.WaitForKeyPress();
+                        break;
+                }
+            }
+        }
+
     }
 }

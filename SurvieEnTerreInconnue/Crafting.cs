@@ -28,7 +28,7 @@ namespace SurvieEnTerreInconnue
                     Console.WriteLine("\nIndice : Vous trouverez de l'argile dans le marais.\n");
                     break;
                 case 4:
-                    Console.WriteLine("\nIndice : Vous trouverez de l'herbe dans la prairie.\n"); 
+                    Console.WriteLine("\nIndice : Vous trouverez de l'herbe dans la prairie.\n");
                     break;
                 case 5:
                     Console.WriteLine("\nIndice : Vous trouvez des fruits dans la forêt \n");
@@ -36,10 +36,10 @@ namespace SurvieEnTerreInconnue
                 case 6:
                     Console.WriteLine("\nIndice : Vous trouverez de l'eau dans le marais et la rivière\n");
                     break;
-                case 7: 
+                case 7:
                     Console.WriteLine("\nIndice : Vous trouverez du gibier dans la forêt\n");
                     break;
-                case 8: 
+                case 8:
                     Console.WriteLine("\nIndice : Vous trouverez du poisson dans la rivière et le marais \n");
                     break;
                 case 9:
@@ -76,13 +76,13 @@ namespace SurvieEnTerreInconnue
                 if (missingPlanks > 0)
                 {
                     Console.WriteLine($"- {missingPlanks} planche(s)");
-                } 
-                if (missingBricks > 0) 
+                }
+                if (missingBricks > 0)
                 {
                     Console.WriteLine($"- {missingBricks} brique(s)");
                 }
-                if (missingInsulators > 0) 
-                { 
+                if (missingInsulators > 0)
+                {
                     Console.WriteLine($"- {missingInsulators} isolant(s)");
                 }
                 if (missingGlass > 0)
@@ -102,7 +102,7 @@ namespace SurvieEnTerreInconnue
             int missingIron = 1 - Map.resourceAmounts[0];
 
             if (missingWood <= 0 && missingIron <= 0)
-            {   
+            {
                 Console.WriteLine("Vous avez fabriqué une hache 🪓 !");
                 Map.resourceAmounts[1]--;
                 if (Map.resourceAmounts[1] < 0)
@@ -167,11 +167,9 @@ namespace SurvieEnTerreInconnue
                 if (missingFire > 0)
                 {
                     Console.WriteLine("- 1 feu");
-                    HintWhereToFind(6);
                 }
             }
         }
-
         /// <summary>
         /// Méthode qui permet de fabriquer une planche
         /// </summary>
@@ -208,7 +206,7 @@ namespace SurvieEnTerreInconnue
                 if (missingAxe > 0)
                 {
                     Console.WriteLine("- 1 hache");
-                } 
+                }
             }
         }
 
@@ -239,15 +237,14 @@ namespace SurvieEnTerreInconnue
             else
             {
                 Console.WriteLine("Impossible de fabriquer une brique, il manque :");
-                if (missingClay > 0) 
+                if (missingClay > 0)
                 {
                     Console.WriteLine("- 1 argile");
                     HintWhereToFind(3);
                 }
-                if (missingFire > 0) 
+                if (missingFire > 0)
                 {
                     Console.WriteLine("- 1 feu");
-                    HintWhereToFind(6);
                 }
             }
         }
@@ -308,7 +305,7 @@ namespace SurvieEnTerreInconnue
                     HintWhereToFind(1);
 
                 }
-                if (missingFlint > 0) 
+                if (missingFlint > 0)
                 {
                     Console.WriteLine("- 1 silex");
                     HintWhereToFind(2);
@@ -324,9 +321,9 @@ namespace SurvieEnTerreInconnue
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             int missingFish = 1 - Map.resourceAmounts[16];
 
-            if(missingFish <= 0)
+            if (missingFish <= 0)
             {
-                Console.WriteLine("\nVous avez cuisiner un poisson 🐠. Bonne appétit. Profitez bien des 30% d'énergie ⚡ que ce repas vous offre !");
+                Console.WriteLine("\nVous avez cuisiner un poisson 🐠. Bonne appétit. \nProfitez bien des 30% d'énergie ⚡ que ce repas vous offre !");
                 Map.resourceAmounts[16]--;
                 if (Map.resourceAmounts[16] < 0)
                 {
@@ -355,11 +352,11 @@ namespace SurvieEnTerreInconnue
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             int missingMeal = 1 - Map.resourceAmounts[15];
 
-            if(missingMeal <= 0)
+            if (missingMeal <= 0)
             {
-                Console.WriteLine("\nVous avez cuisiné du gibier 🍖. Bonne appétit. Profitez bien des 50% d'énergie⚡ que ce repas vous offre ! ");
+                Console.WriteLine("\nVous avez cuisiné du gibier 🍖. Bonne appétit. \nProfitez bien des 50% d'énergie⚡ que ce repas vous offre ! ");
                 Map.resourceAmounts[15]--;
-                if (Map.resourceAmounts[15] <  0)
+                if (Map.resourceAmounts[15] < 0)
                 {
                     Map.resourceAmounts[15] = 0;
                 }
@@ -378,7 +375,6 @@ namespace SurvieEnTerreInconnue
             }
         }
 
-
         /// <summary>
         /// Méthode qui permet de boire de l'eau
         /// </summary>
@@ -387,9 +383,9 @@ namespace SurvieEnTerreInconnue
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             int missingWater = 1 - Map.resourceAmounts[14];
 
-            if(missingWater <= 0)
+            if (missingWater <= 0)
             {
-                Console.WriteLine("Vous avez bu de l'eau 💧. Vous avez +5%% d'énergie ⚡");
+                Console.WriteLine("Vous avez bu de l'eau 💧. \nVous avez +5%% d'énergie ⚡");
                 Map.resourceAmounts[14]--;
                 Map.playerEnergy += 5;
                 MaxPlayerEnergy();
@@ -409,9 +405,9 @@ namespace SurvieEnTerreInconnue
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             int missingFruits = 1 - Map.resourceAmounts[13];
 
-            if(missingFruits <= 0)
+            if (missingFruits <= 0)
             {
-                Console.WriteLine("Vous mangé un fruits 🍇, vous avez +10% d'energie ⚡");
+                Console.WriteLine("Vous mangé un fruits 🍇.\n vous avez +10% d'energie ⚡");
                 Map.resourceAmounts[13]--;
                 Map.playerEnergy += 10;
                 MaxPlayerEnergy();

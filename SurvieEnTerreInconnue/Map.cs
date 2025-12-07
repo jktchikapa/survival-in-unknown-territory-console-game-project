@@ -16,13 +16,12 @@ namespace SurvieEnTerreInconnue
         public static int playerPositionY = 0;
         /// <value>Grille rempli de chiffre entre 0 et 7, chaque chiffre correspond à un terrain.</value>>
         public static int[,] mapGrid = new int[10, 10];
-       /// <value>Grille rempli de booléen, true si la case a déja été visité, false dans le cas contraire.</value>>
+        /// <value>Grille rempli de booléen, true si la case a déja été visité, false dans le cas contraire.</value>>
         public static bool[,] discovered = new bool[10, 10];
         /// <value> Générateur de nombres aléatoires</value>>
         public static Random randomGenerator = new Random();
         /// <value> Tableau de chaines de caractères indiquant le nom de chaque ressources et matériaux du jeu</value>>
-        public static string[] resourceNames = {"Fer", "Bois", "Silex", "Argile", "Herbes", "Sable",
-                                                "Feu", "Haches", "Vitre", "Planche", "Briques", "Isolants", "Maisons", "Fruits", "Eau" , "Gibier", "Poisson" };
+        public static string[] resourceNames = { "Fer", "Bois", "Silex", "Argile", "Herbes", "Sable", "Feu", "Haches", "Vitre", "Planche", "Briques", "Isolants", "Maisons", "Fruits", "Eau", "Gibier", "Poisson" };
         /// <value> Tableau qui affiche la quantités des différentes ressources possédées par le joueur.</value>>
         public static int[] resourceAmounts = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         /// <value> Indique le nombre de voyages restants pour le joueur.</value>>
@@ -31,7 +30,14 @@ namespace SurvieEnTerreInconnue
         public static int playerEnergy = 100;
         /// <value>Indique si le joueur a déja commencé une partie de jeu</value>
         public static bool hasStartedGame = false;
-        /// <value>Méthode qui diminue le nombres de déplacements restants du joueur ainsi que son énergie</value>
+        /// <value>Indique si le joueur veut quitter une partie de jeu</value>
+        public static bool wantToQuitGame = false;
+        /// <value>Indique le nom d'utilisateur du joueur</value>
+        public static string playerName = "Utilisateur";
+
+        /// <summary>
+        /// Méthode qui diminue le nombres de déplacements restants du joueur ainsi que son énergie
+        /// </summary>
         public static bool ManageNumberOfTrip()
         {
             numberOfTripsRemaining--;
@@ -64,8 +70,8 @@ namespace SurvieEnTerreInconnue
                     //Si position initiale du joueur = (0,0) = base
                     if (i == 0 && j == 0)
                     {
-                        mapGrid[i, j] = 0; 
-                        discovered[i, j] = true; 
+                        mapGrid[i, j] = 0;
+                        discovered[i, j] = true;
                     }
                     else
                     {
@@ -194,7 +200,7 @@ namespace SurvieEnTerreInconnue
             }
         }
         /// <summary>
-        /// Méthode qui détermine le terrain actuelle en fontion des nombres aléatoires générés plus haut dans la class
+        /// Méthode qui détermine le terrain actuelle en fontion des nombres aléatoires générés pour chaque position du joueur
         /// </summary>
         public static string GetCurrentTerrain()
         {
@@ -225,19 +231,19 @@ namespace SurvieEnTerreInconnue
                 case "Prairie":
                     ProbabilityDiscoveryInPrairie();
                     break;
-                case "Désert": 
-                    ProbabilityDiscoveryInDesert(); 
+                case "Désert":
+                    ProbabilityDiscoveryInDesert();
                     break;
                 case "Rivière":
-                    ProbabilityDiscoveryInRiver(); 
+                    ProbabilityDiscoveryInRiver();
                     break;
-                case "Marais": 
-                    ProbabilityDiscoveryInSwamp(); 
+                case "Marais":
+                    ProbabilityDiscoveryInSwamp();
                     break;
-                case "Montagne": 
+                case "Montagne":
                     ProbabilityDiscoveryInMountain();
                     break;
-                default: 
+                default:
                     break;
             }
         }
@@ -249,19 +255,19 @@ namespace SurvieEnTerreInconnue
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             int roll = randomGenerator.Next(0, 100);
 
-            if (roll < 1) 
+            if (roll < 1)
             {
-                Console.WriteLine("Vous avez collecté de l'eau 💧!");
-                resourceAmounts[14]++; 
+                Console.WriteLine("\nVous avez collecté de l'eau 💧!");
+                resourceAmounts[14]++;
             }
-            else if (roll < 90) 
+            else if (roll < 90)
             {
-                Console.WriteLine("Vous avez collecté du sable ⏳");
-                resourceAmounts[5]++; 
+                Console.WriteLine("\nVous avez collecté du sable ⏳!");
+                resourceAmounts[5]++;
             }
-            else 
+            else
             {
-                Console.WriteLine("Vous n'avez rien trouvé...");
+                Console.WriteLine("\nVous n'avez rien trouvé...");
             }
         }
 
@@ -279,23 +285,23 @@ namespace SurvieEnTerreInconnue
 
                 if (subChoice == 0)
                 {
-                    Console.WriteLine("Vous avez collecté de l'eau 💧");
-                    resourceAmounts[14]++; 
+                    Console.WriteLine("\nVous avez collecté de l'eau 💧!!");
+                    resourceAmounts[14]++;
                 }
                 else
                 {
-                    Console.WriteLine("Vous avez collecté des fruits 🍇");
-                    resourceAmounts[13]++; 
+                    Console.WriteLine("\nVous avez collecté des fruits 🍇");
+                    resourceAmounts[13]++;
                 }
             }
-            else if (roll < 15) 
+            else if (roll < 15)
             {
-                Console.WriteLine("Vous avez collecté du gibier 🦌 ");
-                resourceAmounts[15]++; 
+                Console.WriteLine("\nVous avez collecté du gibier 🦌 ");
+                resourceAmounts[15]++;
             }
-            else 
+            else
             {
-                Console.WriteLine("Vous avez collecté du bois 🪵");
+                Console.WriteLine("\nVous avez collecté du bois 🪵");
                 resourceAmounts[1]++;
             }
         }
@@ -308,20 +314,20 @@ namespace SurvieEnTerreInconnue
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             int roll = randomGenerator.Next(0, 100);
 
-            if (roll < 5) 
+            if (roll < 5)
             {
-                Console.WriteLine("Vous avez collecté du poisson 🐟");
-                resourceAmounts[16]++; 
+                Console.WriteLine("\nVous avez collecté du poisson 🐟");
+                resourceAmounts[16]++;
             }
-            else if (roll < 45) 
+            else if (roll < 45)
             {
-                Console.WriteLine("Vous avez collecté de l'argile 🌰");
+                Console.WriteLine("\nVous avez collecté de l'argile 🌰");
                 resourceAmounts[3]++;
             }
-            else 
+            else
             {
-                Console.WriteLine("Vous avez collecté de l'eau 💧!");
-                resourceAmounts[14]++; 
+                Console.WriteLine("\nVous avez collecté de l'eau 💧!");
+                resourceAmounts[14]++;
             }
         }
 
@@ -333,20 +339,20 @@ namespace SurvieEnTerreInconnue
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             int roll = randomGenerator.Next(0, 100);
 
-            if (roll < 20) 
+            if (roll < 20)
             {
-                Console.WriteLine("Vous avez collecté du poisson 🐟");
-                resourceAmounts[16]++; 
+                Console.WriteLine("\nVous avez collecté du poisson 🐟");
+                resourceAmounts[16]++;
             }
-            else if (roll < 50) 
+            else if (roll < 50)
             {
-                Console.WriteLine("Vous avez collecté de l'eau 💧");
+                Console.WriteLine("\nVous avez collecté de l'eau 💧");
                 resourceAmounts[14]++;
             }
-            else 
+            else
             {
-                Console.WriteLine("Vous avez collecté du silex 🪨");
-                resourceAmounts[2]++; 
+                Console.WriteLine("\nVous avez collecté du silex 🪨");
+                resourceAmounts[2]++;
             }
         }
 
@@ -358,15 +364,15 @@ namespace SurvieEnTerreInconnue
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             int roll = randomGenerator.Next(0, 100);
 
-            if (roll < 30) 
+            if (roll < 30)
             {
-                Console.WriteLine("Vous avez collecté des fruits 🍇");
+                Console.WriteLine("\nVous avez collecté des fruits 🍇");
                 resourceAmounts[13]++;
             }
-            else 
+            else
             {
-                Console.WriteLine("Vous avez collecté de l'herbe 🌱");
-                resourceAmounts[4]++; 
+                Console.WriteLine("\nVous avez collecté de l'herbe 🌱");
+                resourceAmounts[4]++;
             }
         }
 
@@ -378,20 +384,20 @@ namespace SurvieEnTerreInconnue
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             int roll = randomGenerator.Next(0, 100);
 
-            if (roll < 2) 
+            if (roll < 2)
             {
-                Console.WriteLine("Vous avez collecté de l'argile 🌰");
+                Console.WriteLine("\nVous avez collecté de l'argile 🌰");
                 resourceAmounts[3]++;
             }
-            else if (roll < 7) 
+            else if (roll < 7)
             {
-                Console.WriteLine("Vous avez collecté de l'eau 💧");
-                resourceAmounts[14]++; 
+                Console.WriteLine("\nVous avez collecté de l'eau 💧");
+                resourceAmounts[14]++;
             }
-            else 
+            else
             {
-                Console.WriteLine("Vous avez collecté du fer ⚙️ ");
-                resourceAmounts[0]++; 
+                Console.WriteLine("\nVous avez collecté du fer ⚙️ ");
+                resourceAmounts[0]++;
             }
         }
 
@@ -415,39 +421,12 @@ namespace SurvieEnTerreInconnue
         }
 
         /// <summary>
-        /// Méthode qui affiche le menu de base de chaque terrain
-        /// </summary>
-        ///  /// <param name="terrainName">Le nom du terrain</param>
-        public static ConsoleKey DisplayTerrainMenu(string terrainName)
-        {
-            Console.ResetColor();
-            Console.WriteLine();
-            Console.WriteLine($"Vous êtes actuellement {terrainName}");
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("Veuillez sélectionner une action à effectuer :");
-            Console.WriteLine();
-            Console.WriteLine("[E]xplorer les différents territoires");
-            Console.WriteLine("[A]fficher l'inventaire");
-            Console.WriteLine("[C]ollecter des ressources");
-            Console.WriteLine("[M]anger un fruits");
-            Console.WriteLine("[B]oire de l'eau");
-            Console.WriteLine("[ESC]Retour au menu principal");
-            Console.WriteLine("[Q]uitter le jeu");
-            Console.WriteLine();
-            Display.AnimateText("Votre choix : ");
-
-            ConsoleKeyInfo selectedAction = Console.ReadKey();
-            return selectedAction.Key;
-        }
-
-        /// <summary>
         ///Méthode qui affiche la position du joueur lorsqu'il se trouve dans la forêt
         public static ConsoleKey DisplayForest()
         {
             Console.Clear();
             Display.DisplayForestPosition();
-            return DisplayTerrainMenu("dans la forêt");
+            return Display.DisplayTerrainMenu("dans la forêt");
         }
 
         /// <summary>
@@ -457,7 +436,7 @@ namespace SurvieEnTerreInconnue
         {
             Console.Clear();
             Display.DisplayPrairiePosition();
-            return DisplayTerrainMenu("dans la prairie");
+            return Display.DisplayTerrainMenu("dans la prairie");
         }
 
         /// <summary>
@@ -467,7 +446,7 @@ namespace SurvieEnTerreInconnue
         {
             Console.Clear();
             Display.DisplayDesertPosition();
-            return DisplayTerrainMenu("dans le désert");
+            return Display.DisplayTerrainMenu("dans le désert");
         }
 
         /// <summary>
@@ -477,7 +456,7 @@ namespace SurvieEnTerreInconnue
         {
             Console.Clear();
             Display.DisplayRiverPosition();
-            return DisplayTerrainMenu("près de la rivière");
+            return Display.DisplayTerrainMenu("près de la rivière");
         }
 
         /// <summary>
@@ -487,7 +466,7 @@ namespace SurvieEnTerreInconnue
         {
             Console.Clear();
             Display.DisplaySwampPosition();
-            return DisplayTerrainMenu("dans le marais");
+            return Display.DisplayTerrainMenu("dans le marais");
         }
 
         /// <summary>
@@ -497,7 +476,7 @@ namespace SurvieEnTerreInconnue
         {
             Console.Clear();
             Display.DisplayMountainPosition();
-            return DisplayTerrainMenu("dans la montagne");
+            return Display.DisplayTerrainMenu("dans la montagne");
         }
 
         /// <summary>
@@ -513,7 +492,8 @@ namespace SurvieEnTerreInconnue
                 Console.WriteLine();
                 switch (input)
                 {
-                    case ConsoleKey.E: ProcessExplorationInput();
+                    case ConsoleKey.E:
+                        ProcessExplorationInput();
                         stayAtBase = false;
                         break;
                     case ConsoleKey.A:
@@ -523,11 +503,11 @@ namespace SurvieEnTerreInconnue
                         Menu.ProcessDisplayManufacturingInput();
                         break;
                     case ConsoleKey.Escape:
-                        stayAtBase = false; 
-                        Menu.ProcessDisplayMenuInput(); 
+                        stayAtBase = false;
+                        Menu.ProcessDisplayMenuInput();
                         break;
                     case ConsoleKey.Q:
-                        Menu.ProcessDisplayLeaveMessageInput(); 
+                        Menu.ProcessDisplayLeaveMessageInput();
                         return false;
                     default:
                         Display.AnimateText("Choix invalide. Veuillez réessayer.");
@@ -552,7 +532,7 @@ namespace SurvieEnTerreInconnue
             {
                 article = "au ";
             }
-            Console.ForegroundColor = ConsoleColor.DarkRed; 
+            Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine($"\nVous ne pouvez pas aller plus {article}{direction} !");
             Console.ResetColor();
             Thread.Sleep(500);
@@ -613,22 +593,22 @@ namespace SurvieEnTerreInconnue
                         else { ShowBoundaryMessage("Est"); }
                         break;
 
-                    case ConsoleKey.Enter: 
-                        ShowTerrainAtCurrentPosition(); 
-                        exploring = false; 
+                    case ConsoleKey.Enter:
+                        ShowTerrainAtCurrentPosition();
+                        exploring = false;
                         break;
-                    case ConsoleKey.Escape: 
-                        exploring = false; 
-                        Console.Clear(); 
+                    case ConsoleKey.Escape:
+                        exploring = false;
+                        Console.Clear();
                         Menu.ProcessDisplayMenuInput();
                         break;
-                    case ConsoleKey.Q: 
+                    case ConsoleKey.Q:
                         exploring = false;
                         Console.Clear();
                         Menu.ProcessDisplayLeaveMessageInput();
                         break;
-                    default: 
-                        Display.AnimateText("Direction invalide. Veuillez réessayer."); 
+                    default:
+                        Display.AnimateText("Direction invalide. Veuillez réessayer.");
                         Thread.Sleep(1500);
                         break;
                 }
@@ -645,35 +625,34 @@ namespace SurvieEnTerreInconnue
             while (stayInTerrain)
             {
                 ConsoleKey input = displayFunction();
-                Console.WriteLine();
 
                 switch (input)
                 {
-                    case ConsoleKey.E: 
-                        ProcessExplorationInput(); 
+                    case ConsoleKey.E:
+                        ProcessExplorationInput();
                         stayInTerrain = false;
                         break;
                     case ConsoleKey.A:
                         Menu.ProcessInventoryInput();
                         break;
-                    case ConsoleKey.C: 
+                    case ConsoleKey.C:
                         CollectMaterials();
-                        Console.ReadKey();
+                        Console.ReadKey(true);
                         break;
                     case ConsoleKey.M:
                         Crafting.EatFruits();
                         Display.WaitForKeyPress();
                         break;
-                    case ConsoleKey.B: 
-                        Crafting.DrinkWater(); 
+                    case ConsoleKey.B:
+                        Crafting.DrinkWater();
                         Display.WaitForKeyPress();
                         break;
-                    case ConsoleKey.Escape: 
-                        stayInTerrain = false; 
+                    case ConsoleKey.Escape:
+                        stayInTerrain = false;
                         Menu.ProcessDisplayMenuInput();
                         break;
                     case ConsoleKey.Q:
-                        Menu.ProcessDisplayLeaveMessageInput(); 
+                        Menu.ProcessDisplayLeaveMessageInput();
                         return false;
                     default:
                         Display.AnimateText("Choix invalide. Veuillez réessayer.");

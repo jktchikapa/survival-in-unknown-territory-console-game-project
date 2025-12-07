@@ -23,10 +23,10 @@ namespace SurvieEnTerreInconnue
 
                 // Créer la liste  vide
                 List<List<int>> mapGridList = new List<List<int>>();
-                for (int i = 0; i < Map.mapGrid.GetLength(0); i++) // Boucle sur les lignes (i)
+                for (int i = 0; i < Map.mapGrid.GetLength(0); i++) // Boucle sur les lignes 
                 {
                     List<int> row = new List<int>(); // Nouvelle ligne vide
-                    for (int j = 0; j < Map.mapGrid.GetLength(1); j++) // Boucle sur les colonnes (j)
+                    for (int j = 0; j < Map.mapGrid.GetLength(1); j++) // Boucle sur les colonnes 
                     {
                         row.Add(Map.mapGrid[i, j]); // Ajouter chaque case
                     }
@@ -47,17 +47,26 @@ namespace SurvieEnTerreInconnue
                 File.AppendAllText(FileName, JsonSerializer.Serialize(Map.resourceAmounts) + "\n");
                 File.AppendAllText(FileName, JsonSerializer.Serialize(Map.numberOfTripsRemaining) + "\n");
                 File.AppendAllText(FileName, JsonSerializer.Serialize(Map.playerEnergy) + "\n");
-                Console.Clear();
-                Console.WriteLine("Sauvegarde de la partie effectué avec succès");
-                Console.WriteLine("\nAppuyez sur une touche pour continuer...");
-                Console.ReadKey();
+                File.AppendAllText(FileName, JsonSerializer.Serialize(Map.playerName) + "\n");
+               
+                if(Map.wantToQuitGame)
+                {
+                    Console.Clear();
+                    Display.AnimateText($"Partie de {Map.playerName} sauvegardée avec succès!");
+                }
+                else
+                {
+                    Console.Clear();
+                    Display.AnimateText($"Partie de {Map.playerName} sauvegardée avec succès!");
+                    Display.WaitForKeyPress("\n\nAppuyez sur une touche pour continuer...");
+                }
             }
             catch (Exception ex)
             {
                 Console.Clear();
                 Console.WriteLine($"Erreur lors de la sauvegarde : {ex.ToString()}");
                 Console.WriteLine("\nAppuyez sur une touche pour continuer...");
-                Console.ReadKey();
+                Console.ReadKey(true);
             }
         }
 
@@ -68,14 +77,14 @@ namespace SurvieEnTerreInconnue
         {
             try
             {
-                if (!File.Exists(FileName)) 
+                if (!File.Exists(FileName))
                 {
                     Console.Clear();
                     Display.AnimateText("Aucune sauvegarde trouvée.");
-                    Console.WriteLine("\nAppuyez sur une touche pour continuer...");
-                    Console.ReadKey();
+                    Display.WaitForKeyPress("\nAppuyez sur une touche pour continuer...");
                     return;
                 }
+
                 string[] loaded = File.ReadAllLines(FileName);
                 Map.playerPositionX = JsonSerializer.Deserialize<int>(loaded[0]);
                 Map.playerPositionY = JsonSerializer.Deserialize<int>(loaded[1]);
@@ -99,11 +108,14 @@ namespace SurvieEnTerreInconnue
                 Map.resourceAmounts = JsonSerializer.Deserialize<int[]>(loaded[4]);
                 Map.numberOfTripsRemaining = JsonSerializer.Deserialize<int>(loaded[5]);
                 Map.playerEnergy = JsonSerializer.Deserialize<int>(loaded[6]);
+                Map.playerName = JsonSerializer.Deserialize<string>(loaded[7]);
+
                 Console.Clear();
-                Display.AnimateText("Partie chargée avec succès !");
-                Console.WriteLine("\nAppuyez sur une touche pour continuer...");
-                Console.ReadKey();
-                if(Map.playerPositionX == 0 && Map.playerPositionY == 0)
+                Display.AnimateText($"Bon retour parmi nous, {Map.playerName}!");
+                Display.AnimateText("\nPartie chargée avec succès !");
+                Display.WaitForKeyPress("\n\nAppuyez sur une touche pour continuer...");
+
+                if (Map.playerPositionX == 0 && Map.playerPositionY == 0)
                 {
                     Map.GenerateMap();
                     Map.ShowTerrainAtCurrentPosition();
@@ -119,8 +131,7 @@ namespace SurvieEnTerreInconnue
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Erreur lors du chargement : {ex.ToString()}");
                 Console.ResetColor();
-                Console.WriteLine("\nAppuyez sur une touche pour continuer...");
-                Console.ReadKey();
+                Display.WaitForKeyPress("\nAppuyez sur une touche pour continuer...");
             }
         }
     }

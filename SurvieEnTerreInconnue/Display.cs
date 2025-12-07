@@ -33,6 +33,7 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine();
             Console.ResetColor();
             WaitForKeyPress("\n\nAppuyez sur touche pour commençer le jeu....");
+            Thread.Sleep(200);
         }
 
         /// <summary>
@@ -72,6 +73,7 @@ namespace SurvieEnTerreInconnue
         public static void DisplayBasePosition()
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("██████╗  █████╗ ███████╗███████╗" +
                         "\r\n██╔══██╗██╔══██╗██╔════╝██╔════╝" +
                         "\r\n██████╔╝███████║███████╗█████╗" +
@@ -135,7 +137,7 @@ namespace SurvieEnTerreInconnue
         public static void DisplayForestPosition()
         {
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("███████╗ ██████╗ ██████╗ ███████╗████████╗" +
                         "\r\n██╔════╝██╔═══██╗██╔══██╗██╔════╝╚══██╔══╝" +
                         "\r\n█████╗  ██║   ██║██████╔╝█████╗     ██║  " +
@@ -227,7 +229,7 @@ namespace SurvieEnTerreInconnue
         /// </summary>
         public static void DisplayManufacturingItems()
         {
-             Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("███████╗ █████╗ ██████╗ ██████╗ ██╗ ██████╗ █████╗ ████████╗██╗ ██████╗ ███╗   ██╗" +
                                 "\r\n██╔════╝██╔══██╗██╔══██╗██╔══██╗██║██╔════╝██╔══██╗╚══██╔══╝██║██╔═══██╗████╗  ██║" +
                                 "\r\n█████╗  ███████║██████╔╝██████╔╝██║██║     ███████║   ██║   ██║██║   ██║██╔██╗ ██║" +
@@ -265,7 +267,7 @@ namespace SurvieEnTerreInconnue
         /// <summary>
         ///Méthode qui affiche "Base"
         /// </summary>
-        public static void AnimateText(string texte, ConsoleColor couleur = ConsoleColor.White, int timeLimit = 30)
+        public static void AnimateText(string texte, ConsoleColor couleur = ConsoleColor.White, int timeLimit = 25)
         {
             ConsoleColor savedColor = Console.ForegroundColor;
             Console.ForegroundColor = couleur;
@@ -309,15 +311,15 @@ namespace SurvieEnTerreInconnue
 
             if (Map.playerEnergy > 75)
             {
-                barColor = ConsoleColor.DarkGreen; 
+                barColor = ConsoleColor.DarkGreen;
             }
             else if (Map.playerEnergy > 50)
             {
                 barColor = ConsoleColor.Green;
             }
-            else if(Map.playerEnergy <= 50 && Map.playerEnergy > 20)
+            else if (Map.playerEnergy <= 50 && Map.playerEnergy > 20)
             {
-                barColor= ConsoleColor.Red;
+                barColor = ConsoleColor.Red;
             }
             else
             {
@@ -358,9 +360,20 @@ namespace SurvieEnTerreInconnue
         public static void DisplayLoseMessage()
         {
             DisplayGameOver();
-            Console.WriteLine();
-            Console.ReadKey();
-            ProcessNewGameConfirmation();
+            Console.WriteLine($"\n{Map.playerName}, vous avez perdu la partie car vous n'avez pas pu vous construire une maison avant l'hiver...");
+            WaitForKeyPress("\n\nAppuyez sur une touche pour continuer...");
+            Menu.ProcessNewGameConfirmation();
+        }
+        /// <summary>
+        /// Méthode qui affiche le message d'aurevoir à l'utilisateur
+        /// </summary>
+        public static void DisplayGoodByeMessage()
+        {
+            Console.Clear();
+            Console.ResetColor();
+            AnimateText($"Au revoir {Map.playerName}! Merci d'avoir joué!");
+            WaitForKeyPress("\n\nAppuyez sur une touche pour fermer le jeu...");
+            Process.GetCurrentProcess().Kill();
         }
 
         /// <summary>
@@ -369,41 +382,12 @@ namespace SurvieEnTerreInconnue
         public static ConsoleKey DisplayNewGameConfirmation()
         {
             Console.Clear();
-            Console.WriteLine("Voulez vous rejouer une nouvelle partie ?");
-            Console.WriteLine("[O]ui");
+            Console.WriteLine($"Voulez vous rejouer une nouvelle partie {Map.playerName}?");
+            Console.WriteLine("\n[O]ui");
             Console.WriteLine("[N]on");
 
-            ConsoleKeyInfo selectedAction = Console.ReadKey();
+            ConsoleKeyInfo selectedAction = Console.ReadKey(true);
             return selectedAction.Key;
-        }
-
-        /// <summary>
-        ///Méthode qui traite les choix effectuer dans le message de confirmation d'une nouvelle partie
-        /// </summary>
-        public static void ProcessNewGameConfirmation()
-        {
-            bool waitingForChoice = true;
-            while (waitingForChoice)
-            {
-                ConsoleKey input = DisplayNewGameConfirmation();
-                switch (input)
-                {
-                    case ConsoleKey.O:
-                        Map.ResetGame();
-                        Map.ShowTerrainAtCurrentPosition();
-                        waitingForChoice = false;
-                        break;
-                    case ConsoleKey.N:
-                        waitingForChoice = false;
-                        WaitForKeyPress("Appuyer sur une touche pour quitter le jeu ...");
-                        Process.GetCurrentProcess().Kill();
-                        break;
-                    default:
-                        Console.WriteLine("\nChoix invalide. Veuillez réessayer");
-                        Thread.Sleep(1000);
-                        break;
-                }
-            }
         }
 
         /// <summary>
@@ -427,7 +411,7 @@ namespace SurvieEnTerreInconnue
         }
 
         /// <summary>
-        /// Méthode qui affiche l'inventaire de ressources
+        /// Méthode qui affiche l'inventaire des ressources
         /// </summary>
         public static void DisplayInventoryMenu1()
         {
@@ -455,7 +439,7 @@ namespace SurvieEnTerreInconnue
         {
             Console.Clear();
             DisplayInventoryItems();
-            Console.WriteLine("\nBienvenue dans l'inventaire du jeu");
+            Console.WriteLine($"\nBienvenue dans l'inventaire du jeu {Map.playerName}");
             Console.WriteLine("\nDans cette section, vous pouvez consulter toutes les ressources et matériaux à votre disposition");
             Console.WriteLine("Veuillez sélectionner une option :");
             Console.WriteLine("\n[R]essources : Consultez les ressources que vous possédez");
@@ -466,7 +450,7 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine();
             AnimateText("Votre choix : ");
 
-            ConsoleKeyInfo selectedAction = Console.ReadKey();
+            ConsoleKeyInfo selectedAction = Console.ReadKey(true);
             return selectedAction.Key;
         }
 
@@ -478,7 +462,7 @@ namespace SurvieEnTerreInconnue
             Console.Clear();
             DisplayCooking();
             Console.WriteLine();
-            Console.WriteLine("Veuillez sélectionner l'aliments que vous souhaitez cuisiner :");
+            Console.WriteLine($"Veuillez sélectionner l'aliments que vous souhaitez cuisiner {Map.playerName}:");
             Console.WriteLine("[P]oisson");
             Console.WriteLine("[G]ibier");
             Console.WriteLine("[A]fficher l'inventaire");
@@ -488,7 +472,7 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine("[Q]uitter le jeu");
             Console.Write("\n\nVotre choix : ");
 
-            ConsoleKeyInfo selectedAction = Console.ReadKey();
+            ConsoleKeyInfo selectedAction = Console.ReadKey(true);
             return selectedAction.Key;
         }
 
@@ -498,7 +482,7 @@ namespace SurvieEnTerreInconnue
         public static ConsoleKey DisplayManufacturingMenu()
         {
             Console.Clear();
-                DisplayManufacturingItems();
+            DisplayManufacturingItems();
             Console.WriteLine();
             Console.WriteLine("\t********************************************************************************************************");
             Console.WriteLine($"\t* {"[F]eu".PadRight(10)}: Cette action nécessite du Bois et du Silex                                               *");
@@ -511,13 +495,13 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine($"\t* {"[N]ouritture".PadRight(10)}: Cette action nécessite du Feu et du Bois                                               *");
             Console.WriteLine($"\t* {"[C]onsulter Inventaire".PadRight(10)}: Vous pouvez consulter votre inventaire                                       *");
             Console.WriteLine($"\t* {"[ESC]Retour au menu principal".PadRight(10)}                                                                        *");
-            Console.WriteLine($"\t* {"[E]xplorer ou continuer d'explorer les territoires".PadRight(10)}                                                   *");
+            Console.WriteLine($"\t* {"[R]etour au terrain de base".PadRight(10)}                                                                          *");
             Console.WriteLine($"\t* {"[A]bandonner la fabrication de matériaux ".PadRight(10)}                                                            *");
             Console.WriteLine($"\t* {"[Q]uitter le jeu".PadRight(10)}                                                                                     *");
             Console.WriteLine("\t********************************************************************************************************");
             Console.Write("\n\nVotre choix : ");
 
-            ConsoleKeyInfo selectedAction = Console.ReadKey();
+            ConsoleKeyInfo selectedAction = Console.ReadKey(true);
             return selectedAction.Key;
         }
 
@@ -527,7 +511,7 @@ namespace SurvieEnTerreInconnue
         public static void DisplayEndMessage()
         {
             DisplayHouse();
-            Console.WriteLine("\nFélicitations! Vous avez réussi à construire une maison qui vous protègera du froid hivernale. Profitez bien!");
+            Console.WriteLine($"\nFélicitations {Map.playerName}! Vous avez réussi à construire une maison qui vous protègera du froid hivernale. Profitez bien!");
             Process.GetCurrentProcess().Kill();
         }
 
@@ -536,11 +520,29 @@ namespace SurvieEnTerreInconnue
         /// </summary>
         public static void DisplayGameHistory()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.Clear();
-            AnimateText("Vous vous réveillez après un crash d'avion ...");
+            Console.WriteLine(@"
+                ??      ??     ??      ??  ??  ??
+             ??    ??    ??   ??    ??      ??
+                ??   ??     ??   ??      ??    ??
+             ??      ??   ??   ⛺     ??    ??
+                ??    ??   ??      ??     ??   ??
+             ??   ??    ??      ??    ??     ??
+                ??      ??     ??     ??   ??  ??
+            ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
+                      TERRE INCONNUE");
+
+
+            AnimateText("\n\nVous vous réveillez après un crash d'avion ...");
             Thread.Sleep(100);
-            AnimateText("\nL'hiver approche ... Construisez vous un abris avant qu'il ene soit trop tard ...");
+            AnimateText("\nL'hiver approche ... Construisez vous un abris avant qu'il ne soit trop tard ...");
             Thread.Sleep(900);
+            AnimateText("\n\nQuel est votre nom, survivant ? ");
+            Map.playerName = Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine($"Bonne chance, {Map.playerName}...");
+            WaitForKeyPress("\nAppuyez sur une touche pour continuer");
         }
 
         /// <summary>
@@ -548,17 +550,22 @@ namespace SurvieEnTerreInconnue
         /// </summary>
         public static void DisplayProgrammersCredits()
         {
+            Console.Clear();
             DisplayCreditMessage();
 
-            AnimateText("\nCe jeu a été développé par :");
+            AnimateText("\n\nCe jeu a été développé par :");
             AnimateText("\n - Romuald Arnaud");
-            AnimateText("\n - Jessica Karelle\n");
-            AnimateText("\n Nos amélioratrions :\n");
-            AnimateText("- Plusieurs menus et interfaces pour l'utilisateur\n");
-            AnimateText("- Système de probabilités de collecte de ressources\n");
-            AnimateText("- Ajouts d'émojis significatifs pour chaque terrain\n");
-            AnimateText("- Ajouts des choix Boire/Manger  \n");
-            AnimateText("- Ajouts d'une barre d'énergie  \n");
+            AnimateText("\n - Jessica Karelle");
+
+            AnimateText("\n\nNos améliorations :");
+            AnimateText("\n - Plusieurs menus et interfaces pour l'utilisateur");
+            AnimateText("\n - Système de probabilités de collecte de ressources");
+            AnimateText("\n - Ajout d'émojis significatifs pour chaque terrain");
+            AnimateText("\n - Ajout des choix Boire/Manger");
+            AnimateText("\n - Ajout d'une barre d'énergie");
+            AnimateText("\n - Personnalisation avec le nom du joueur");
+
+            WaitForKeyPress("\n\nAppuyez sur une touche pour retourner au menu...");
         }
         /// <summary>
         /// Méthode qui affiche le menu quitter et se rassure que l'utilisateur n'a pas quitté le jeu par erreur
@@ -566,8 +573,7 @@ namespace SurvieEnTerreInconnue
         public static ConsoleKey DisplayLeaveMessage()
         {
             Console.Clear();
-            Console.ResetColor();  
-            AnimateText("Êtes vous sûr de vouloir quitter la partie ?");
+            AnimateText($"Êtes vous sûr de vouloir quitter la partie {Map.playerName}?");
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine("\n[O]ui, je souhaite quitter la partie");
@@ -577,7 +583,7 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine();
             Console.Write("Votre choix : ");
 
-            ConsoleKeyInfo selectedAction = Console.ReadKey();
+            ConsoleKeyInfo selectedAction = Console.ReadKey(true);
             return selectedAction.Key;
         }
         /// <summary>
@@ -586,7 +592,7 @@ namespace SurvieEnTerreInconnue
         public static void WaitForKeyPress(string message = "\nAppuyez sur une touche pour continuer...")
         {
             Console.WriteLine(message);
-            Console.ReadKey();
+            Console.ReadKey(true);
         }
 
         /// <summary>
@@ -597,7 +603,7 @@ namespace SurvieEnTerreInconnue
             Console.Clear();
             DisplayPrincipalMenu();
             Console.WriteLine();
-            Console.WriteLine("Veuillez sélectionner une action :");
+            Console.WriteLine($"Veuillez sélectionner une action {Map.playerName} :");
             Console.WriteLine("[D]émarer une nouvelle partie");
             Console.WriteLine("[C]hargé une partie");
             Console.WriteLine("[S]auvegarder une partie");
@@ -611,7 +617,34 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine();
             Console.Write("Votre choix : ");
 
-            ConsoleKeyInfo selectedAction = Console.ReadKey();
+            ConsoleKeyInfo selectedAction = Console.ReadKey(true);
+            return selectedAction.Key;
+        }
+
+        /// <summary>
+        /// Méthode qui affiche le menu de base de chaque terrain
+        /// </summary>
+        ///  /// <param name="terrainName">Le nom du terrain</param>
+        public static ConsoleKey DisplayTerrainMenu(string terrainName)
+        {
+            Console.ResetColor();
+            Console.WriteLine();
+            Console.WriteLine($"Vous êtes actuellement {terrainName}");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Veuillez sélectionner une action à effectuer :");
+            Console.WriteLine();
+            Console.WriteLine("[E]xplorer les différents territoires");
+            Console.WriteLine("[A]fficher l'inventaire");
+            Console.WriteLine("[C]ollecter des ressources");
+            Console.WriteLine("[M]anger un fruit");
+            Console.WriteLine("[B]oire de l'eau");
+            Console.WriteLine("[ESC]Retour au menu principal");
+            Console.WriteLine("[Q]uitter le jeu");
+            Console.WriteLine();
+            Display.AnimateText("Votre choix : ");
+
+            ConsoleKeyInfo selectedAction = Console.ReadKey(true);
             return selectedAction.Key;
         }
 
@@ -624,7 +657,7 @@ namespace SurvieEnTerreInconnue
             DisplayBasePosition();
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("Vous êtes actuellement sur le terrain de base");
+            Console.WriteLine($"Vous êtes actuellement sur le terrain de base");
             Console.WriteLine("Veuillez sélectionner une action à effectuer :\n");
             Console.ResetColor();
             Console.WriteLine("[E]xplorer les différents territoires");
@@ -635,7 +668,7 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine();
             Display.AnimateText("Votre choix : ");
 
-            ConsoleKeyInfo selectedAction = Console.ReadKey();
+            ConsoleKeyInfo selectedAction = Console.ReadKey(true);
             return selectedAction.Key;
         }
 
@@ -648,7 +681,7 @@ namespace SurvieEnTerreInconnue
             Map.DisplayGridMap();
             Console.WriteLine();
             Console.ResetColor();
-            Console.WriteLine($"Position du joueur: ({Map.playerPositionX}, {Map.playerPositionY}) - {Map.GetCurrentTerrain()}");
+            Console.WriteLine($"Position de {Map.playerName}: ({Map.playerPositionX}, {Map.playerPositionY}) - {Map.GetCurrentTerrain()}");
             Console.WriteLine($"Nombre de déplacement(s) restant(s) : {Map.numberOfTripsRemaining}");
             DisplayEnergyBar();
             Console.WriteLine();
@@ -665,11 +698,11 @@ namespace SurvieEnTerreInconnue
             Console.WriteLine();
             Console.Write("Votre choix : ");
 
-            ConsoleKeyInfo selectedAction = Console.ReadKey();
+            ConsoleKeyInfo selectedAction = Console.ReadKey(true);
             return selectedAction.Key;
         }
     }
 }
 
-    
+
 
