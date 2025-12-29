@@ -10,7 +10,10 @@ Le joueur explore un monde inconnu, collecte des ressources, fabrique des matér
 - Menu principal avec options de jeu et crédits
 
 ## Technologies
-- C# (console / jeu 2D)
+- C# (console)
+- Modularisation
+- Listes et tableaux multidimensionnels
+- Sauvegarde des données au format JSON
 
 ## Lancer le projet
 ```bash
