@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="images/profile.png" width="180">
+</p>
+
 # Survie en Terre Inconnue
 
 Jeu de survie en C# développé pour le cours **420-1A6-ST – Algorithmique et programmation structurée (A25)**.  
