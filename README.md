@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="images/profile.png" width="180">
+  <img src="images\screenshot.png" width="100%" alt = "Screenshot of the project">
 </p>
 
 # Survie en Terre Inconnue
