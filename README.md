@@ -41,8 +41,9 @@ cd survival-in-unknown-territory-console-game-project
 Explore the world, collect resources, and build a house at base [0,0] before winter arrives!
 
 ## Credits
-Developed by Jessica Karelle and Romuald Arnaud Voufo Tsafack  
-CEGEP Saint-Jean-sur-Richelieu
+Developed by :
+- [Jessica Karelle](https://github.com/jktchikapa)
+- [Romuald Arnaud Voufo Tsafack](https://github.com/Xhaves)
 
 ## License
 Educational Project
